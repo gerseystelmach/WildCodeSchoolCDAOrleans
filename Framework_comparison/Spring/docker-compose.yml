@@ -1,0 +1,29 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    environment:
+      RDS_DB_NAME: postgres 
+      RDS_USERNAME: postgres
+      RDS_PASSWORD: postgres
+      RDS_HOSTNAME: postgres
+      RDS_PORT: 5432
+      DEBUG: 'True'
+      ADMIN_TOKEN: 'da4eac9a009f372c10011b8f599465'
+
+  postgres:
+    image: "postgres:11-alpine"
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+
+volumes:
+  postgres_volume: 
+    driver: local
