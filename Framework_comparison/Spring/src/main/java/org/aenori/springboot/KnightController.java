@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
+@RequestMapping("knights")
 public class KnightController {
 	
-    @RequestMapping(value = "/knight", method = RequestMethod.GET)
-    public String getAllCustomers(Model model) {
+    @GetMapping("/index")
+    public String index(Model model) {
         List<String> knightList = Arrays.asList(
             new String[] { 
                 "Mathieu", "Mathias", "Zurabi", "Arnaud",
