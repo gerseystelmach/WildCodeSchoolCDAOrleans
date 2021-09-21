@@ -8,7 +8,10 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
 
-public class Worm extends AbstractBoardElement {
+import org.wcs_cda.worms.Direction;
+import org.wcs_cda.worms.Player;
+
+public class Worm extends AbstractBoardElement implements IMovable {
 	private static final String leftFacingResource = "src/resources/WormLF.png";
 	private static final String rightFacingResource = "src/resources/WormRF.png";
 	
@@ -23,13 +26,20 @@ public class Worm extends AbstractBoardElement {
 	// The position of the worm
 	private int x = 100;
 	private int y = 100;
+	private Player player;
+	private int life = 100;
+	private boolean isMoving = false;
+	private double weaponAngle = 0.0;
 	
 	private static void initImages() {
 		wormLF = new ImageIcon(leftFacingResource).getImage().getScaledInstance(imageWidth, imageHeigth, 0);
 		wormRF = new ImageIcon(rightFacingResource).getImage().getScaledInstance(imageWidth, imageHeigth, 0);
 	}
 	
-	public Worm() {}
+	public Worm(Player player) {
+		this.player = player;
+		player.addWorm(this);
+	}
 	
 	@Override
 	protected void drawMain(Graphics g, ImageObserver io) {
@@ -37,8 +47,20 @@ public class Worm extends AbstractBoardElement {
 		Image worm = isRightFacing ? wormRF : wormLF;
 		
 		g.drawImage(worm, x, y, io);
+		// Drawing the life
+		g.setColor(player.getColor());
+		g.drawString("" + life, x + 30, y - 20);
+		if(!isMoving) {
+			drawWeapon();
+		}
+		isMoving = false;
 	}
 	
+	private void drawWeapon() {
+		player.getCurrentWeapon().draw(x, y);
+		
+	}
+
 	@Override
 	protected void drawDebug(Graphics g, ImageObserver io) {
 		g.setColor(Color.red);
@@ -68,7 +90,18 @@ public class Worm extends AbstractBoardElement {
 		return rect;
 	}
 	
-	public void moveLeft() { 
+	@Override
+	public void move(Direction direction) {
+		if(direction == Direction.LEFT) {
+			moveLeft();
+		}
+		else if (direction == Direction.RIGHT) {
+			moveRight();
+		}
+		isMoving = true;
+	}
+	
+	private void moveLeft() { 
 		isRightFacing = false;
 		this.x -= 1; 
 	}

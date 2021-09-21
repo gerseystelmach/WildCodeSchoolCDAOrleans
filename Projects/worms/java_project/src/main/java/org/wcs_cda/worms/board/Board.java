@@ -1,4 +1,4 @@
-package org.wcs_cda.worms;
+package org.wcs_cda.worms.board;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,22 +12,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import org.wcs_cda.worms.board.Worm;
-import org.wcs_cda.worms.board.WormField;
+import org.wcs_cda.worms.Player;
 
 public class Board extends JPanel {
 
     private final int B_WIDTH = 1200;
     private final int B_HEIGHT = 800;
+        
+    private ArrayList<Worm> worms;
+    private Worm activeWorm;
     
-    private int[][] field;
-    
-    private Worm worm;
     private WormField wormField;
     
     public Board() {
@@ -39,14 +39,9 @@ public class Board extends JPanel {
         setFocusable(true);
 
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-        generateRandomField();
-        worm = new Worm();
+
         wormField = new WormField(B_WIDTH, B_HEIGHT);
     }
-
-    private void generateRandomField() {
-		field = new int[B_WIDTH][B_HEIGHT];	
-	}
 
     @Override
     public void paintComponent(Graphics g) {
@@ -59,10 +54,9 @@ public class Board extends JPanel {
         boolean inGame = true;
         
         if (inGame) {
-        	
         	wormField.draw(g, this);
         	doGravity();
-        	worm.draw(g, this);
+        	activeWorm.draw(g, this);
         	
             Toolkit.getDefaultToolkit().sync();
 
@@ -72,15 +66,15 @@ public class Board extends JPanel {
     }
 
     private void doGravity() {
-		while(!wormField.getFrontier().intersects(worm.getOuterRect()))
+		while(!wormField.getFrontier().intersects(activeWorm.getOuterRect()))
 		{
-			worm.setY(worm.getY() + 3);
+			activeWorm.setY(activeWorm.getY() + 3);
 		}
 		
-		while(wormField.getFrontier().intersects(worm.getRect())
+		while(wormField.getFrontier().intersects(activeWorm.getRect())
 		)
 		{
-			worm.setY(worm.getY() - 3);
+			activeWorm.setY(activeWorm.getY() - 3);
 		}
 	}
 
@@ -108,8 +102,12 @@ public class Board extends JPanel {
         return true;
     }
 
-	public Worm getCurrentWorm() {
-		// TODO Auto-generated method stub
-		return worm;
+	public IMovable getCurrentMovable() {
+		return activeWorm;
+	}
+
+	public void createWorm(Player luckyLuke) {
+		Worm worm = new Worm(luckyLuke);
+		activeWorm = worm;
 	}
 }

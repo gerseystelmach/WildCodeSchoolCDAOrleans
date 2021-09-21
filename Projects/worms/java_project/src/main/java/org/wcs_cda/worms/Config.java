@@ -18,6 +18,10 @@ public class Config {
 		return config.prop.getProperty("app.debug").equals("1");
 	}
 	
+	public static int getClockDelay() {
+		return Integer.parseInt(config.prop.getProperty("app.clock_delay"));
+	}
+	
 	public Config() throws IOException {
 		prop = new Properties();
 

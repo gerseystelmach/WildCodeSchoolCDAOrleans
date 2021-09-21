@@ -3,6 +3,8 @@ package org.wcs_cda.worms;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import org.wcs_cda.worms.board.Board;
+
 public class KeyboardController extends KeyAdapter {
 	private Board board;
 	
@@ -15,11 +17,11 @@ public class KeyboardController extends KeyAdapter {
         int key = e.getKeyCode();
         
         if (key == KeyEvent.VK_LEFT) {
-            board.getCurrentWorm().moveLeft();
+            board.getCurrentMovable().move(Direction.LEFT);
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-        	board.getCurrentWorm().moveRight();
+        	board.getCurrentMovable().move(Direction.RIGHT);
         }
     }
 
