@@ -3,15 +3,15 @@ package org.wcs_cda.worms;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
-public class MainWorms extends JFrame {
-	private MainLoop mainLoop;
+public class WormLauncher extends JFrame {
+	private TimeController mainLoop;
 	
-    public MainWorms() {
+    public WormLauncher() {
         initUI();
     }
     
     private void initUI() {
-        mainLoop = new MainLoop();
+        mainLoop = new TimeController();
         
         add(mainLoop.getBoard());
                
@@ -37,7 +37,7 @@ public class MainWorms extends JFrame {
     	}
     	
         EventQueue.invokeLater(() -> {
-            JFrame ex = new MainWorms();
+            JFrame ex = new WormLauncher();
             ex.setVisible(true);
         });
     }

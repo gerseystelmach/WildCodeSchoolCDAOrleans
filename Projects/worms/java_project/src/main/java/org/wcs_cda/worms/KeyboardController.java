@@ -3,12 +3,12 @@ package org.wcs_cda.worms;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import org.wcs_cda.worms.board.Board;
+import org.wcs_cda.worms.board.PhysicalController;
 
 public class KeyboardController extends KeyAdapter {
-	private Board board;
+	private PhysicalController board;
 	
-	public KeyboardController(Board board) {
+	public KeyboardController(PhysicalController board) {
 		this.board = board;
 	}
 	
@@ -25,7 +25,7 @@ public class KeyboardController extends KeyAdapter {
         }
     }
 
-	public Board getBoard() {
+	public PhysicalController getBoard() {
 		return board;
 	}
 }

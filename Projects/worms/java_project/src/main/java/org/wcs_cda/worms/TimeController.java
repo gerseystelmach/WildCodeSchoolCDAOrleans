@@ -8,15 +8,15 @@ import java.util.*;
 
 import javax.swing.Timer;
 
-import org.wcs_cda.worms.board.Board;
+import org.wcs_cda.worms.board.PhysicalController;
 
-public class MainLoop implements ActionListener{	
-	private Board board;
+public class TimeController implements ActionListener{	
+	private PhysicalController board;
 	private Timer timer;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	
 	
-	public MainLoop() {
+	public TimeController() {
 		initGame();
 		
 		board.addKeyListener(new KeyboardController(board));
@@ -25,10 +25,8 @@ public class MainLoop implements ActionListener{
         timer.start();
 	}
 	
-	
-	
 	private void initGame() {
-		board = new Board();
+		board = new PhysicalController();
 		// Lucky luke because for the moment he is a poor lonesome
 		// player
 		Player luckyLuke = createPlayer("Lucky Luke", Color.RED);

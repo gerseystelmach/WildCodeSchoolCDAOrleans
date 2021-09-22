@@ -20,7 +20,7 @@ import javax.swing.Timer;
 
 import org.wcs_cda.worms.Player;
 
-public class Board extends JPanel {
+public class PhysicalController extends JPanel {
 
     private final int B_WIDTH = 1200;
     private final int B_HEIGHT = 800;
@@ -30,7 +30,7 @@ public class Board extends JPanel {
     
     private WormField wormField;
     
-    public Board() {
+    public PhysicalController() {
         initBoard();
     }
     
