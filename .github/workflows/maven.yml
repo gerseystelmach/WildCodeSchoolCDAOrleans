@@ -22,4 +22,5 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build Worm Project and launch
-      run: cd Projects/worms/java_project && mvn -B package --file pom.xml 
+      working-directory: Projects/worms/java_project
+      run: mvn -B package --file pom.xml && java -jar target/Worms-1.0.jar --launch-test
