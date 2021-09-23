@@ -49,7 +49,7 @@ public class Worm extends AbstractBoardElement implements IMovable {
 		g.drawImage(worm, x, y, io);
 		// Drawing the life
 		g.setColor(player.getColor());
-		g.drawString("" + life, x + 30, y - 20);
+		g.drawString("" + life, x + (isRightFacing ? 30 : 10), y - 20);
 		if(!isMoving) {
 			drawWeapon(g, io);
 		}

@@ -1,7 +1,9 @@
-package org.wcs_cda.worms;
+package org.wcs_cda.worms.game_mechanism;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+
+import org.wcs_cda.worms.Config;
 
 public class WormLauncher extends JFrame {
 	private TimeController mainLoop;

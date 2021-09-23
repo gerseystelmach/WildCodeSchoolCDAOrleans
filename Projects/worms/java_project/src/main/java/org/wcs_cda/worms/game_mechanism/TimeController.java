@@ -1,4 +1,4 @@
-package org.wcs_cda.worms;
+package org.wcs_cda.worms.game_mechanism;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -8,18 +8,18 @@ import java.util.*;
 
 import javax.swing.Timer;
 
-import org.wcs_cda.worms.board.PhysicalController;
+import org.wcs_cda.worms.Player;
+import org.wcs_cda.worms.Config;
 
 public class TimeController implements ActionListener{	
 	private PhysicalController board;
 	private Timer timer;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	
-	
 	public TimeController() {
 		initGame();
 		
-		board.addKeyListener(new KeyboardController(board));
+		board.addKeyListener(new KeyboardController());
 		
 		timer = new Timer(Config.getClockDelay(), this);
         timer.start();
@@ -52,4 +52,9 @@ public class TimeController implements ActionListener{
             timer.stop();
         }
     }
+
+	public static Object getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
