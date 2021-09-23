@@ -1,6 +1,8 @@
 package org.wcs_cda.worms.game_mechanism;
 
 import java.awt.EventQueue;
+import java.util.Arrays;
+
 import javax.swing.JFrame;
 
 import org.wcs_cda.worms.Config;
@@ -36,6 +38,13 @@ public class WormLauncher extends JFrame {
     		System.err.println(ex.getMessage());
     		ex.printStackTrace();
     		System.exit(1);
+    	}
+    	
+    	// --launch-test is an option for CI. No headless for the
+    	// moment
+    	if(Arrays.asList(args).contains("--launch-test")) {
+    		System.out.println("Launching successfull !");
+    		System.exit(0);
     	}
     	
         EventQueue.invokeLater(() -> {
