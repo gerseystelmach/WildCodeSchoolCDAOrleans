@@ -21,7 +21,5 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-    - name: Change to Worms dir
-      run: cd Projects/worms/java_project 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Build Worm Project and launch
+      run: cd Projects/worms/java_project && mvn -B package --file pom.xml 
