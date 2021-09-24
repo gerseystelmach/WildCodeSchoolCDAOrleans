@@ -7,17 +7,13 @@ import javax.swing.JFrame;
 
 import org.wcs_cda.worms.Config;
 
-public class WormLauncher extends JFrame {
-	private TimeController mainLoop;
-	
+public class WormLauncher extends JFrame {	
     public WormLauncher() {
         initUI();
     }
     
-    private void initUI() {
-        mainLoop = new TimeController();
-        
-        add(mainLoop.getBoard());
+    private void initUI() {        
+        add(TimeController.getInstance().getBoard());
                
         setResizable(false);
         pack();
