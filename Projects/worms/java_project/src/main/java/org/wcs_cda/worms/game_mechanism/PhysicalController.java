@@ -44,6 +44,7 @@ public class PhysicalController extends JPanel {
         	for(Worm worm: Worm.getAllWorms()) {
         		doGravity(worm);
         		worm.draw(g, this);
+        		TimeController.getInstance().getCurrentPhase().draw(g, this);
         	}
         	
             Toolkit.getDefaultToolkit().sync();

@@ -5,15 +5,9 @@ import java.awt.image.ImageObserver;
 
 import org.wcs_cda.worms.Config;
 
-public abstract class AbstractDrawableElement {
-	private int depth;
-
+public abstract class AbstractDrawable {
 	public int getDepth() {
-		return depth;
-	}
-
-	protected void setDepth(int depth) {
-		this.depth = depth;
+		return 0;
 	}
 	
 	public void draw(Graphics g, ImageObserver io) {
@@ -27,6 +21,4 @@ public abstract class AbstractDrawableElement {
 	protected void drawDebug(Graphics g, ImageObserver io) {}
 
 	protected abstract void drawMain(Graphics g, ImageObserver io);
-	
-	
 }

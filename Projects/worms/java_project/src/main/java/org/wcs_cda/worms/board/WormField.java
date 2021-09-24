@@ -8,7 +8,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 import java.awt.image.ImageObserver;
 
-public class WormField extends AbstractDrawableElement {
+public class WormField extends AbstractDrawable {
 	private int[][] allPixel;
 	private Area frontier;
 	

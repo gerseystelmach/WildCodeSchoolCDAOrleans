@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 
 import org.wcs_cda.worms.Player;
 
-public class Worm extends AbstractDrawableElement {
+public class Worm extends AbstractMovable {
 	private static final String leftFacingResource = "src/resources/WormLF.png";
 	private static final String rightFacingResource = "src/resources/WormRF.png";
 	
@@ -50,21 +50,15 @@ public class Worm extends AbstractDrawableElement {
 	protected void drawMain(Graphics g, ImageObserver io) {
 		if( wormLF == null ) initImages();
 		Image worm = isRightFacing ? wormRF : wormLF;
-		
+
 		g.drawImage(worm, x, y, io);
 		// Drawing the life
 		g.setColor(player.getColor());
 		g.drawString("" + life, x + (isRightFacing ? 30 : 10), y - 20);
-		if(!isMoving) {
-			drawWeapon(g, io);
-		}
+		
 		isMoving = false;
 	}
 	
-	private void drawWeapon(Graphics g, ImageObserver io) {
-		player.getCurrentWeapon().draw(g, io, x, y);
-	}
-
 	@Override
 	protected void drawDebug(Graphics g, ImageObserver io) {
 		g.setColor(Color.red);
@@ -119,5 +113,9 @@ public class Worm extends AbstractDrawableElement {
 
 	public static List<Worm> getAllWorms() {
 		return allWorms;
+	}
+
+	public boolean isMoving() {
+		return isMoving;
 	}
 }
