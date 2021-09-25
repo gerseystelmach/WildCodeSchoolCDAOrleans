@@ -18,14 +18,16 @@ public class Shotgun extends AbstractWeapon {
 	}
 	
 	@Override
-	public void draw(Graphics g, ImageObserver io, int x, int y) {
+	public void draw(Graphics2D g, ImageObserver io, int x, int y) {
 		if(image == null) {
 			initImages();
 		}
-		Graphics2D g2d = (Graphics2D)g;
-		AffineTransform trans = AffineTransform.getTranslateInstance(x + 100, y);
-		trans.scale(-1, 1);
-		g2d.drawImage(image, trans, io);
+
+		//AffineTransform trans = AffineTransform.getTranslateInstance(x + 100, y);
+		//trans.scale(-1, 1);
+		
+		//g.drawImage(image, trans, io);
+		g.drawImage(image, x, y, io);
 	}
 
 	@Override

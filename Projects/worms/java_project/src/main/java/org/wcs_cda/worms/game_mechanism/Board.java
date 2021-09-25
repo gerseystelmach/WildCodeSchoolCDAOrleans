@@ -2,20 +2,24 @@ package org.wcs_cda.worms.game_mechanism;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.awt.geom.Point2D;
+import java.util.HashSet;
 
 import javax.swing.*;
 import org.wcs_cda.worms.Player;
 import org.wcs_cda.worms.board.*;
 
-public class Board extends JPanel {
+public abstract class Board extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int BOARD_WIDTH = 1200;
 	private static final int BOARD_HEIGHT = 800;
 
 	private WormField wormField;
-
+	
 	public Board() {
 		initBoard();
 	}
@@ -37,40 +41,26 @@ public class Board extends JPanel {
 	}
 
 	private void doDrawing(Graphics2D g) {
-		boolean inGame = true;
-
-		if (inGame) {
-			wormField.draw(g, this);
-			for(Player player: TimeController.getInstance().getPlayers()) {
-				for(Worm worm: player.getWorms()) {
-					// this.doGravity(worm);
-					worm.draw(g, this);
-					TimeController.getInstance().getCurrentPhase().draw(g, this);
-				}
+		wormField.draw(g, this);
+		for(Player player: TimeController.getInstance().getPlayers()) {
+			for(Worm worm: player.getWorms()) {
+				// this.doGravity(worm);
+				worm.draw(g, this);
+				TimeController.getInstance().getCurrentPhase().draw(g, this);
 			}
-
-			Toolkit.getDefaultToolkit().sync();
-
-		} else {
-			gameOver(g);
-		}        
-	}
-
-	private void gameOver(Graphics g) {
-		String msg = "Game Over";
-		Font small = new Font("Helvetica", Font.BOLD, 14);
-		FontMetrics metr = getFontMetrics(small);
-
-		g.setColor(Color.white);
-		g.setFont(small);
-		g.drawString(msg, (BOARD_WIDTH - metr.stringWidth(msg)) / 2, BOARD_HEIGHT / 2);
+		}
+		
+		Toolkit.getDefaultToolkit().sync();
 	}
 
 	public boolean actionPerformed(ActionEvent e) {
 		repaint();
-
+		doMoves();
+		
 		return true;
 	}
+
+	protected abstract void doMoves();
 
 	public static int getB_WIDTH() {
 		return BOARD_WIDTH;
@@ -79,7 +69,7 @@ public class Board extends JPanel {
 	public static int getB_HEIGHT() {
 		return BOARD_HEIGHT;
 	}
-	
+
 	protected WormField getWormField() {
 		return this.wormField;
 	}

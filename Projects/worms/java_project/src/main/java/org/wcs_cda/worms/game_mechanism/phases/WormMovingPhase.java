@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 
 import org.wcs_cda.worms.Config;
-import org.wcs_cda.worms.Player;
 import org.wcs_cda.worms.board.Worm;
 
 public class WormMovingPhase extends AbstractPhase {
@@ -29,6 +28,12 @@ public class WormMovingPhase extends AbstractPhase {
 	@Override
 	public void forwardKeyPressed(String key) {
 		if(key.equals("Left")) {
+			activeWorm.setDirection(Math.PI);
+			activeWorm.setSpeed(WORM_STEP_SPEED);
+		}
+		
+		if(key.equals("Right")) {
+			activeWorm.setDirection(0);
 			activeWorm.setSpeed(WORM_STEP_SPEED);
 		}
 		
