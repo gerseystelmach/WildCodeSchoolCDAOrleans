@@ -43,7 +43,7 @@ public class Board extends JPanel {
 			wormField.draw(g, this);
 			for(Player player: TimeController.getInstance().getPlayers()) {
 				for(Worm worm: player.getWorms()) {
-					doGravity(worm);
+					// this.doGravity(worm);
 					worm.draw(g, this);
 					TimeController.getInstance().getCurrentPhase().draw(g, this);
 				}
@@ -54,19 +54,6 @@ public class Board extends JPanel {
 		} else {
 			gameOver(g);
 		}        
-	}
-
-	private void doGravity(AbstractRectangularBoardElement arbe) {
-		/*while(!wormField.getFrontier().intersects(arbe.getOuterRect()))
-		{
-			worm.setY(worm.getY() + 3);
-		}
-
-		while(wormField.getFrontier().intersects(arbe.getInnerRect())
-				)
-		{
-			worm.setY(worm.getY() - 3);
-		}*/
 	}
 
 	private void gameOver(Graphics g) {
@@ -91,5 +78,9 @@ public class Board extends JPanel {
 
 	public static int getB_HEIGHT() {
 		return BOARD_HEIGHT;
+	}
+	
+	protected WormField getWormField() {
+		return this.wormField;
 	}
 }

@@ -1,6 +1,5 @@
 package org.wcs_cda.worms.board;
 
-import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.image.ImageObserver;
 

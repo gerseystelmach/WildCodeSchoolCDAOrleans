@@ -23,12 +23,11 @@ public abstract class AbstractRectangularBoardElement extends AbstractMovable{
 	}
 
 	public double getX() {
-		return getInnerRect().getCenterX();
+		return getInnerRect().getX();
 	}
 
 	public double getY() {
-		// TODO Auto-generated method stub
-		return getInnerRect().getCenterY();
+		return getInnerRect().getY();
 	}
 	
 	public Rectangle2D getInnerRect() {
@@ -41,5 +40,18 @@ public abstract class AbstractRectangularBoardElement extends AbstractMovable{
 
 	public Shape getShape() {
 		return innerRect;
+	}
+	
+	public boolean isColidingWith(Shape s) {
+		return s.intersects(getInnerRect());
+	}
+	
+	public boolean isTouching(Shape s) {
+		return s.intersects(getOuterRect());
+	}
+	
+	public void move(int x, int y) {
+		GeomUtils.moveRect(innerRect, x, y);
+		GeomUtils.moveRect(outerRect, x, y);
 	}
 }

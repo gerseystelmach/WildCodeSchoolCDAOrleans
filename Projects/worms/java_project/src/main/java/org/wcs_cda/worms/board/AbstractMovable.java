@@ -32,4 +32,6 @@ public abstract class AbstractMovable extends AbstractBoardElement {
 	public void setDirection(double direction) {
 		this.direction = direction;
 	}
+	
+	public abstract void move(int x, int y);
 }
