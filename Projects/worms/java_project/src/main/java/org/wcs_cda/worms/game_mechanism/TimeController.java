@@ -16,7 +16,7 @@ import org.wcs_cda.worms.Config;
 
 public class TimeController implements ActionListener{
 	private static TimeController instance;
-	private PhysicalController board;
+	private Board board;
 	private Timer timer;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private AbstractPhase currentPhase;
@@ -31,7 +31,7 @@ public class TimeController implements ActionListener{
 	}
 	
 	private void initGame() {
-		board = new PhysicalController();
+		board = new Board();
 		// Lucky luke because for the moment he is a poor lonesome
 		// player
 		Player luckyLuke = createPlayer("Lucky Luke", Color.RED);
@@ -74,5 +74,9 @@ public class TimeController implements ActionListener{
 
 	public void setCurrentPhase(AbstractPhase currentPhase) {
 		this.currentPhase = currentPhase;
+	}
+
+	public ArrayList<Player> getPlayers() {
+		return players;
 	}
 }

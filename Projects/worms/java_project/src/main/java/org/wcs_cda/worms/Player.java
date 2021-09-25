@@ -12,7 +12,7 @@ import org.wcs_cda.worms.board.weapons.Shotgun;
 public class Player {
 	private final String name;
 	private final Color color;
-	private ArrayList<Worm> worms = new ArrayList<Worm>();
+	private final ArrayList<Worm> worms = new ArrayList<Worm>();
 	private AbstractWeapon currentWeapon;
 	
 	public Player(String name, Color color) {
@@ -26,7 +26,10 @@ public class Player {
 	}
 	
 	public Worm createWorm(String nom) {
-		Worm worm = new Worm(this, nom);
+		Worm worm = new Worm(
+				this, 
+				nom
+		);
 		worms.add(worm);
 		
 		return worm;
@@ -38,5 +41,9 @@ public class Player {
 
 	public AbstractWeapon getCurrentWeapon() {
 		return currentWeapon;
+	}
+
+	public ArrayList<Worm> getWorms() {
+		return worms;
 	}
 }

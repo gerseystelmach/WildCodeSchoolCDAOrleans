@@ -3,6 +3,7 @@ package org.wcs_cda.worms.board;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
@@ -50,10 +51,9 @@ public class WormField extends AbstractBoardElement {
 	}
 	
 	@Override
-	public void drawMain(Graphics g, ImageObserver io) {
-		 Graphics2D g2 = (Graphics2D) g;
+	public void drawMain(Graphics2D g, ImageObserver io) {
 		 g.setColor(Color.green);
-		 g2.fill(frontier);
+		 g.fill(frontier);
 	}
 	
 	public void doExplosionOnField(int x, int y, int radius) {
@@ -63,6 +63,10 @@ public class WormField extends AbstractBoardElement {
 	}
 	
 	public Area getFrontier() {
+		return frontier;
+	}
+	
+	public Shape getShape() {
 		return frontier;
 	}
 }
