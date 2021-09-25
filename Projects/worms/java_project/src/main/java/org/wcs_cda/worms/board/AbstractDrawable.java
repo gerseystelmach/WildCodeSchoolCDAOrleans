@@ -10,7 +10,7 @@ public abstract class AbstractDrawable {
 		return 0;
 	}
 	
-	public void draw(Graphics g, ImageObserver io) {
+	public final void draw(Graphics g, ImageObserver io) {
 		drawMain(g, io);
 		if(Config.isDebug()) {
 			drawDebug(g, io);

@@ -29,6 +29,10 @@ public class WormMovingPhase extends AbstractPhase {
 		if(key.equals("Left") || key.equals("Right")) {
 			activeWorm.move(key);
 		}
+		
+		if(key.equals("Space")) {
+			activeWorm.getPlayer().getCurrentWeapon().fire();
+		}
 	}
 	
 	@Override

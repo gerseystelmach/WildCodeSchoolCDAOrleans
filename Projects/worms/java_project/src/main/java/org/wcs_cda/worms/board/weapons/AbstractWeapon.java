@@ -17,4 +17,10 @@ public abstract class AbstractWeapon {
 	public double getAngle() {
 		return this.angle;
 	}
+
+	public void fire() {		
+		getAmmo().fire();
+	}
+
+	protected abstract AbstractAmmo getAmmo();
 }

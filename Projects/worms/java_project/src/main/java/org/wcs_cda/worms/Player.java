@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.wcs_cda.worms.board.AbstractDrawable;
 import org.wcs_cda.worms.board.Worm;
 import org.wcs_cda.worms.board.weapons.AbstractWeapon;
+import org.wcs_cda.worms.board.weapons.Hadoken;
 import org.wcs_cda.worms.board.weapons.Shotgun;
 
 public class Player {
@@ -17,7 +18,7 @@ public class Player {
 	public Player(String name, Color color) {
 		this.name = name;
 		this.color = color;
-		this.currentWeapon = new Shotgun();
+		this.currentWeapon = new Hadoken();
 	}
 
 	public String getName() {
@@ -36,6 +37,6 @@ public class Player {
 	}
 
 	public AbstractWeapon getCurrentWeapon() {
-		return new Shotgun();
+		return currentWeapon;
 	}
 }

@@ -45,7 +45,7 @@ public class Worm extends AbstractMovable {
 		this.player = player;
 		this.name = name;
 	}
-	
+		
 	@Override
 	protected void drawMain(Graphics g, ImageObserver io) {
 		if( wormLF == null ) initImages();

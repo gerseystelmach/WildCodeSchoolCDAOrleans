@@ -28,4 +28,10 @@ public class Shotgun extends AbstractWeapon {
 		g2d.drawImage(image, trans, io);
 	}
 
+	@Override
+	protected AbstractAmmo getAmmo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

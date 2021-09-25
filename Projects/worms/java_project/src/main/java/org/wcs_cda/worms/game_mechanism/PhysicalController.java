@@ -11,8 +11,8 @@ import org.wcs_cda.worms.board.*;
 
 public class PhysicalController extends JPanel {
 
-    private final int B_WIDTH = 1200;
-    private final int B_HEIGHT = 800;
+    private final int BOARD_WIDTH = 1200;
+    private final int BOARD_HEIGHT = 800;
         
     private WormField wormField;
     
@@ -24,9 +24,9 @@ public class PhysicalController extends JPanel {
         setBackground(Color.BLACK);
         setFocusable(true);
 
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
 
-        wormField = new WormField(B_WIDTH, B_HEIGHT);
+        wormField = new WormField(BOARD_WIDTH, BOARD_HEIGHT);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class PhysicalController extends JPanel {
 
         g.setColor(Color.white);
         g.setFont(small);
-        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        g.drawString(msg, (BOARD_WIDTH - metr.stringWidth(msg)) / 2, BOARD_HEIGHT / 2);
     }
 
     public boolean actionPerformed(ActionEvent e) {
@@ -82,4 +82,12 @@ public class PhysicalController extends JPanel {
         
         return true;
     }
+
+	public int getB_WIDTH() {
+		return BOARD_WIDTH;
+	}
+
+	public int getB_HEIGHT() {
+		return BOARD_HEIGHT;
+	}
 }
