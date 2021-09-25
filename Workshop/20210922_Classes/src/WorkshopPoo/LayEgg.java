@@ -2,7 +2,7 @@ package WorkshopPoo;
 
 public interface LayEgg {
 
-
-    public Egg layEgg ();
-
+    default Egg layEgg() {
+        return new Egg();
+    }
 }

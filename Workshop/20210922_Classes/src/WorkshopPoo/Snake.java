@@ -7,8 +7,4 @@ public class Snake extends Animal implements LayEgg {
         this.noise = "sssssssssssssssss";
         this.howItMoves = "crawl";
     }
-
-    public Egg layEgg () {
-        return new Egg();
-    }
 }

@@ -6,10 +6,5 @@ public class Bird extends PawedAnimal implements LayEgg {
         super(name, nbPaws);
         this.noise = "piu piu";
         this.howItMoves = "fly";
-
-    }
-
-    public Egg layEgg () {
-        return new Egg();
     }
 }

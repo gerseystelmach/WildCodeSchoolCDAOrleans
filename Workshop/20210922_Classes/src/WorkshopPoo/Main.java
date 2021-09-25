@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         Bird woodpecker = new Bird("Woodpecker", 2);
+        woodpecker.layEgg();
         Cat felix = new Cat("Felix", 4);
         Dauphin flipper = new Dauphin("Flipper");
         Horse carpeado = new Horse("Carpeado", 4);
