@@ -11,12 +11,9 @@ import org.wcs_cda.worms.board.*;
 
 public class PhysicalController extends JPanel {
 
-    private final int B_WIDTH = 1200;
-    private final int B_HEIGHT = 800;
+    private final int BOARD_WIDTH = 1200;
+    private final int BOARD_HEIGHT = 800;
         
-    private ArrayList<Worm> worms;
-    private Worm activeWorm;
-    
     private WormField wormField;
     
     public PhysicalController() {
@@ -27,9 +24,9 @@ public class PhysicalController extends JPanel {
         setBackground(Color.BLACK);
         setFocusable(true);
 
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
 
-        wormField = new WormField(B_WIDTH, B_HEIGHT);
+        wormField = new WormField(BOARD_WIDTH, BOARD_HEIGHT);
     }
 
     @Override
@@ -44,8 +41,11 @@ public class PhysicalController extends JPanel {
         
         if (inGame) {
         	wormField.draw(g, this);
-        	doGravity();
-        	activeWorm.draw(g, this);
+        	for(Worm worm: Worm.getAllWorms()) {
+        		doGravity(worm);
+        		worm.draw(g, this);
+        		TimeController.getInstance().getCurrentPhase().draw(g, this);
+        	}
         	
             Toolkit.getDefaultToolkit().sync();
 
@@ -54,16 +54,16 @@ public class PhysicalController extends JPanel {
         }        
     }
 
-    private void doGravity() {
-		while(!wormField.getFrontier().intersects(activeWorm.getOuterRect()))
+    private void doGravity(Worm worm) {
+		while(!wormField.getFrontier().intersects(worm.getOuterRect()))
 		{
-			activeWorm.setY(activeWorm.getY() + 3);
+			worm.setY(worm.getY() + 3);
 		}
 		
-		while(wormField.getFrontier().intersects(activeWorm.getRect())
+		while(wormField.getFrontier().intersects(worm.getRect())
 		)
 		{
-			activeWorm.setY(activeWorm.getY() - 3);
+			worm.setY(worm.getY() - 3);
 		}
 	}
 
@@ -74,29 +74,20 @@ public class PhysicalController extends JPanel {
 
         g.setColor(Color.white);
         g.setFont(small);
-        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+        g.drawString(msg, (BOARD_WIDTH - metr.stringWidth(msg)) / 2, BOARD_HEIGHT / 2);
     }
 
     public boolean actionPerformed(ActionEvent e) {
-
-        /* if (inGame) {
-
-            checkApple();
-            checkCollision();
-            move();
-        }*/
-
         repaint();
         
         return true;
     }
 
-	public IMovable getCurrentMovable() {
-		return activeWorm;
+	public int getB_WIDTH() {
+		return BOARD_WIDTH;
 	}
 
-	public void createWorm(Player luckyLuke) {
-		Worm worm = new Worm(luckyLuke);
-		activeWorm = worm;
+	public int getB_HEIGHT() {
+		return BOARD_HEIGHT;
 	}
 }

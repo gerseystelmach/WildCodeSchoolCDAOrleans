@@ -1,7 +1,9 @@
 package org.wcs_cda.worms.board.weapons;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
@@ -20,8 +22,16 @@ public class Shotgun extends AbstractWeapon {
 		if(image == null) {
 			initImages();
 		}
+		Graphics2D g2d = (Graphics2D)g;
+		AffineTransform trans = AffineTransform.getTranslateInstance(x + 100, y);
+		trans.scale(-1, 1);
+		g2d.drawImage(image, trans, io);
+	}
 
-		g.drawImage(image, x - 10, y + 28, io);
+	@Override
+	protected AbstractAmmo getAmmo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
