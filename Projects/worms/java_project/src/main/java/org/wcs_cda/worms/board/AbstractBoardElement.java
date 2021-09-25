@@ -5,11 +5,7 @@ import java.awt.image.ImageObserver;
 
 import org.wcs_cda.worms.Config;
 
-public abstract class AbstractDrawable {
-	public int getDepth() {
-		return 0;
-	}
-	
+public abstract class AbstractBoardElement {
 	public final void draw(Graphics g, ImageObserver io) {
 		drawMain(g, io);
 		if(Config.isDebug()) {

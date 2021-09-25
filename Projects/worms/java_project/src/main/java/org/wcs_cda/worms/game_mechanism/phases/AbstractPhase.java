@@ -7,9 +7,9 @@ import java.time.Instant;
 import java.util.Date;
 
 import org.wcs_cda.worms.Player;
-import org.wcs_cda.worms.board.AbstractDrawable;
+import org.wcs_cda.worms.board.AbstractBoardElement;
 
-public abstract class AbstractPhase extends AbstractDrawable {
+public abstract class AbstractPhase extends AbstractBoardElement {
 	private Instant phaseStart;
 	private Player activePlayer;
 	

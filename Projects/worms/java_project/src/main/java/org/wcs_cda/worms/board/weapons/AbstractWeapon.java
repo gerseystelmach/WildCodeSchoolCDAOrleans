@@ -3,7 +3,7 @@ package org.wcs_cda.worms.board.weapons;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
-import org.wcs_cda.worms.board.AbstractDrawable;
+import org.wcs_cda.worms.board.AbstractBoardElement;
 
 public abstract class AbstractWeapon {
 	private double angle;
