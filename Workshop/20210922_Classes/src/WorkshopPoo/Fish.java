@@ -8,7 +8,4 @@ public class Fish extends Animal implements LayEgg {
         this.howItMoves = "swim";
     }
 
-    public Egg layEgg () {
-        return new Egg();
-    }
 }
