@@ -6,9 +6,12 @@ import java.awt.image.ImageObserver;
 
 import org.wcs_cda.worms.Config;
 import org.wcs_cda.worms.board.Worm;
+import org.wcs_cda.worms.game_mechanism.phases.MovingPhase;
+import org.wcs_cda.worms.game_mechanism.PhysicalController;
+import org.wcs_cda.worms.game_mechanism.TimeController;
 
 public class WormMovingPhase extends AbstractPhase {
-	private static final int WORM_STEP_SPEED = 3;
+	private static final double WORM_STEP_SPEED = 3.0;
 	private Worm activeWorm;
 	
 	public WormMovingPhase(Worm worm) {
@@ -28,28 +31,39 @@ public class WormMovingPhase extends AbstractPhase {
 	@Override
 	public void forwardKeyPressed(String key) {
 		if(key.equals("Left")) {
+			activeWorm.getPlayer().getCurrentWeapon().setAngle(Math.PI);
 			activeWorm.setDirection(Math.PI);
-			activeWorm.setSpeed(WORM_STEP_SPEED);
+			activeWorm.setUserMoving(true);
+			activeWorm.singleMove(PhysicalController.getInstance(), -WORM_STEP_SPEED, 0.0);
 		}
 		
 		if(key.equals("Right")) {
+			activeWorm.getPlayer().getCurrentWeapon().setAngle(0);
 			activeWorm.setDirection(0);
-			activeWorm.setSpeed(WORM_STEP_SPEED);
+			activeWorm.setUserMoving(true);
+			activeWorm.singleMove(PhysicalController.getInstance(), WORM_STEP_SPEED, 0.0);
 		}
 		
 		if(key.equals("Space")) {
-			activeWorm.getPlayer().getCurrentWeapon().fire();
+			activeWorm.getPlayer().getCurrentWeapon().fire(
+					activeWorm.getCenterX(),
+					activeWorm.getCenterY()
+			);
+			
+			TimeController.getInstance().setCurrentPhase(
+					new MovingPhase(getActivePlayer())
+			);
 		}
 	}
 	
 	@Override
 	protected void drawMain(Graphics2D g, ImageObserver io) {
-		if(!activeWorm.isMoving()) {
-			int x = (int)activeWorm.getX();
-			int y = (int)activeWorm.getY();
+		if(!activeWorm.isUserMoving()) {
+			double x = activeWorm.getCenterX();
+			double y = activeWorm.getCenterY();
 			
 			activeWorm.getPlayer().getCurrentWeapon().draw(g, io, x, y);
 		}
+		activeWorm.setUserMoving(false);
 	}
-
 }

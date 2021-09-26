@@ -10,10 +10,12 @@ import org.wcs_cda.worms.board.AbstractDrawableElement;
 
 public abstract class AbstractPhase extends AbstractDrawableElement {
 	private Instant phaseStart;
+	private Player activePlayer;
 
 	protected abstract int getMaxDurationSeconds();
 
 	protected AbstractPhase(Player activePlayer) {
+		this.activePlayer = activePlayer;
 		phaseStart = Instant.now();
 	}
 
@@ -27,5 +29,9 @@ public abstract class AbstractPhase extends AbstractDrawableElement {
 	@Override
 	protected void drawMain(Graphics2D g, ImageObserver io) {
 		// By default do nothing, let's the other do something if needed
+	}
+
+	public Player getActivePlayer() {
+		return activePlayer;
 	}
 }

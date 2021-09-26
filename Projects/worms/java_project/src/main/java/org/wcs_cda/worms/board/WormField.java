@@ -9,7 +9,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 import java.awt.image.ImageObserver;
 
-public class WormField extends AbstractBoardElement {
+public class WormField extends AbstractDrawableElement {
 	private int[][] allPixel;
 	private Area frontier;
 	
@@ -36,7 +36,7 @@ public class WormField extends AbstractBoardElement {
 			
 			p.quadTo(
 					(double)width * (2*i + 1) / 20, 
-					randomSplineHeight[2*i + 1], 
+					randomSplineHeight[2*i + 1],
 					(double)width * (2*i + 2) / 20, 
 					randomSplineHeight[2*i + 2]
 			);

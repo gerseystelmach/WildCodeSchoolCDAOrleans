@@ -3,6 +3,7 @@ package org.wcs_cda.worms.board;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
@@ -15,10 +16,9 @@ public class Worm extends ARBEWithGravity {
 	private static final String leftFacingResource = "src/resources/WormLF.png";
 	private static final String rightFacingResource = "src/resources/WormRF.png";
 
-	private static final int imageWidth = 70;
-	private static final int imageHeigth = 60;
-	private static final int rectWidth = imageWidth - 20;
-	private static final int rectHeight = imageHeigth - 20;
+	private static final int imageWidth = 54;
+	private static final int imageHeight = 60;
+	private static final int rectPadding = 15;
 
 	private static final int outerMargin = 3;
 
@@ -31,9 +31,11 @@ public class Worm extends ARBEWithGravity {
 
 	private int life = 100;
 
+	private boolean isUserMoving;
+	
 	private static void initImages() {
-		wormLF = new ImageIcon(leftFacingResource).getImage().getScaledInstance(imageWidth, imageHeigth, 0);
-		wormRF = new ImageIcon(rightFacingResource).getImage().getScaledInstance(imageWidth, imageHeigth, 0);
+		wormLF = new ImageIcon(leftFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
+		wormRF = new ImageIcon(rightFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
 	}
 
 	public Worm(Player player, String name) {
@@ -46,7 +48,7 @@ public class Worm extends ARBEWithGravity {
 	}
 
 	public Worm(Player player, String name, int x, int y) {
-		super(x, y, rectWidth, rectHeight);
+		super(x, y, imageWidth - 2*rectPadding, imageHeight - 2*rectPadding);
 
 		this.player = player;
 		this.name = name;
@@ -60,7 +62,7 @@ public class Worm extends ARBEWithGravity {
 
 	private static int getRandomStartingY() {
 		return RandomGenerator.getInstance().nextInt(
-				Board.getB_HEIGHT() - imageHeigth
+				Board.getB_HEIGHT() - imageHeight
 		);
 	}
 
@@ -69,19 +71,14 @@ public class Worm extends ARBEWithGravity {
 		if( wormLF == null ) initImages();
 		Image worm = isRightFacing() ? wormRF : wormLF;
 
-		g.drawImage(
-				worm,
-				(int)getInnerRect().getMinX(),
-				(int)getInnerRect().getMinY(),
-				io
-		);
+		g.drawImage(worm, getX() - rectPadding, getY() - rectPadding, io);
 
 		// Drawing the life
 		g.setColor(player.getColor());
 		g.drawString(
 				"" + life,
-				(int)getX() + (isRightFacing() ? 30 : 10),
-				(int)getY() - 10
+				(int)getX(),
+				(int)getY() - 15
 		);
 	}
 
@@ -89,13 +86,20 @@ public class Worm extends ARBEWithGravity {
 		return Math.abs(getDirection()) < 1e-6;
 	}
 
-	@Override
-	protected void drawDebug(Graphics2D g, ImageObserver io) {
-		g.setColor(Color.red);
-		g.draw(getInnerRect());
-	}
-
 	public Player getPlayer() {
 		return player;
+	}
+
+	public boolean isUserMoving() {
+		return isUserMoving;
+	}
+
+	public void setUserMoving(boolean isUserMoving) {
+		this.isUserMoving = isUserMoving;
+	}
+
+	@Override
+	public void colideWith(AbstractMovable movable, Point2D prevPosition) {
+		setPosition(prevPosition);
 	}
 }

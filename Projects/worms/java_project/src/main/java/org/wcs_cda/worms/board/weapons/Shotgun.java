@@ -18,7 +18,7 @@ public class Shotgun extends AbstractWeapon {
 	}
 	
 	@Override
-	public void draw(Graphics2D g, ImageObserver io, int x, int y) {
+	public void draw(Graphics2D g, ImageObserver io, double x, double y) {
 		if(image == null) {
 			initImages();
 		}
@@ -27,13 +27,12 @@ public class Shotgun extends AbstractWeapon {
 		//trans.scale(-1, 1);
 		
 		//g.drawImage(image, trans, io);
-		g.drawImage(image, x, y, io);
+		g.drawImage(image, (int)x, (int)y, io);
 	}
 
 	@Override
-	protected AbstractAmmo getAmmo() {
-		// TODO Auto-generated method stub
-		return null;
+	public void fire(double x, double y) {
+		
 	}
 
 }

@@ -1,7 +1,11 @@
 package org.wcs_cda.worms.board;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.ImageObserver;
 
 public abstract class ARBEWithGravity extends AbstractRectangularBoardElement {
 	private static final int STANDING_RECTANGLE_HEIGHT = 5;
@@ -16,8 +20,8 @@ public abstract class ARBEWithGravity extends AbstractRectangularBoardElement {
 		super(x, y, rectWidth, rectHeight);
 		supportRect = new Rectangle2D.Double(
 				x, 
-				y + rectWidth, 
-				rectHeight, 
+				y + rectHeight + STANDING_RECTANGLE_HEIGHT, 
+				rectWidth,
 				STANDING_RECTANGLE_HEIGHT
 		);
 	}
@@ -29,13 +33,9 @@ public abstract class ARBEWithGravity extends AbstractRectangularBoardElement {
 	public boolean isStandingOn(Shape s) {
 		return s.intersects(getOuterRect());
 	}
-	
-	public boolean isSubjectToGravity() {
-		return true;
-	}
-	
+		
 	@Override
-	public void rawMove(int x, int y) {
+	public void rawMove(double x, double y) {
 		super.rawMove(x, y);
 		GeomUtils.moveRect(supportRect, x, y);
 	}
@@ -44,7 +44,18 @@ public abstract class ARBEWithGravity extends AbstractRectangularBoardElement {
 	// Question subtile, à quoi sert cette fonction, qui est
 	// exactement la même que le accept de AbstractMovable ??
 	@Override
-	public void accept(IMovableVisitor visitor) {
-		visitor.visit(this);
+	public void accept(Point2D prevPosition, IMovableVisitor visitor) {
+		visitor.visit(this, prevPosition);
+	}
+	
+	@Override
+	protected void drawDebug(Graphics2D g, ImageObserver io) {
+		super.drawDebug(g, io);
+		g.setColor(Color.ORANGE);
+		g.draw(getOuterRect());
+	}
+	
+	public boolean isSubjectToGravity() {
+		return true;
 	}
 }

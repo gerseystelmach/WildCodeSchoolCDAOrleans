@@ -4,8 +4,7 @@ import org.wcs_cda.worms.Player;
 
 
 public class MovingPhase extends AbstractPhase {
-
-	protected MovingPhase(Player activePlayer) {
+	public MovingPhase(Player activePlayer) {
 		super(activePlayer);
 		// TODO Auto-generated constructor stub
 	}

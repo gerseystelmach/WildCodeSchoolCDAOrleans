@@ -20,6 +20,7 @@ public class TimeController implements ActionListener{
 	private Timer timer;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private AbstractPhase currentPhase;
+	private int phaseCount = 0;
 	
 	public TimeController() {
 		initGame();
@@ -55,6 +56,7 @@ public class TimeController implements ActionListener{
 	
     @Override
     public void actionPerformed(ActionEvent e) {
+    	phaseCount ++;
         boolean inGame = board.actionPerformed(e);
         
         if (!inGame) {
@@ -79,5 +81,13 @@ public class TimeController implements ActionListener{
 
 	public ArrayList<Player> getPlayers() {
 		return players;
+	}
+
+	public int getPhaseCount() {
+		return phaseCount;
+	}
+
+	public void setPhaseCount(int phaseCount) {
+		this.phaseCount = phaseCount;
 	}
 }

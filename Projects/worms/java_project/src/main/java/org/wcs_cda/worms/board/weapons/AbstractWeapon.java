@@ -10,15 +10,15 @@ public abstract class AbstractWeapon {
 		this.angle = 0;
 	}
 	
-	public abstract void draw(Graphics2D g, ImageObserver io, int x, int y);
+	public abstract void draw(Graphics2D g, ImageObserver io, double x, double y);
 	
 	public double getAngle() {
 		return this.angle;
 	}
-
-	public void fire() {		
-		getAmmo().fire();
-	}
-
-	protected abstract AbstractAmmo getAmmo();
+	
+	public abstract void fire(double x, double y);
+	
+	public void setAngle(double angle) {
+		this.angle = angle;
+	} 
 }
