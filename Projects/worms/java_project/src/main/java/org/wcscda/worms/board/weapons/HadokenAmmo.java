@@ -1,12 +1,13 @@
-package org.wcs_cda.worms.board.weapons;
+package org.wcscda.worms.board.weapons;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
-import org.wcs_cda.worms.board.Worm;
-import org.wcs_cda.worms.game_mechanism.PhysicalController;
+
+import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.game_mechanism.PhysicalController;
 
 public class HadokenAmmo extends AbstractAmmo {
   private static final int HADOKEN_AMMO_RADIUS = 15;

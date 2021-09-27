@@ -1,13 +1,14 @@
-package org.wcs_cda.worms.board;
+package org.wcscda.worms.board;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
-import org.wcs_cda.worms.Player;
-import org.wcs_cda.worms.RandomGenerator;
-import org.wcs_cda.worms.game_mechanism.Board;
+
+import org.wcscda.worms.Player;
+import org.wcscda.worms.RandomGenerator;
+import org.wcscda.worms.game_mechanism.Board;
 
 public class Worm extends ARBEWithGravity {
   private static final String leftFacingResource = "src/resources/WormLF.png";

@@ -1,11 +1,12 @@
-package org.wcs_cda.worms.game_mechanism.phases;
+package org.wcscda.worms.game_mechanism.phases;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import java.time.Duration;
 import java.time.Instant;
-import org.wcs_cda.worms.Player;
-import org.wcs_cda.worms.board.AbstractDrawableElement;
+
+import org.wcscda.worms.Player;
+import org.wcscda.worms.board.AbstractDrawableElement;
 
 public abstract class AbstractPhase extends AbstractDrawableElement {
   private Instant phaseStart;

@@ -1,9 +1,10 @@
-package org.wcs_cda.worms.game_mechanism;
+package org.wcscda.worms.game_mechanism;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import org.wcs_cda.worms.board.*;
+
+import org.wcscda.worms.board.*;
 
 public abstract class Board extends JPanel {
 

@@ -1,9 +1,10 @@
-package org.wcs_cda.worms.game_mechanism;
+package org.wcscda.worms.game_mechanism;
 
 import java.awt.EventQueue;
 import java.util.Arrays;
 import javax.swing.JFrame;
-import org.wcs_cda.worms.Config;
+
+import org.wcscda.worms.Config;
 
 public class WormLauncher extends JFrame {
   public WormLauncher() {

@@ -1,10 +1,11 @@
-package org.wcs_cda.worms.board.weapons;
+package org.wcscda.worms.board.weapons;
 
 import java.awt.geom.Point2D;
-import org.wcs_cda.worms.board.AbstractBoardElement;
-import org.wcs_cda.worms.board.AbstractRectangularBoardElement;
-import org.wcs_cda.worms.board.Worm;
-import org.wcs_cda.worms.game_mechanism.TimeController;
+
+import org.wcscda.worms.board.AbstractBoardElement;
+import org.wcscda.worms.board.AbstractRectangularBoardElement;
+import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.game_mechanism.TimeController;
 
 public abstract class AbstractAmmo extends AbstractRectangularBoardElement {
   private static final int FIRING_WORM_ANTICOLLISION = 20;

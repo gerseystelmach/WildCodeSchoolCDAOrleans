@@ -1,4 +1,4 @@
-package org.wcs_cda.worms;
+package org.wcscda.worms;
 
 import java.io.*;
 import java.util.*;

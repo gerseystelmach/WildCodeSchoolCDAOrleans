@@ -1,4 +1,4 @@
-package org.wcs_cda.worms.board;
+package org.wcscda.worms.board;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

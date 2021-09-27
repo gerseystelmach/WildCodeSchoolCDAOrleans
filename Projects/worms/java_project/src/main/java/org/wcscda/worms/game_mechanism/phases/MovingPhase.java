@@ -1,6 +1,6 @@
-package org.wcs_cda.worms.game_mechanism.phases;
+package org.wcscda.worms.game_mechanism.phases;
 
-import org.wcs_cda.worms.Player;
+import org.wcscda.worms.Player;
 
 public class MovingPhase extends AbstractPhase {
   public MovingPhase(Player activePlayer) {

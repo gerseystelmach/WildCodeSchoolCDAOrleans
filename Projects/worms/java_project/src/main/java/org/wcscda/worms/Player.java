@@ -1,10 +1,11 @@
-package org.wcs_cda.worms;
+package org.wcscda.worms;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import org.wcs_cda.worms.board.Worm;
-import org.wcs_cda.worms.board.weapons.AbstractWeapon;
-import org.wcs_cda.worms.board.weapons.Hadoken;
+
+import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.board.weapons.AbstractWeapon;
+import org.wcscda.worms.board.weapons.Hadoken;
 
 public class Player {
   private final String name;

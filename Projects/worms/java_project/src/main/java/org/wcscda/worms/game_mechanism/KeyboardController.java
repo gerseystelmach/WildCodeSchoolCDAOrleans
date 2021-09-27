@@ -1,4 +1,4 @@
-package org.wcs_cda.worms.game_mechanism;
+package org.wcscda.worms.game_mechanism;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

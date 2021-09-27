@@ -1,10 +1,11 @@
-package org.wcs_cda.worms.board.weapons;
+package org.wcscda.worms.board.weapons;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
-import org.wcs_cda.worms.board.Worm;
+
+import org.wcscda.worms.board.Worm;
 
 public class Shotgun extends AbstractWeapon {
   private static final String imagePath = "src/resources/weapons/Shotgun_small.png";

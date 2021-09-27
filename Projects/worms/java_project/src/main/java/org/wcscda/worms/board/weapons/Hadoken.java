@@ -1,4 +1,4 @@
-package org.wcs_cda.worms.board.weapons;
+package org.wcscda.worms.board.weapons;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -6,7 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 // import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
-import org.wcs_cda.worms.board.Worm;
+
+import org.wcscda.worms.board.Worm;
 
 public class Hadoken extends AbstractWeapon {
   private static final int hadokenRadius = 50;

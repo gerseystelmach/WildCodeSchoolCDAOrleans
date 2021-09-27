@@ -1,11 +1,12 @@
-package org.wcs_cda.worms.game_mechanism.phases;
+package org.wcscda.worms.game_mechanism.phases;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
-import org.wcs_cda.worms.Config;
-import org.wcs_cda.worms.board.Worm;
-import org.wcs_cda.worms.game_mechanism.PhysicalController;
-import org.wcs_cda.worms.game_mechanism.TimeController;
+
+import org.wcscda.worms.Config;
+import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.game_mechanism.PhysicalController;
+import org.wcscda.worms.game_mechanism.TimeController;
 
 public class WormMovingPhase extends AbstractPhase {
   private static final double WORM_STEP_SPEED = 3.0;

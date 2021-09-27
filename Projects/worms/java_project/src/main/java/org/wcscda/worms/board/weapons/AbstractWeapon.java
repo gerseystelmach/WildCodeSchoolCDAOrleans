@@ -1,8 +1,9 @@
-package org.wcs_cda.worms.board.weapons;
+package org.wcscda.worms.board.weapons;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
-import org.wcs_cda.worms.board.Worm;
+
+import org.wcscda.worms.board.Worm;
 
 public abstract class AbstractWeapon {
   private double angle;

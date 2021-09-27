@@ -1,4 +1,4 @@
-package org.wcs_cda.worms.game_mechanism;
+package org.wcscda.worms.game_mechanism;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -6,11 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.Timer;
-import org.wcs_cda.worms.Config;
-import org.wcs_cda.worms.Player;
-import org.wcs_cda.worms.board.Worm;
-import org.wcs_cda.worms.game_mechanism.phases.AbstractPhase;
-import org.wcs_cda.worms.game_mechanism.phases.WormMovingPhase;
+
+import org.wcscda.worms.Config;
+import org.wcscda.worms.Player;
+import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.game_mechanism.phases.AbstractPhase;
+import org.wcscda.worms.game_mechanism.phases.WormMovingPhase;
 
 public class TimeController implements ActionListener {
   private static TimeController instance;

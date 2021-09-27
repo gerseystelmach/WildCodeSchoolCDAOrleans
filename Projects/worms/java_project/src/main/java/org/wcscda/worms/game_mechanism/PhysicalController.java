@@ -1,12 +1,13 @@
-package org.wcs_cda.worms.game_mechanism;
+package org.wcscda.worms.game_mechanism;
 
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
-import org.wcs_cda.worms.board.ARBEWithGravity;
-import org.wcs_cda.worms.board.AbstractMovable;
-import org.wcs_cda.worms.board.IMovableVisitor;
-import org.wcs_cda.worms.board.Worm;
+
+import org.wcscda.worms.board.ARBEWithGravity;
+import org.wcscda.worms.board.AbstractMovable;
+import org.wcscda.worms.board.IMovableVisitor;
+import org.wcscda.worms.board.Worm;
 
 public class PhysicalController extends Board implements IMovableVisitor {
   private static PhysicalController instance;
