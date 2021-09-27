@@ -8,6 +8,8 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
 
+import org.wcs_cda.worms.board.Worm;
+
 public class Shotgun extends AbstractWeapon {
 	private static final String imagePath = "src/resources/weapons/Shotgun_small.png";
 	private static Image image = null;
@@ -18,20 +20,21 @@ public class Shotgun extends AbstractWeapon {
 	}
 	
 	@Override
-	public void draw(Graphics g, ImageObserver io, int x, int y) {
+	public void draw(Graphics2D g, ImageObserver io, double x, double y) {
 		if(image == null) {
 			initImages();
 		}
-		Graphics2D g2d = (Graphics2D)g;
-		AffineTransform trans = AffineTransform.getTranslateInstance(x + 100, y);
-		trans.scale(-1, 1);
-		g2d.drawImage(image, trans, io);
+
+		//AffineTransform trans = AffineTransform.getTranslateInstance(x + 100, y);
+		//trans.scale(-1, 1);
+		
+		//g.drawImage(image, trans, io);
+		g.drawImage(image, (int)x, (int)y, io);
 	}
 
 	@Override
-	protected AbstractAmmo getAmmo() {
-		// TODO Auto-generated method stub
-		return null;
+	public void fire(Worm firingWorm, double x, double y) {
+		
 	}
 
 }
