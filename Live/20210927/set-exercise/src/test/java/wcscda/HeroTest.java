@@ -16,6 +16,6 @@ public class HeroTest extends TestCase {
 		heroSet.add(new Hero("Captain America", 40));
 		
 		// Oups pourquoi ???
-		assertEquals(heroSet.size(), 3);
+		assertEquals(3, heroSet.size());
     }
 }
