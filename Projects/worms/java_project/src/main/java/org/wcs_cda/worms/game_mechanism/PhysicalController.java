@@ -1,102 +1,128 @@
 package org.wcs_cda.worms.game_mechanism;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 
-import javax.swing.*;
-import org.wcs_cda.worms.Player;
-import org.wcs_cda.worms.board.*;
+import org.wcs_cda.worms.board.ARBEWithGravity;
+import org.wcs_cda.worms.board.AbstractMovable;
+import org.wcs_cda.worms.board.AbstractRectangularBoardElement;
+import org.wcs_cda.worms.board.IMovableVisitor;
+import org.wcs_cda.worms.board.Worm;
 
-public class PhysicalController extends JPanel {
-
-    private final int B_WIDTH = 1200;
-    private final int B_HEIGHT = 800;
-        
-    private ArrayList<Worm> worms;
-    private Worm activeWorm;
-    
-    private WormField wormField;
-    
-    public PhysicalController() {
-        initBoard();
-    }
-    
-    private void initBoard() {
-        setBackground(Color.BLACK);
-        setFocusable(true);
-
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-
-        wormField = new WormField(B_WIDTH, B_HEIGHT);
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        doDrawing(g);
-    }
-    
-    private void doDrawing(Graphics g) {
-        boolean inGame = true;
-        
-        if (inGame) {
-        	wormField.draw(g, this);
-        	doGravity();
-        	activeWorm.draw(g, this);
-        	
-            Toolkit.getDefaultToolkit().sync();
-
-        } else {
-            gameOver(g);
-        }        
-    }
-
-    private void doGravity() {
-		while(!wormField.getFrontier().intersects(activeWorm.getOuterRect()))
+public class PhysicalController extends Board implements IMovableVisitor{
+	private static PhysicalController instance;
+	
+	public static PhysicalController getInstance() {
+		return instance;
+	}
+	
+	public PhysicalController() {
+		super();
+		instance = this;
+	}
+	
+	public void wormInitialPlacement(Worm worm) {
+		while(worm.isColidingWith(getWormField().getFrontier()))
 		{
-			activeWorm.setY(activeWorm.getY() + 3);
+			worm.rawMove(0, -2);
+		}
+
+		while(!worm.isStandingOn(getWormField().getFrontier()))
+		{
+			worm.rawMove(0, 2);
+		}
+	}
+
+	private boolean doGravity(ARBEWithGravity arbe) {
+		for(int i = 0; i < 5; ++i) {
+			if(arbe.isColidingWith(getWormField().getFrontier())) {
+				arbe.rawMove(0, -2);
+			}
+			else { break; }
 		}
 		
-		while(wormField.getFrontier().intersects(activeWorm.getRect())
-		)
-		{
-			activeWorm.setY(activeWorm.getY() - 3);
+		// Worms is still coliding, he must be standing against a wall
+		// just revert its position
+		if(arbe.isColidingWith(getWormField().getFrontier())) {
+			return false;
+		}
+		
+		for(int i = 0; i < 3; ++i) {
+			if(!arbe.isStandingOn(getWormField().getFrontier()))
+			{
+				arbe.rawMove(0, 2);
+			}
+		}
+		
+		/* if(!arbe.isStandingOn(getWormField().getFrontier())) {
+			arbe.addSpeedXY(0, 2);
+		}
+		else {
+			arbe.setSpeed(0);
+		}*/
+		
+		return true;
+	}
+
+	@Override
+	public void visit(AbstractMovable ab, Point2D prevPosition) {
+		if(ab.isColidingWith(getWormField().getShape())) {
+			ab.colideWith(getWormField(), prevPosition);
+			return;
+		}
+		
+		for(AbstractMovable movable: AbstractMovable.getAllMovable()) {
+			if(ab == movable) continue;
+			
+			if(ab.isColidingWith(movable)) {
+				ab.colideWith(movable, prevPosition);
+				return;
+			}
 		}
 	}
 
-	private void gameOver(Graphics g) {
-        String msg = "Game Over";
-        Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics metr = getFontMetrics(small);
-
-        g.setColor(Color.white);
-        g.setFont(small);
-        g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
-    }
-
-    public boolean actionPerformed(ActionEvent e) {
-
-        /* if (inGame) {
-
-            checkApple();
-            checkCollision();
-            move();
-        }*/
-
-        repaint();
-        
-        return true;
-    }
-
-	public IMovable getCurrentMovable() {
-		return activeWorm;
+	@Override
+	public void visit(ARBEWithGravity arbewg, Point2D prevPosition) {
+		// Do gravity first
+		boolean moveIsPossibleWithGravity = doGravity(arbewg);
+		if(!moveIsPossibleWithGravity) {
+			arbewg.setPosition(prevPosition);
+			return;
+		}
+		
+		visit((AbstractMovable)arbewg, prevPosition);
+	}
+	
+	@Override
+	protected void doMoves() {
+		for(AbstractMovable movable: AbstractMovable.getAllMovable()) {
+			if(movable.getSpeed() < 0.5) {
+				movable.setSpeed(0.0);
+			}
+			
+			if(!movable.isMoving() && !movable.isSubjectToGravity()) {
+				continue;
+			}
+			
+			Point2D currentPosition = movable.getCurrentPosition();
+			movable.move(this);
+		}
 	}
 
-	public void createWorm(Player luckyLuke) {
-		Worm worm = new Worm(luckyLuke);
-		activeWorm = worm;
+	public void generateExplosion(double centerX, double centerY, int explosionRadius, int explosionDamage) {
+		Ellipse2D circle = new Ellipse2D.Double(
+				centerX - explosionRadius, 
+				centerY - explosionRadius, 
+				2 * explosionRadius, 
+				2 * explosionRadius	
+		);
+		getWormField().getFrontier().subtract(new Area(circle));
+		
+		for(AbstractMovable movable: AbstractMovable.getAllMovable()) {
+			if(movable.isColidingWith(circle)) {
+				movable.takeDamage(explosionDamage);
+			}
+		}
 	}
 }

@@ -1,10 +1,14 @@
 package org.wcs_cda.worms.board.weapons;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
+
+import org.wcs_cda.worms.board.Worm;
 
 public class Shotgun extends AbstractWeapon {
 	private static final String imagePath = "src/resources/weapons/Shotgun_small.png";
@@ -16,12 +20,21 @@ public class Shotgun extends AbstractWeapon {
 	}
 	
 	@Override
-	public void draw(Graphics g, ImageObserver io, int x, int y) {
+	public void draw(Graphics2D g, ImageObserver io, double x, double y) {
 		if(image == null) {
 			initImages();
 		}
 
-		g.drawImage(image, x - 10, y + 28, io);
+		//AffineTransform trans = AffineTransform.getTranslateInstance(x + 100, y);
+		//trans.scale(-1, 1);
+		
+		//g.drawImage(image, trans, io);
+		g.drawImage(image, (int)x, (int)y, io);
+	}
+
+	@Override
+	public void fire(Worm firingWorm, double x, double y) {
+		
 	}
 
 }
