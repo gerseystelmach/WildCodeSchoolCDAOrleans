@@ -4,7 +4,7 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.util.HashSet;
 
-public abstract class AbstractMovable extends AbstractDrawableElement {
+public abstract class AbstractMovable extends AbstractBoardElement {
 	// Speed is in pixel by clock iteration
 	private double speed = 0.0;
 	// In radian
@@ -23,20 +23,13 @@ public abstract class AbstractMovable extends AbstractDrawableElement {
 	
 	public static void removeAllToBeRemoved() {
 		allMovables.removeAll(toBeRemoved);
+		toBeRemoved.clear();
 	}
 	
 	public AbstractMovable() {
 		allMovables.add(this);
 	}
 	
-	public boolean isColidingWith(AbstractMovable abe) {
-		return isColidingWith(abe.getShape());
-	}
-	
-	public abstract Shape getShape();
-
-	public abstract boolean isColidingWith(Shape s); 
-
 	public double getSpeed() {
 		return speed;
 	}
@@ -94,7 +87,7 @@ public abstract class AbstractMovable extends AbstractDrawableElement {
 	}
 
 	public void removeSelf() {
-		getAllMovable().remove(this);
+		getToBeRemoved().add(this);
 	}
 	
 	// This one is public 
@@ -136,6 +129,16 @@ public abstract class AbstractMovable extends AbstractDrawableElement {
 	public boolean isSubjectToGravity() {
 		return false;
 	}
+	
+    public abstract boolean isColidingWith(Shape s); 
+	
+	public abstract void colideWith(AbstractBoardElement movable, Point2D prevPosition);
 
-	public abstract void colideWith(AbstractMovable movable, Point2D prevPosition);
+	public boolean isColidingWith(AbstractBoardElement abe) {
+		return isColidingWith(abe.getShape());
+	}
+
+	// By default do nothing,might be overloaded
+	public void takeDamage(int explosionDamage) {
+	}
 }

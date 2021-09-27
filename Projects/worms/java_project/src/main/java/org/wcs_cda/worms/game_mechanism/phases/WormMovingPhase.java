@@ -46,7 +46,8 @@ public class WormMovingPhase extends AbstractPhase {
 		
 		if(key.equals("Space")) {
 			activeWorm.getPlayer().getCurrentWeapon().fire(
-					activeWorm.getCenterX(),
+					activeWorm,
+					activeWorm.getCenterX(), 
 					activeWorm.getCenterY()
 			);
 			

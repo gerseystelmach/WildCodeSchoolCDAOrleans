@@ -8,6 +8,8 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
 
+import org.wcs_cda.worms.board.Worm;
+
 public class Shotgun extends AbstractWeapon {
 	private static final String imagePath = "src/resources/weapons/Shotgun_small.png";
 	private static Image image = null;
@@ -31,7 +33,7 @@ public class Shotgun extends AbstractWeapon {
 	}
 
 	@Override
-	public void fire(double x, double y) {
+	public void fire(Worm firingWorm, double x, double y) {
 		
 	}
 

@@ -3,6 +3,8 @@ package org.wcs_cda.worms.board.weapons;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 
+import org.wcs_cda.worms.board.Worm;
+
 public abstract class AbstractWeapon {
 	private double angle;
 	
@@ -16,7 +18,7 @@ public abstract class AbstractWeapon {
 		return this.angle;
 	}
 	
-	public abstract void fire(double x, double y);
+	public abstract void fire(Worm firingWorm, double x, double y);
 	
 	public void setAngle(double angle) {
 		this.angle = angle;

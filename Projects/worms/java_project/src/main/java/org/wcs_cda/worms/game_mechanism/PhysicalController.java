@@ -67,11 +67,17 @@ public class PhysicalController extends Board implements IMovableVisitor{
 
 	@Override
 	public void visit(AbstractMovable ab, Point2D prevPosition) {
+		if(ab.isColidingWith(getWormField().getShape())) {
+			ab.colideWith(getWormField(), prevPosition);
+			return;
+		}
+		
 		for(AbstractMovable movable: AbstractMovable.getAllMovable()) {
 			if(ab == movable) continue;
 			
 			if(ab.isColidingWith(movable)) {
 				ab.colideWith(movable, prevPosition);
+				return;
 			}
 		}
 	}
@@ -113,5 +119,10 @@ public class PhysicalController extends Board implements IMovableVisitor{
 		);
 		getWormField().getFrontier().subtract(new Area(circle));
 		
+		for(AbstractMovable movable: AbstractMovable.getAllMovable()) {
+			if(movable.isColidingWith(circle)) {
+				movable.takeDamage(explosionDamage);
+			}
+		}
 	}
 }

@@ -5,6 +5,8 @@ import java.awt.image.ImageObserver;
 
 import org.wcs_cda.worms.Config;
 
+// NRO 2021-09-27 : Drawable elements are present visually
+//  but might not have physical presence (ie timer)
 public abstract class AbstractDrawableElement {
 	public final void draw(Graphics2D g, ImageObserver io) {
 		drawMain(g, io);

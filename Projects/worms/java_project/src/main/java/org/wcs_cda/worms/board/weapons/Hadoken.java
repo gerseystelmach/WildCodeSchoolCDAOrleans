@@ -7,6 +7,8 @@ import java.awt.geom.Ellipse2D;
 //import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
 
+import org.wcs_cda.worms.board.Worm;
+
 public class Hadoken extends AbstractWeapon {
 	private static final int hadokenRadius = 50;
 	
@@ -25,8 +27,8 @@ public class Hadoken extends AbstractWeapon {
 	}
 
 	@Override
-	public void fire(double x, double y) {
-		new HadokenAmmo(x, y, getAngle());
+	public void fire(Worm firingWorm, double x, double y) {
+		new HadokenAmmo(firingWorm, x, y, getAngle());
 	}
 
 }

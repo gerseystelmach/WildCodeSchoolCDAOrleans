@@ -19,6 +19,7 @@ public class TimeController implements ActionListener{
 	private PhysicalController board;
 	private Timer timer;
 	private ArrayList<Player> players = new ArrayList<Player>();
+	private int activePlayerIndex = 0;
 	private AbstractPhase currentPhase;
 	private int phaseCount = 0;
 	
@@ -36,10 +37,20 @@ public class TimeController implements ActionListener{
 		// Lucky luke because for the moment he is a poor lonesome
 		// player
 		Player luckyLuke = createPlayer("Lucky Luke", Color.RED);
-		Worm worm = luckyLuke.createWorm("Rantanplan");
-		board.wormInitialPlacement(worm);
 		
-		AbstractPhase phase = new WormMovingPhase(worm);
+		for(String name: new String[] {"Joly jumper", "rantanplan"}) {
+			Worm worm = luckyLuke.createWorm(name);
+			board.wormInitialPlacement(worm);
+		}
+		
+		setNextWorm();
+	}
+	
+	public void setNextWorm() {
+		activePlayerIndex += 1;
+		activePlayerIndex %= players.size();
+		
+		AbstractPhase phase = new WormMovingPhase(getActivePlayer().getNextWorm());
 		this.setCurrentPhase(phase);
 	}
 
@@ -89,5 +100,9 @@ public class TimeController implements ActionListener{
 
 	public void setPhaseCount(int phaseCount) {
 		this.phaseCount = phaseCount;
+	}
+	
+	public Player getActivePlayer() {
+		return players.get(activePlayerIndex);
 	}
 }

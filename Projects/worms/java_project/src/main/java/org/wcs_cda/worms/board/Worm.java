@@ -99,7 +99,27 @@ public class Worm extends ARBEWithGravity {
 	}
 
 	@Override
-	public void colideWith(AbstractMovable movable, Point2D prevPosition) {
+	public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
 		setPosition(prevPosition);
+	}
+	
+	@Override
+	public String toString() {
+		return "Worm " + this.getName() + " / player : " + this.getPlayer();
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	@Override
+	public void takeDamage(int damage) {
+		life -= damage;
+		if(life <= 0) { die(); }
+	}
+
+	public void die() {
+		player.getWorms().remove(this);
+		removeSelf();
 	}
 }

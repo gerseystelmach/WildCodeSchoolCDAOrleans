@@ -8,6 +8,7 @@ import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 
 import org.wcs_cda.worms.board.AbstractMovable;
+import org.wcs_cda.worms.board.Worm;
 import org.wcs_cda.worms.game_mechanism.PhysicalController;
 
 public class HadokenAmmo extends AbstractAmmo {
@@ -16,8 +17,8 @@ public class HadokenAmmo extends AbstractAmmo {
 	private static final int EXPLOSION_RADIUS = 100;
 	private static final int EXPLOSION_DAMAGE = 30;
 	
-	public HadokenAmmo(double x, double y, double angle) {
-		super(x, y, HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE);
+	public HadokenAmmo(Worm firingWorm, double x, double y, double angle) {
+		super(firingWorm, x, y, HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE);
 		setDirection(angle);
 		setSpeed(3);
 	}
