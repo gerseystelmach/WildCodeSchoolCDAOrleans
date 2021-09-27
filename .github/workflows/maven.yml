@@ -27,5 +27,5 @@ jobs:
     - name: Download checkstyle
       run: wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-9.0/checkstyle-9.0-all.jar
     - name: Run checkstyle 
-      run: (find Projects -name "*.java" | xargs java -jar checkstyle-9.0-all.jar -c /sun_checks.xml) || echo "Oups, it failed ..."
+      run: find Projects -name "*.java" | xargs java -jar checkstyle-9.0-all.jar -c /google_checks.xml
 

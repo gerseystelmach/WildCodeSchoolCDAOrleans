@@ -4,34 +4,33 @@ import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import java.time.Duration;
 import java.time.Instant;
-
 import org.wcs_cda.worms.Player;
 import org.wcs_cda.worms.board.AbstractDrawableElement;
 
 public abstract class AbstractPhase extends AbstractDrawableElement {
-	private Instant phaseStart;
-	private Player activePlayer;
+  private Instant phaseStart;
+  private Player activePlayer;
 
-	protected abstract int getMaxDurationSeconds();
+  protected abstract int getMaxDurationSeconds();
 
-	protected AbstractPhase(Player activePlayer) {
-		this.activePlayer = activePlayer;
-		phaseStart = Instant.now();
-	}
+  protected AbstractPhase(Player activePlayer) {
+    this.activePlayer = activePlayer;
+    phaseStart = Instant.now();
+  }
 
-	public abstract void forwardKeyPressed(String key);
+  public abstract void forwardKeyPressed(String key);
 
-	public boolean isFinished() {
-		Duration timeElapsed = Duration.between(Instant.now(), phaseStart);
-		return timeElapsed.toSeconds() > getMaxDurationSeconds();
-	}
+  public boolean isFinished() {
+    Duration timeElapsed = Duration.between(Instant.now(), phaseStart);
+    return timeElapsed.toSeconds() > getMaxDurationSeconds();
+  }
 
-	@Override
-	protected void drawMain(Graphics2D g, ImageObserver io) {
-		// By default do nothing, let's the other do something if needed
-	}
+  @Override
+  protected void drawMain(Graphics2D g, ImageObserver io) {
+    // By default do nothing, let's the other do something if needed
+  }
 
-	public Player getActivePlayer() {
-		return activePlayer;
-	}
+  public Player getActivePlayer() {
+    return activePlayer;
+  }
 }

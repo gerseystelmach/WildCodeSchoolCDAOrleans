@@ -5,104 +5,102 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-
 import javax.swing.Timer;
-
+import org.wcs_cda.worms.Config;
 import org.wcs_cda.worms.Player;
 import org.wcs_cda.worms.board.Worm;
 import org.wcs_cda.worms.game_mechanism.phases.AbstractPhase;
 import org.wcs_cda.worms.game_mechanism.phases.WormMovingPhase;
-import org.wcs_cda.worms.Config;
 
-public class TimeController implements ActionListener{
-	private static TimeController instance;
-	private PhysicalController board;
-	private Timer timer;
-	private ArrayList<Player> players = new ArrayList<Player>();
-	private int activePlayerIndex = 0;
-	private AbstractPhase currentPhase;
-	private int phaseCount = 0;
+public class TimeController implements ActionListener {
+  private static TimeController instance;
+  private PhysicalController board;
+  private Timer timer;
+  private ArrayList<Player> players = new ArrayList<Player>();
+  private int activePlayerIndex = 0;
+  private AbstractPhase currentPhase;
+  private int phaseCount = 0;
 
-	public TimeController() {
-		initGame();
+  public TimeController() {
+    initGame();
 
-		board.addKeyListener(new KeyboardController());
+    board.addKeyListener(new KeyboardController());
 
-		timer = new Timer(Config.getClockDelay(), this);
-		timer.start();
-	}
+    timer = new Timer(Config.getClockDelay(), this);
+    timer.start();
+  }
 
-	private void initGame() {
-		board = new PhysicalController();
-		// Lucky luke because for the moment he is a poor lonesome
-		// player
-		Player luckyLuke = createPlayer("Lucky Luke", Color.RED);
+  private void initGame() {
+    board = new PhysicalController();
+    // Lucky luke because for the moment he is a poor lonesome
+    // player
+    Player luckyLuke = createPlayer("Lucky Luke", Color.RED);
 
-		for(String name: new String[] {"Joly jumper", "rantanplan"}) {
-			Worm worm = luckyLuke.createWorm(name);
-			board.wormInitialPlacement(worm);
-		}
+    for (String name : new String[] {"Joly jumper", "rantanplan"}) {
+      Worm worm = luckyLuke.createWorm(name);
+      board.wormInitialPlacement(worm);
+    }
 
-		setNextWorm();
-	}
+    setNextWorm();
+  }
 
-	public void setNextWorm() {
-		activePlayerIndex += 1;
-		activePlayerIndex %= players.size();
+  public void setNextWorm() {
+    activePlayerIndex += 1;
+    activePlayerIndex %= players.size();
 
-		AbstractPhase phase = new WormMovingPhase(getActivePlayer().getNextWorm());
-		this.setCurrentPhase(phase);
-	}
+    AbstractPhase phase = new WormMovingPhase(getActivePlayer().getNextWorm());
+    this.setCurrentPhase(phase);
+  }
 
-	private Player createPlayer(String name, Color color) {
-		Player player = new Player(name, color);
-		players.add(player);
+  private Player createPlayer(String name, Color color) {
+    Player player = new Player(name, color);
+    players.add(player);
 
-		return player;
-	}
+    return player;
+  }
 
-	public Component getBoard() {
-		return board;
-	}
+  public Component getBoard() {
+    return board;
+  }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		phaseCount ++;
-		boolean inGame = board.actionPerformed(e);
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    phaseCount++;
+    boolean inGame = board.actionPerformed(e);
 
-		if (!inGame) {
-			timer.stop();
-		}
-	}
+    if (!inGame) {
+      timer.stop();
+    }
+  }
 
-	public static TimeController getInstance() {
-		if(instance == null) {
-			instance = new TimeController();
-		}
-		return instance;
-	}
+  public static TimeController getInstance() {
+    if (instance == null) {
+      instance = new TimeController();
+    }
+    return instance;
+  }
 
-	public AbstractPhase getCurrentPhase() {
-		return currentPhase;
-	}
+  public AbstractPhase getCurrentPhase() {
+    return currentPhase;
+  }
 
-	public void setCurrentPhase(AbstractPhase currentPhase) {
-		this.currentPhase = currentPhase;
-	}
+  public void setCurrentPhase(AbstractPhase currentPhase) {
+    this.currentPhase = currentPhase;
+  }
 
-	public ArrayList<Player> getPlayers() {
-		return players;
-	}
+  public ArrayList<Player> getPlayers() {
+    return players;
+  }
 
-	public int getPhaseCount() {
-		return phaseCount;
-	}
+  public int getPhaseCount() {
+    return phaseCount;
+  }
 
-	public void setPhaseCount(int phaseCount) {
-		this.phaseCount = phaseCount;
-	}
+  public void setPhaseCount(int phaseCount) {
+    this.phaseCount = phaseCount;
+  }
 
-	public Player getActivePlayer() {
-		return players.get(activePlayerIndex);
-	}
+  public Player getActivePlayer() {
+    return players.get(activePlayerIndex);
+  }
 }

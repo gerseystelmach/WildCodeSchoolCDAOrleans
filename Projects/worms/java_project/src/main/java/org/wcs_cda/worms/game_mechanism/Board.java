@@ -2,75 +2,70 @@ package org.wcs_cda.worms.game_mechanism;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Point2D;
-import java.util.HashSet;
-
 import javax.swing.*;
-import org.wcs_cda.worms.Player;
 import org.wcs_cda.worms.board.*;
 
 public abstract class Board extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private static final int BOARD_WIDTH = 1200;
-	private static final int BOARD_HEIGHT = 800;
+  /** */
+  private static final long serialVersionUID = 1L;
 
-	private WormField wormField;
-	
-	public Board() {
-		initBoard();
-	}
+  private static final int BOARD_WIDTH = 1200;
+  private static final int BOARD_HEIGHT = 800;
 
-	private void initBoard() {
-		setBackground(Color.BLACK);
-		setFocusable(true);
+  private WormField wormField;
 
-		setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
+  public Board() {
+    initBoard();
+  }
 
-		wormField = new WormField(BOARD_WIDTH, BOARD_HEIGHT);
-	}
+  private void initBoard() {
+    setBackground(Color.BLACK);
+    setFocusable(true);
 
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+    setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
 
-		doDrawing((Graphics2D)g);
-	}
+    wormField = new WormField(BOARD_WIDTH, BOARD_HEIGHT);
+  }
 
-	private void doDrawing(Graphics2D g) {
-		wormField.draw(g, this);
-		
-		for(AbstractMovable movable: AbstractMovable.getAllMovable()) {
-			movable.draw(g, this);
-		}
-		
-		TimeController.getInstance().getCurrentPhase().draw(g, this);
-		
-		Toolkit.getDefaultToolkit().sync();
-	}
+  @Override
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
 
-	public boolean actionPerformed(ActionEvent e) {
-		repaint();
-		doMoves();
-		AbstractMovable.removeAllToBeRemoved();
-		
-		return true;
-	}
+    doDrawing((Graphics2D) g);
+  }
 
-	protected abstract void doMoves();
+  private void doDrawing(Graphics2D g) {
+    wormField.draw(g, this);
 
-	public static int getB_WIDTH() {
-		return BOARD_WIDTH;
-	}
+    for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
+      movable.draw(g, this);
+    }
 
-	public static int getB_HEIGHT() {
-		return BOARD_HEIGHT;
-	}
+    TimeController.getInstance().getCurrentPhase().draw(g, this);
 
-	protected WormField getWormField() {
-		return this.wormField;
-	}
+    Toolkit.getDefaultToolkit().sync();
+  }
+
+  public boolean actionPerformed(ActionEvent e) {
+    repaint();
+    doMoves();
+    AbstractMovable.removeAllToBeRemoved();
+
+    return true;
+  }
+
+  protected abstract void doMoves();
+
+  public static int getB_WIDTH() {
+    return BOARD_WIDTH;
+  }
+
+  public static int getB_HEIGHT() {
+    return BOARD_HEIGHT;
+  }
+
+  protected WormField getWormField() {
+    return this.wormField;
+  }
 }
