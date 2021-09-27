@@ -1,4 +1,4 @@
-package org.wcscda.worms.game_mechanism;
+package org.wcscda.worms.gamemechanism;
 
 import java.awt.EventQueue;
 import java.util.Arrays;

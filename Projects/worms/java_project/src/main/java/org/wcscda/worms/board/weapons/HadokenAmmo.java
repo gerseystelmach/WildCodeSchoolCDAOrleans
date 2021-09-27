@@ -7,7 +7,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
 
 import org.wcscda.worms.board.Worm;
-import org.wcscda.worms.game_mechanism.PhysicalController;
+import org.wcscda.worms.gamemechanism.PhysicalController;
 
 public class HadokenAmmo extends AbstractAmmo {
   private static final int HADOKEN_AMMO_RADIUS = 15;

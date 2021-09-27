@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import org.wcscda.worms.board.AbstractBoardElement;
 import org.wcscda.worms.board.AbstractRectangularBoardElement;
 import org.wcscda.worms.board.Worm;
-import org.wcscda.worms.game_mechanism.TimeController;
+import org.wcscda.worms.gamemechanism.TimeController;
 
 public abstract class AbstractAmmo extends AbstractRectangularBoardElement {
   private static final int FIRING_WORM_ANTICOLLISION = 20;

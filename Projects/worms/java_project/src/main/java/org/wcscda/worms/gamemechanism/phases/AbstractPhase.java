@@ -1,4 +1,4 @@
-package org.wcscda.worms.game_mechanism.phases;
+package org.wcscda.worms.gamemechanism.phases;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;

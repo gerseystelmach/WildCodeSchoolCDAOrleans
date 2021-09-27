@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 
 import org.wcscda.worms.Player;
 import org.wcscda.worms.RandomGenerator;
-import org.wcscda.worms.game_mechanism.Board;
+import org.wcscda.worms.gamemechanism.Board;
 
 public class Worm extends ARBEWithGravity {
   private static final String leftFacingResource = "src/resources/WormLF.png";
