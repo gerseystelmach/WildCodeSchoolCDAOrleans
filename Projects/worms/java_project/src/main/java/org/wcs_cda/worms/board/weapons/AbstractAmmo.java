@@ -31,12 +31,12 @@ public abstract class AbstractAmmo extends AbstractRectangularBoardElement {
 			return;
 		}
 		
-		System.out.println("Ammo colided with " + movable);
-		
-		TimeController.getInstance().setNextWorm();
+		// System.out.println("Ammo colided with " + movable);
 		
 		removeSelf();
 		explode();
+		
+		TimeController.getInstance().setNextWorm();
 	}
 
 	protected abstract void explode();
