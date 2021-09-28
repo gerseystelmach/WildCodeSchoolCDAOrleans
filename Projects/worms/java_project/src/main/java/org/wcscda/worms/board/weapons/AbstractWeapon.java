@@ -22,4 +22,8 @@ public abstract class AbstractWeapon {
   public void setAngle(double angle) {
     this.angle = angle;
   }
+
+  public void incrementAngle(double incrAngle) {
+    this.angle += incrAngle;
+  }
 }

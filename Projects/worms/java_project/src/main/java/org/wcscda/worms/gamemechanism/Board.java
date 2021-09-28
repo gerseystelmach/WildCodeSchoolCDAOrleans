@@ -36,8 +36,6 @@ public abstract class Board extends JPanel {
   }
 
   private void doDrawing(Graphics2D g) {
-    wormField.draw(g, this);
-
     for (AbstractDrawableElement drawable : AbstractDrawableElement.getAllDrawable()) {
       drawable.draw(g, this);
     }
