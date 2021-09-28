@@ -20,4 +20,9 @@ public class ShotgunAmmo extends AbstractAmmo {
     // TODO Auto-generated method stub
 
   }
+
+  protected void notifyTimeController() {
+    ((Shotgun) getFiringWorm().getPlayer().getCurrentWeapon())
+        .notifyTimeController(getFiringWorm());
+  }
 }

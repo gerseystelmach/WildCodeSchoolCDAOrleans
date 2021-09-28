@@ -58,4 +58,8 @@ public abstract class AbstractAmmo extends AbstractRectangularBoardElement {
     PhysicalController.getInstance()
         .generateExplosion(getCenterX(), getCenterY(), explosionRadius, explosionDamage);
   }
+
+  protected Worm getFiringWorm() {
+    return firingWorm;
+  }
 }

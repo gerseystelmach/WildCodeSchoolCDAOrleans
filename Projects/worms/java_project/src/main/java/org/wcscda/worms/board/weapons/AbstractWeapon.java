@@ -33,4 +33,8 @@ public abstract class AbstractWeapon {
   public AbstractPhase getNextPhase(Player player) {
     return new MovingPhase(player);
   }
+
+  public boolean isChangingWeaponDisabled() {
+    return false;
+  }
 }

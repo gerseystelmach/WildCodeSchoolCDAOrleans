@@ -7,9 +7,10 @@ import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
 import org.wcscda.worms.Player;
 import org.wcscda.worms.Worm;
+import org.wcscda.worms.gamemechanism.TimeController;
 import org.wcscda.worms.gamemechanism.phases.AbstractPhase;
-import org.wcscda.worms.gamemechanism.phases.FirstShootMovingPhase;
 import org.wcscda.worms.gamemechanism.phases.MovingPhase;
+import org.wcscda.worms.gamemechanism.phases.WormMovingPhase;
 
 public class Shotgun extends AbstractWeapon {
   private static final String imagePath = "src/resources/weapons/Shotgun_small.png";
@@ -42,11 +43,20 @@ public class Shotgun extends AbstractWeapon {
   }
 
   public AbstractPhase getNextPhase(Player player) {
-    if (nbFiredShoots == 0) {
-      nbFiredShoots++;
-      return new FirstShootMovingPhase(player);
+    nbFiredShoots++;
+
+    return new MovingPhase(player);
+  }
+
+  public void notifyTimeController(Worm worm) {
+    if (nbFiredShoots == 2) {
+      TimeController.getInstance().setNextWorm();
     } else {
-      return new MovingPhase(player);
+      TimeController.getInstance().setCurrentPhase(new WormMovingPhase(worm));
     }
+  }
+
+  public boolean isChangingWeaponDisabled() {
+    return nbFiredShoots != 0;
   }
 }

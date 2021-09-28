@@ -50,6 +50,9 @@ public class Player {
   }
 
   public void changeWeapon() {
+    if (currentWeapon.isChangingWeaponDisabled()) {
+      return;
+    }
     if (currentWeapon instanceof Hadoken) {
       currentWeapon = new Shotgun();
     } else {
