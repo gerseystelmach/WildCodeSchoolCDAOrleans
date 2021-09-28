@@ -62,7 +62,7 @@ public abstract class Board extends JPanel {
     return BOARD_HEIGHT;
   }
 
-  protected WormField getWormField() {
-    return this.wormField;
+  public WormField getWormField() {
+    return wormField;
   }
 }

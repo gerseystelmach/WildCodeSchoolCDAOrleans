@@ -10,6 +10,7 @@ public class KeyboardController extends KeyAdapter {
 
   @Override
   public void keyPressed(KeyEvent e) {
+    // System.out.println(Thread.getAllStackTraces().size());
     int key = e.getKeyCode();
     String keyAsString;
 
@@ -23,6 +24,7 @@ public class KeyboardController extends KeyAdapter {
       keyAsString = KeyEvent.getKeyText(key);
     }
     System.err.println("Key typed " + keyAsString);
+
     TimeController.getInstance().getCurrentPhase().forwardKeyPressed(keyAsString);
   }
 
