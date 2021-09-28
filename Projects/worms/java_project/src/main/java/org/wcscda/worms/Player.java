@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import org.wcscda.worms.board.weapons.AbstractWeapon;
 import org.wcscda.worms.board.weapons.Hadoken;
+import org.wcscda.worms.board.weapons.Shotgun;
 
 public class Player {
   private final String name;
@@ -46,5 +47,13 @@ public class Player {
     currentWormIndex %= worms.size();
 
     return getWorms().get(currentWormIndex);
+  }
+
+  public void changeWeapon() {
+    if (currentWeapon instanceof Hadoken) {
+      currentWeapon = new Shotgun();
+    } else {
+      currentWeapon = new Hadoken();
+    }
   }
 }

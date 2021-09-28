@@ -51,7 +51,12 @@ public class WormMovingPhase extends AbstractPhase {
           .getCurrentWeapon()
           .fire(activeWorm, activeWorm.getCenterX(), activeWorm.getCenterY());
 
-      TimeController.getInstance().setCurrentPhase(new MovingPhase(getActivePlayer()));
+      TimeController.getInstance()
+          .setCurrentPhase(getActivePlayer().getCurrentWeapon().getNextPhase(getActivePlayer()));
+    }
+
+    if (key.equals("W")) {
+      getActivePlayer().changeWeapon();
     }
   }
 
