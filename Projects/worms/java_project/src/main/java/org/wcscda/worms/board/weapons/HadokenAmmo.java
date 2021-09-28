@@ -14,24 +14,23 @@ public class HadokenAmmo extends AbstractAmmo {
   private static final int EXPLOSION_RADIUS = 100;
   private static final int EXPLOSION_DAMAGE = 30;
 
+  private final double initialX;
+  private final double initialY;
+  
   public HadokenAmmo(Worm firingWorm, double x, double y, double angle) {
     super(firingWorm, x, y, HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE);
     setDirection(angle);
     setSpeed(3);
+    
+    initialX = x;
+    initialY = y;
   }
 
   @Override
   protected void drawMain(Graphics2D g, ImageObserver io) {
-    Ellipse2D circle =
-        new Ellipse2D.Double(
-            getCenterX() - HADOKEN_AMMO_RADIUS,
-            getCenterY() - HADOKEN_AMMO_RADIUS,
-            2 * HADOKEN_AMMO_RADIUS,
-            2 * HADOKEN_AMMO_RADIUS);
-
     g.setColor(Color.BLUE);
     g.setStroke(new BasicStroke(10));
-    g.fill(circle);
+    g.drawLine((int)initialX, (int)initialY, (int)getCenterX(), (int)getCenterY());
   }
 
   @Override
