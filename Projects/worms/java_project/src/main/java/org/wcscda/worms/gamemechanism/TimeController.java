@@ -8,7 +8,7 @@ import java.util.*;
 import javax.swing.Timer;
 import org.wcscda.worms.Config;
 import org.wcscda.worms.Player;
-import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.Worm;
 import org.wcscda.worms.gamemechanism.phases.AbstractPhase;
 import org.wcscda.worms.gamemechanism.phases.WormMovingPhase;
 
@@ -85,6 +85,9 @@ public class TimeController implements ActionListener {
   }
 
   public void setCurrentPhase(AbstractPhase currentPhase) {
+	if((this.currentPhase != null) && this.currentPhase != currentPhase) {
+	  this.currentPhase.removeSelf();
+	}
     this.currentPhase = currentPhase;
   }
 

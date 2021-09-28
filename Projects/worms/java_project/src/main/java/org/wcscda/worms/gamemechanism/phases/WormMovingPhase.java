@@ -3,7 +3,7 @@ package org.wcscda.worms.gamemechanism.phases;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import org.wcscda.worms.Config;
-import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.Worm;
 import org.wcscda.worms.gamemechanism.PhysicalController;
 import org.wcscda.worms.gamemechanism.TimeController;
 

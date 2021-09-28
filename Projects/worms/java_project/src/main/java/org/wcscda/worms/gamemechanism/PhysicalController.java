@@ -2,124 +2,130 @@ package org.wcscda.worms.gamemechanism;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.util.Optional;
+
+import org.wcscda.worms.Worm;
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractMovable;
 import org.wcscda.worms.board.IMovableVisitor;
-import org.wcscda.worms.board.Worm;
 
+/**
+ * @author nicolas
+ *
+ */
 public class PhysicalController extends Board implements IMovableVisitor {
 
-  private static final long serialVersionUID = 1L;
-  private static PhysicalController instance;
+	private static final long serialVersionUID = 1L;
+	private static final int MAX_PIXEL_DIFF_SLOPE = 10;
+	private static final int SLOPE_STEP = 2;
 
-  public static PhysicalController getInstance() {
-    return instance;
-  }
+	private static PhysicalController instance;
 
-  public PhysicalController() {
-    super();
-    instance = this;
-  }
+	public static PhysicalController getInstance() {
+		return instance;
+	}
 
-  public void wormInitialPlacement(Worm worm) {
-    while (worm.isColidingWith(getWormField().getFrontier())) {
-      worm.rawMove(0, -2);
-    }
+	public PhysicalController() {
+		super();
+		instance = this;
+	}
 
-    while (!worm.isStandingOn(getWormField().getFrontier())) {
-      worm.rawMove(0, 2);
-    }
-  }
+	public void wormInitialPlacement(Worm worm) {
+		while (worm.isColidingWith(getWormField().getFrontier())) {
+			worm.rawMove(0, -2);
+		}
 
-  private boolean doGravity(ARBEWithGravity arbe) {
-    for (int i = 0; i < 5; ++i) {
-      if (arbe.isColidingWith(getWormField().getFrontier())) {
-        arbe.rawMove(0, -2);
-      } else {
-        break;
-      }
-    }
+		while (!worm.isStandingOn(getWormField().getFrontier())) {
+			worm.rawMove(0, 2);
+		}
+	}
 
-    // Worms is still coliding, he must be standing against a wall
-    // just revert its position
-    if (arbe.isColidingWith(getWormField().getFrontier())) {
-      return false;
-    }
 
-    for (int i = 0; i < 3; ++i) {
-      if (!arbe.isStandingOn(getWormField().getFrontier())) {
-        arbe.rawMove(0, 2);
-      }
-    }
+	private boolean doGravity(ARBEWithGravity arbe) {
+		for (int i = 0; i * SLOPE_STEP < MAX_PIXEL_DIFF_SLOPE; ++i) {
+			if (arbe.isColidingWith(getWormField().getFrontier())) {
+				arbe.rawMove(0, -SLOPE_STEP);
+			} else {
+				break;
+			}
+		}
 
-    /* if(!arbe.isStandingOn(getWormField().getFrontier())) {
-    	arbe.addSpeedXY(0, 2);
-    }
-    else {
-    	arbe.setSpeed(0);
-    }*/
+		// Worms is still coliding, he must be standing against a wall
+		// just revert its position
+		if (arbe.isColidingWith(getWormField().getFrontier())) {
+			return false;
+		}
 
-    return true;
-  }
+		for (int i = 0; i * SLOPE_STEP < MAX_PIXEL_DIFF_SLOPE; ++i) {
+			if (!arbe.isStandingOn(getWormField().getFrontier())) {
+				arbe.rawMove(0, SLOPE_STEP);
+			}
+		}
 
-  @Override
-  public void visit(AbstractMovable ab, Point2D prevPosition) {
-    if (ab.isColidingWith(getWormField().getShape())) {
-      ab.colideWith(getWormField(), prevPosition);
-      return;
-    }
+		return true;
+	}
 
-    for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
-      if (ab == movable) continue;
+	@Override
+	public void visit(AbstractMovable ab, Point2D prevPosition) {
+		if (ab.isColidingWith(getWormField().getShape())) {
+			ab.colideWith(getWormField(), prevPosition);
+			return;
+		}
 
-      if (ab.isColidingWith(movable)) {
-        ab.colideWith(movable, prevPosition);
-        return;
-      }
-    }
-  }
+		// NRO 2021-09-28 : For information this is a little bit of
+		//  algorithmic addict overkill
+		// You don't need to understand that for the moment.
+		// I am looking for the first object that colide with ab
+		Optional<AbstractMovable> oam = AbstractMovable.getAllMovable()
+				.filter(movable -> ab.isColidingWith(movable))
+				.findFirst();
 
-  @Override
-  public void visit(ARBEWithGravity arbewg, Point2D prevPosition) {
-    // Do gravity first
-    boolean moveIsPossibleWithGravity = doGravity(arbewg);
-    if (!moveIsPossibleWithGravity) {
-      arbewg.setPosition(prevPosition);
-      return;
-    }
+		if(oam.isPresent()) {
+			ab.colideWith(oam.get(), prevPosition);
+		}
+	}
 
-    visit((AbstractMovable) arbewg, prevPosition);
-  }
+	@Override
+	public void visit(ARBEWithGravity arbewg, Point2D prevPosition) {
+		// Do gravity first
+		boolean moveIsPossibleWithGravity = doGravity(arbewg);
+		if (!moveIsPossibleWithGravity) {
+			arbewg.setPosition(prevPosition);
+			return;
+		}
 
-  @Override
-  protected void doMoves() {
-    for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
-      if (movable.getSpeed() < 0.5) {
-        movable.setSpeed(0.0);
-      }
+		visit((AbstractMovable) arbewg, prevPosition);
+	}
 
-      if (!movable.isMoving() && !movable.isSubjectToGravity()) {
-        continue;
-      }
+	@Override
+	protected void doMoves() {
+		AbstractMovable.getAllMovable().forEach( movable -> {
+			if (movable.getSpeed() < 0.5) {
+				movable.setSpeed(0.0);
+			}
 
-      movable.move(this);
-    }
-  }
+			if (!movable.isMoving() && !movable.isSubjectToGravity()) {
+				return;
+			}
 
-  public void generateExplosion(
-      double centerX, double centerY, int explosionRadius, int explosionDamage) {
-    Ellipse2D circle =
-        new Ellipse2D.Double(
-            centerX - explosionRadius,
-            centerY - explosionRadius,
-            2 * explosionRadius,
-            2 * explosionRadius);
-    getWormField().doExplosionOnField(circle);
+			movable.move(this);
+		});
+	}
 
-    for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
-      if (movable.isColidingWith(circle)) {
-        movable.takeDamage(explosionDamage);
-      }
-    }
-  }
+	public void generateExplosion(
+			double centerX, double centerY, int explosionRadius, int explosionDamage) {
+		Ellipse2D circle =
+				new Ellipse2D.Double(
+						centerX - explosionRadius,
+						centerY - explosionRadius,
+						2 * explosionRadius,
+						2 * explosionRadius);
+		getWormField().doExplosionOnField(circle);
+
+		AbstractMovable.getAllMovable().forEach(movable -> {
+			if (movable.isColidingWith(circle)) {
+				movable.takeDamage(explosionDamage);
+			}
+		});
+	}
 }

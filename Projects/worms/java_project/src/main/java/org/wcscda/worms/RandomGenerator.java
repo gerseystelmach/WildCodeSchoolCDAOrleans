@@ -7,9 +7,15 @@ public class RandomGenerator {
 
   public static Random getInstance() {
     if (instance == null) {
-      instance = new Random();
+      long seed = new Random().nextLong();
+      System.err.println("Using random seed " + seed);
+      instance = new Random(seed);
     }
 
     return instance;
+  }
+  
+  public static double nextDouble() {
+	return getInstance().nextDouble();
   }
 }

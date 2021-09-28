@@ -5,7 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
-import org.wcscda.worms.board.Worm;
+
+import org.wcscda.worms.Worm;
 import org.wcscda.worms.gamemechanism.PhysicalController;
 
 public class HadokenAmmo extends AbstractAmmo {
