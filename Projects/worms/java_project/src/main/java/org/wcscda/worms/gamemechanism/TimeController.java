@@ -23,7 +23,7 @@ public class TimeController implements ActionListener {
   private int phaseCount = 0;
 
   public TimeController() {
-    initGame();
+    initGame(5, 1);
 
     board.addKeyListener(new KeyboardController());
 
@@ -31,19 +31,27 @@ public class TimeController implements ActionListener {
     timer.start();
   }
 
-  private void initGame() {
+  private void initGame(int playerQuantity, int wormQuantity) {
     board = new PhysicalController();
-    // Lucky luke because for the moment he is a poor lonesome
-    // player
-    Player luckyLuke = createPlayer("Lucky Luke", Color.RED);
+      
+    // To add a new worm, we have to include a name into the loop below
+    	for (int i = 0; i < playerQuantity; i++) {
+	   
+	   String playerName = "player" + i;
+	   Player luckyLuke = createPlayer(playerName, Color.RED);
+	   
+	   for (int j = 0; j < wormQuantity; j++) {
+		   String wormPlayer = "worm" + j;
+		   Worm worm = luckyLuke.createWorm(wormPlayer);
+		   board.wormInitialPlacement(worm);
+	   }
 
-    for (String name : new String[] {"Joly jumper", "rantanplan"}) {
-      Worm worm = luckyLuke.createWorm(name);
-      board.wormInitialPlacement(worm);
-    }
+	  	   setNextWorm();
+   }
+   
 
-    setNextWorm();
-  }
+ 
+}
 
   public void setNextWorm() {
     activePlayerIndex += 1;
