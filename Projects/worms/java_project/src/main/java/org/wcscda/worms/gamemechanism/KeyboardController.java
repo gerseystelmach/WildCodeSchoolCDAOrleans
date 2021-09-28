@@ -22,7 +22,7 @@ public class KeyboardController extends KeyAdapter {
     } else {
       keyAsString = KeyEvent.getKeyText(key);
     }
-
+    System.err.println("Key typed " + keyAsString);
     TimeController.getInstance().getCurrentPhase().forwardKeyPressed(keyAsString);
   }
 

@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 // import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
-import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.Worm;
 
 public class Hadoken extends AbstractWeapon {
   private static final int hadokenRadius = 50;
