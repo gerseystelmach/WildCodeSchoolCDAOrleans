@@ -3,6 +3,7 @@ package WorkshopPoo;
 public abstract class Animal {
 
     private String name;
+    // NRO : Never do that ! Just pass the attributes 
     protected String noise;
     protected String howItMoves;
 

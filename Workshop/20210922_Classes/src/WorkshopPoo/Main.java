@@ -13,6 +13,8 @@ public class Main {
         Dog lessie = new Dog("Lessie", 4);
         Fish nemo = new Fish("Nemo");
 
+        // NRO 2021-09-27 : Don't Repeat Yourself !! Une bonne boucle for avec au plus un if
+        //  voir mieux, tout mettre dans Animal.toString()
         System.out.println("I am " + woodpecker.getName() + woodpecker.move() + " I do " + woodpecker.makeNoise() + " and I have " + woodpecker.getNbPaws() + " paws.");
         System.out.println("I am " + felix.getName() + felix.move() + " I do " + felix.makeNoise() + " and I have " + felix.getNbPaws() + " paws.");
         System.out.println("I am " + flipper.getName() +  flipper.move() + " I do " + flipper.makeNoise() );

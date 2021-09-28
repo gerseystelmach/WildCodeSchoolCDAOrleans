@@ -1,0 +1,5 @@
+NRO 2021-09-27 : c'est plus sympa de ne pas committer les fichiers Intellij et eclipse :-)
+
+ Golden rule 1 : attributes are private
+ Golden rule 2 : DRY (don't repeat yourself)
+ 
