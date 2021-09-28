@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.Timer;
+
 import org.wcscda.worms.Config;
 import org.wcscda.worms.Player;
 import org.wcscda.worms.board.Worm;
@@ -33,23 +34,24 @@ public class TimeController implements ActionListener {
   private void initGame(int playerQuantity, int wormQuantity) {
     board = new PhysicalController();
       
-    // To add a new worm, we have to include a name into the loop below
-    	for (int i = 0; i < playerQuantity; i++) {
+      	for (int i = 0; i < playerQuantity; i++) {
 	   
 	   String playerName = "player" + i;
 	   Player luckyLuke = createPlayer(playerName, Color.RED);
 	   
+	   
 	   for (int j = 0; j < wormQuantity; j++) {
+		   if (wormQuantity > 3) {
+			   wormQuantity = 3;
+		   }
 		   String wormPlayer = "worm" + j;
 		   Worm worm = luckyLuke.createWorm(wormPlayer);
 		   board.wormInitialPlacement(worm);
 	   }
 
-	  	   setNextWorm();
+	   setNextWorm();
    }
-   
-
- 
+    
 }
 
   public void setNextWorm() {
