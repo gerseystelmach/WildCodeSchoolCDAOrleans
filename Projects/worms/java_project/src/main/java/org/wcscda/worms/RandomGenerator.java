@@ -7,7 +7,7 @@ public class RandomGenerator {
 
   public static Random getInstance() {
     if (instance == null) {
-      long seed = new Random().nextLong();
+      int seed = new Random().nextInt();
       System.err.println("Using random seed " + seed);
       instance = new Random(seed);
     }

@@ -23,6 +23,8 @@ public abstract class AbstractDrawableElement implements Comparable<AbstractDraw
     toBeAdded.clear();
   }
 
+  // NRO 2021-09-28 : these are used only for the compare
+  //  method
   private static int nextId;
   private Integer id;
 
@@ -56,6 +58,8 @@ public abstract class AbstractDrawableElement implements Comparable<AbstractDraw
     return 0;
   }
 
+  // 2021-09-28 : This method is mainly used to decide the drawing
+  //  order of the graphical elements
   @Override
   public int compareTo(AbstractDrawableElement o) {
     return 1000000 * getDepth().compareTo(o.getDepth()) + id.compareTo(o.id);
