@@ -2,7 +2,6 @@ package org.wcscda.worms.board;
 
 import java.awt.Shape;
 import java.awt.geom.Point2D;
-import java.util.HashSet;
 import java.util.stream.Stream;
 
 public abstract class AbstractMovable extends AbstractBoardElement {
@@ -12,10 +11,9 @@ public abstract class AbstractMovable extends AbstractBoardElement {
   private double direction = 0.0;
 
   public static Stream<AbstractMovable> getAllMovable() {
-    return AbstractDrawableElement.getAllDrawable()
-    		.stream()
-    		.filter(ade -> ade instanceof AbstractMovable)
-    	    .map(AbstractMovable.class::cast);
+    return AbstractDrawableElement.getAllDrawable().stream()
+        .filter(ade -> ade instanceof AbstractMovable)
+        .map(AbstractMovable.class::cast);
   }
 
   public double getSpeed() {
@@ -111,7 +109,7 @@ public abstract class AbstractMovable extends AbstractBoardElement {
   public abstract void colideWith(AbstractBoardElement movable, Point2D prevPosition);
 
   public boolean isColidingWith(AbstractBoardElement abe) {
-	if(abe == this) return false;
+    if (abe == this) return false;
     return isColidingWith(abe.getShape());
   }
 

@@ -14,7 +14,7 @@ public abstract class AbstractPhase extends AbstractDrawableElement {
   protected abstract int getMaxDurationSeconds();
 
   protected AbstractPhase(Player activePlayer) {
-	super(true);
+    super(true);
     this.activePlayer = activePlayer;
     phaseStart = Instant.now();
   }

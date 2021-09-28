@@ -85,9 +85,9 @@ public class TimeController implements ActionListener {
   }
 
   public void setCurrentPhase(AbstractPhase currentPhase) {
-	if((this.currentPhase != null) && this.currentPhase != currentPhase) {
-	  this.currentPhase.removeSelf();
-	}
+    if ((this.currentPhase != null) && this.currentPhase != currentPhase) {
+      this.currentPhase.removeSelf();
+    }
     this.currentPhase = currentPhase;
   }
 

@@ -14,8 +14,8 @@ public class RandomGenerator {
 
     return instance;
   }
-  
+
   public static double nextDouble() {
-	return getInstance().nextDouble();
+    return getInstance().nextDouble();
   }
 }

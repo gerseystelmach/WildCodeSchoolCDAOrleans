@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
-
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractBoardElement;
 import org.wcscda.worms.gamemechanism.Board;

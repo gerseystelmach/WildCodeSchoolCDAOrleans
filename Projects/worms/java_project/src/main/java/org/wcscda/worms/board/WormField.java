@@ -6,7 +6,6 @@ import java.awt.Shape;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.image.ImageObserver;
-
 import org.wcscda.worms.RandomGenerator;
 
 public class WormField extends AbstractBoardElement {
@@ -65,5 +64,9 @@ public class WormField extends AbstractBoardElement {
 
   public void doExplosionOnField(Shape explosionShape) {
     frontier.subtract(new Area(explosionShape));
+  }
+
+  protected Integer getDepth() {
+    return -1;
   }
 }

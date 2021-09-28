@@ -48,7 +48,7 @@ public abstract class Board extends JPanel {
   public boolean actionPerformed(ActionEvent e) {
     repaint();
     doMoves();
-    
+
     AbstractDrawableElement.processToBeRemovedAndAdded();
 
     return true;
