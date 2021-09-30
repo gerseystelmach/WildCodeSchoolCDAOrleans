@@ -48,10 +48,12 @@ public class WormField extends AbstractBoardElement {
     frontier = new Area(p);
   }
 
+
   @Override
   public void drawMain(Graphics2D g, ImageObserver io) {
     g.setColor(Color.green);
     g.fill(frontier);
+
   }
 
   public Area getFrontier() {

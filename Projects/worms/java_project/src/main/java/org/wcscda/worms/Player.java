@@ -13,6 +13,7 @@ public class Player {
   private AbstractWeapon currentWeapon;
   private int currentWormIndex = 0;
 
+
   public Player(String name, Color color) {
     this.name = name;
     this.color = color;
@@ -45,10 +46,10 @@ public class Player {
   public Worm getNextWorm() {
     currentWormIndex += 1;
     currentWormIndex %= worms.size();
-
+ 
     return getWorms().get(currentWormIndex);
   }
-
+  
   public void changeWeapon() {
     if (currentWeapon instanceof Hadoken) {
       currentWeapon = new Shotgun();

@@ -58,14 +58,18 @@ public class Worm extends ARBEWithGravity {
     Image worm = isRightFacing() ? wormRF : wormLF;
 
     g.drawImage(worm, getX() - rectPadding, getY() - rectPadding, io);
-    
     g.setColor(player.getColor());
- // Drawing the name
+
+    // Drawing the Player name
+    g.drawString(player.getName(), (int) getX() - 10, (int) getY() - 55);
+ // Drawing the worm name
     g.drawString(getName(), (int) getX() - 10, (int) getY() - 35);
  // Drawing the life
     g.drawString("" + life, (int) getX(), (int) getY() - 15);
-    
+
+
   }
+
 
   private boolean isRightFacing() {
     return Math.abs(getDirection()) < 1e-6;
@@ -93,6 +97,10 @@ public class Worm extends ARBEWithGravity {
     return "Worm " + this.getName() + " / player : " + this.getPlayer();
   }
 
+  public int getLife() {
+    return life;
+  }
+
   public String getName() {
     return name;
   }
@@ -101,6 +109,7 @@ public class Worm extends ARBEWithGravity {
   public void takeDamage(int damage) {
     life -= damage;
     if (life <= 0) {
+    	life = 0;
       die();
     }
   }
