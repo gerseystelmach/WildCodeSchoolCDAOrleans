@@ -104,6 +104,10 @@ public abstract class AbstractMovable extends AbstractBoardElement {
     return false;
   }
 
+  /* NRO 2021-09-30 : Check if the movable is in collision
+   * with a Shape. The Shape is a very generic java.awt
+   * object, so any physical element is represented by a check
+   */
   public abstract boolean isColidingWith(Shape s);
 
   public abstract void colideWith(AbstractBoardElement movable, Point2D prevPosition);
