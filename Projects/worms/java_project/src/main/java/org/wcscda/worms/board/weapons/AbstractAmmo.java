@@ -1,5 +1,6 @@
 package org.wcscda.worms.board.weapons;
 
+import java.awt.Shape;
 import java.awt.geom.Point2D;
 import org.wcscda.worms.Helper;
 import org.wcscda.worms.board.AbstractBoardElement;
@@ -29,12 +30,16 @@ public abstract class AbstractAmmo extends AbstractRectangularBoardElement {
   }
 
   @Override
-  public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
-    if ((movable == Helper.getActiveWorm())
+  public boolean isColidingWith(Shape s) {
+    if ((s == Helper.getActiveWorm().getShape())
         && Helper.getClock() <= firedPhase + FIRING_WORM_ANTICOLLISION) {
-      return;
+      return false;
     }
+    return super.isColidingWith(s);
+  }
 
+  @Override
+  public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
     explode();
 
     Helper.getCurrentWeapon().triggerAmmoExplosion();
