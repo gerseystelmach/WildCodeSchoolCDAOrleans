@@ -3,7 +3,6 @@ package org.wcscda.worms.gamemechanism;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
 import java.util.*;
 import java.util.List;
 import javax.swing.Timer;
@@ -59,12 +58,20 @@ public class TimeController implements ActionListener {
       }
     }
     setNextWorm();
+
+   ArrayList<Player> groupPlayers = getPlayers();
+    Random randomGenerator = new Random();
+
+    if (groupPlayers.size() > 0) {
+      int playerIndex = randomGenerator.nextInt(groupPlayers.size());
+      groupPlayers.get(playerIndex).setBeginnerLevel(true);
+      System.out.println(playerIndex);
+    }
 }
 
   public int getWormQuantity() {
     return wormQuantity;
   }
-
 
   public String getWinner() {
     List<Player> losers = new ArrayList<>();

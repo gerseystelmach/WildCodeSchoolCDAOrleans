@@ -12,11 +12,14 @@ public class Player {
   private final ArrayList<Worm> worms = new ArrayList<Worm>();
   private AbstractWeapon currentWeapon;
   private int currentWormIndex = 0;
+  // Create property beginner level
+  private boolean beginnerLevel;
 
 
   public Player(String name, Color color) {
     this.name = name;
     this.color = color;
+   this.beginnerLevel = false;
   }
 
   public String getName() {
@@ -63,7 +66,18 @@ public class Player {
     }
   }
 
+  public boolean isBeginnerLevel() {
+    return beginnerLevel;
+  }
+
+  public void setBeginnerLevel(boolean beginnerLevel) {
+    this.beginnerLevel = beginnerLevel;
+  }
+
   public void initWeapon() {
     currentWeapon = new Hadoken();
   }
 }
+
+
+

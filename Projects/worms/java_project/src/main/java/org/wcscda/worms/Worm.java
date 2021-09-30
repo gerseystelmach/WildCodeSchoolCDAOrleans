@@ -66,7 +66,6 @@ public class Worm extends ARBEWithGravity {
  // Drawing the life
     g.drawString("" + life, (int) getX(), (int) getY() - 15);
 
-
     if (Helper.getTC().getWinner() != null) {
       g.drawString("Congratulations! You are the winner, " + Helper.getTC().getWinner(), 500,  60);
 /*      Font myFont = new Font("Verdana", Font.BOLD, 36);
@@ -110,9 +109,15 @@ public class Worm extends ARBEWithGravity {
 
   @Override
   public void takeDamage(int damage) {
-    life -= damage;
+
+  if (player.isBeginnerLevel() && life > 0) {
+        life -= damage * 1.25;
+  }
+
+  life -= damage;
+
     if (life <= 0) {
-    	life = 0;
+        life = 0;
       die();
     }
   }
