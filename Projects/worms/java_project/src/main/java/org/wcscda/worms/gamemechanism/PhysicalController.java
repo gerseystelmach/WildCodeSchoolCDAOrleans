@@ -3,9 +3,11 @@ package org.wcscda.worms.gamemechanism;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.util.Optional;
+import org.wcscda.worms.DrawHelper;
 import org.wcscda.worms.Worm;
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractMovable;
+import org.wcscda.worms.board.Explosion;
 import org.wcscda.worms.board.IMovableVisitor;
 
 /** @author nicolas */
@@ -109,12 +111,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
 
   public void generateExplosion(
       double centerX, double centerY, int explosionRadius, int explosionDamage) {
-    Ellipse2D circle =
-        new Ellipse2D.Double(
-            centerX - explosionRadius,
-            centerY - explosionRadius,
-            2 * explosionRadius,
-            2 * explosionRadius);
+    Ellipse2D circle = DrawHelper.getCircle(centerX, centerY, explosionRadius);
     getWormField().doExplosionOnField(circle);
 
     AbstractMovable.getAllMovable()
@@ -124,5 +121,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
                 movable.takeDamage(explosionDamage);
               }
             });
+
+    new Explosion(centerX, centerY, explosionRadius);
   }
 }
