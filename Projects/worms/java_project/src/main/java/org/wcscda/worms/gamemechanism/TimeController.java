@@ -27,6 +27,8 @@ public class TimeController implements ActionListener {
   private String playerWinner;
 
   public TimeController() {
+
+    instance = this;
     initGame(3, 1);
 
     board.addKeyListener(new KeyboardController());
@@ -83,11 +85,6 @@ public class TimeController implements ActionListener {
 
   }
 
-/*
-  protected void drawMain(Graphics2D g, ImageObserver io) {
-    g.drawString("asdasd" ,  60, 60 - 15);
-  }*/
-
   public void setWormQuantity(int wormQuantity) {
     this.wormQuantity = wormQuantity;
   }
@@ -95,11 +92,13 @@ public class TimeController implements ActionListener {
   public void setNextWorm() {
     activePlayerIndex += 1;
     activePlayerIndex %= players.size();
+    getActivePlayer().setNextWorm();
+    getActivePlayer().initWeapon();
+
+    AbstractPhase phase = new WormMovingPhase();
+    this.setCurrentPhase(phase);
 
     getWinner();
-
-    AbstractPhase phase = new WormMovingPhase(getActivePlayer().getNextWorm());
-      this.setCurrentPhase(phase);
 
   }
 
@@ -109,6 +108,10 @@ public class TimeController implements ActionListener {
 
   public void setPlayerQuantity(int playerQuantity) {
     this.playerQuantity = playerQuantity;
+
+    AbstractPhase phase = new WormMovingPhase();
+    this.setCurrentPhase(phase);
+
   }
 
   private Player createPlayer(String name, Color color) {

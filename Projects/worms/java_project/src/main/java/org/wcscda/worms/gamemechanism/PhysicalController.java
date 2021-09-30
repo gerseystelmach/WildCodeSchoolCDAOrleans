@@ -22,7 +22,6 @@ public class PhysicalController extends Board implements IMovableVisitor {
   }
 
   public PhysicalController() {
-    super();
     instance = this;
   }
 

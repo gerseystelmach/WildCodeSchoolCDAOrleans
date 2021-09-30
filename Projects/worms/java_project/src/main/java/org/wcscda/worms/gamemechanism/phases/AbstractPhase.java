@@ -13,9 +13,8 @@ public abstract class AbstractPhase extends AbstractDrawableElement {
 
   protected abstract int getMaxDurationSeconds();
 
-  protected AbstractPhase(Player activePlayer) {
+  protected AbstractPhase() {
     super(true);
-    this.activePlayer = activePlayer;
     phaseStart = Instant.now();
   }
 
@@ -29,9 +28,5 @@ public abstract class AbstractPhase extends AbstractDrawableElement {
   @Override
   protected void drawMain(Graphics2D g, ImageObserver io) {
     // By default do nothing, let's the other do something if needed
-  }
-
-  public Player getActivePlayer() {
-    return activePlayer;
   }
 }

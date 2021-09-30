@@ -4,7 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
-import org.wcscda.worms.Worm;
+import org.wcscda.worms.Helper;
 
 public class HadokenAmmo extends AbstractAmmo {
   private static final int HADOKEN_AMMO_RADIUS = 15;
@@ -15,14 +15,13 @@ public class HadokenAmmo extends AbstractAmmo {
   private final double initialX;
   private final double initialY;
 
-  public HadokenAmmo(Worm firingWorm, double x, double y, double angle) {
-    super(
-        firingWorm, x, y, HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE, EXPLOSION_RADIUS, EXPLOSION_DAMAGE);
+  public HadokenAmmo(Double angle) {
+    super(HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE, EXPLOSION_RADIUS, EXPLOSION_DAMAGE);
     setDirection(angle);
     setSpeed(3);
 
-    initialX = x;
-    initialY = y;
+    initialX = Helper.getWormX();
+    initialY = Helper.getWormY();
   }
 
   @Override
