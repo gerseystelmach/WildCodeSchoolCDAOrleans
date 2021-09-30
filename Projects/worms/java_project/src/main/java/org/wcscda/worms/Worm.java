@@ -45,11 +45,11 @@ public class Worm extends ARBEWithGravity {
   }
 
   private static int getRandomStartingX() {
-    return RandomGenerator.getInstance().nextInt(Board.getB_WIDTH() - imageWidth);
+    return RandomGenerator.getInstance().nextInt(Board.getBWIDTH() - imageWidth);
   }
 
   private static int getRandomStartingY() {
-    return RandomGenerator.getInstance().nextInt(Board.getB_HEIGHT() - imageHeight);
+    return RandomGenerator.getInstance().nextInt(Board.getBHEIGHT() - imageHeight);
   }
 
   @Override

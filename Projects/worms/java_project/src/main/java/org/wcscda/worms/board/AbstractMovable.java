@@ -71,7 +71,7 @@ public abstract class AbstractMovable extends AbstractBoardElement {
   public abstract void rawMove(double x, double y);
 
   public void singleMove(IMovableVisitor visitor, double x, double y) {
-    Point2D currentPosition = getCurrentPosition();
+    Point2D currentPosition = getPosition();
     rawMove(x, y);
     accept(currentPosition, visitor);
   }
@@ -80,7 +80,7 @@ public abstract class AbstractMovable extends AbstractBoardElement {
     singleMove(visitor, getSpeedX(), getSpeedY());
   }
 
-  public Point2D getCurrentPosition() {
+  public Point2D getPosition() {
     return new Point2D.Double(getX(), getY());
   }
 
