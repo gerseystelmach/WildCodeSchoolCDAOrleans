@@ -1,7 +1,6 @@
 package org.wcscda.worms;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
@@ -68,8 +67,12 @@ public class Worm extends ARBEWithGravity {
     g.drawString("" + life, (int) getX(), (int) getY() - 15);
 
 
+    if (Helper.getTC().getWinner() != null) {
+      g.drawString("Congratulations! You are the winner, " + Helper.getTC().getWinner(), 500,  60);
+/*      Font myFont = new Font("Verdana", Font.BOLD, 36);
+      g.setFont(myFont);*/
+    }
   }
-
 
   private boolean isRightFacing() {
     return Math.abs(getDirection()) < 1e-6;

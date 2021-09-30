@@ -29,7 +29,7 @@ public class TimeController implements ActionListener {
   public TimeController() {
 
     instance = this;
-    initGame(3, 1);
+    initGame(2, 1);
 
     board.addKeyListener(new KeyboardController());
     timer = new Timer(Config.getClockDelay(), this);
@@ -79,7 +79,6 @@ public class TimeController implements ActionListener {
     }
     if (winner.size() == 1) {
       setPlayerWinner(winner.get(0).getName());
-      System.out.println(getPlayerWinner());
     }
     return getPlayerWinner();
 
