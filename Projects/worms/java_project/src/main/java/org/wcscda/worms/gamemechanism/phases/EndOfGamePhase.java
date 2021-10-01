@@ -12,11 +12,13 @@ public class EndOfGamePhase extends AbstractPhase {
   }
 
   @Override
-  public void forwardKeyPressed(String key) {}
+  public void forwardKeyPressed(String key) {
+  }
 
   @Override
   protected void drawMain(Graphics2D g, ImageObserver io) {
     // By default do nothing, let's the other do something if needed
     // Show the winner
+
   }
 }

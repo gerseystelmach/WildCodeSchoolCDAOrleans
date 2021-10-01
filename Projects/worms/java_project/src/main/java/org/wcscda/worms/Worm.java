@@ -69,10 +69,10 @@ public class Worm extends ARBEWithGravity implements IVisitable {
  // Drawing the life
     g.drawString("" + life, (int) getX(), (int) getY() - 15);
 
-
+// Moved this code to EndOfGamePhase
    if (Helper.getTC().getWinner() != null) {
-      g.drawString("Congratulations! You are the winner, " + Helper.getTC().getWinner(), 500,  60);
-    }
+     g.drawString("Congratulations! You are the winner, " + Helper.getTC().getWinner(), 500,  60);
+   }
 
     g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
   }

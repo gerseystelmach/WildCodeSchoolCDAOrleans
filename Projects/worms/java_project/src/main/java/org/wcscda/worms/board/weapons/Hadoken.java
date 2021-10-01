@@ -13,6 +13,7 @@ public class Hadoken extends AbstractWeapon {
 
   @Override
   public void draw(Graphics2D g, ImageObserver io) {
+    // Draw an ellipse
     Ellipse2D circle =
         new Ellipse2D.Double(
             Helper.getWormX() - hadokenRadius,

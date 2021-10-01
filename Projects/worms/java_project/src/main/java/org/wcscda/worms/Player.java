@@ -3,6 +3,7 @@ package org.wcscda.worms;
 import java.awt.Color;
 import java.util.ArrayList;
 import org.wcscda.worms.board.weapons.AbstractWeapon;
+import org.wcscda.worms.board.weapons.Grenade;
 import org.wcscda.worms.board.weapons.Hadoken;
 import org.wcscda.worms.board.weapons.Shotgun;
 
@@ -66,8 +67,10 @@ public class Player {
       return;
     }
 
-    if (currentWeapon instanceof Hadoken) {
+    if (currentWeapon instanceof Shotgun) {
       currentWeapon = new Shotgun();
+    } else if (currentWeapon instanceof Grenade) {
+      currentWeapon = new Grenade();
     } else {
       currentWeapon = new Hadoken();
     }
@@ -82,7 +85,7 @@ public class Player {
   }
 
   public void initWeapon() {
-    currentWeapon = new Hadoken();
+    currentWeapon = new Grenade();
   }
 }
 
