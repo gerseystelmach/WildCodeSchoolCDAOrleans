@@ -43,7 +43,7 @@ public abstract class AbstractRectangularBoardElement extends AbstractMovable {
   }
 
   @Override
-  public boolean isColidingWith(Shape s) {
+  public boolean isCollidingWith(Shape s) {
     return s.intersects(getInnerRect());
   }
 

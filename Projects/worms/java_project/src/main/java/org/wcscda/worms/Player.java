@@ -46,6 +46,9 @@ public class Player {
   }
 
   public Worm getActiveWorm() {
+    if (getWorms().isEmpty()) {
+      return null;
+    }
     return getWorms().get(currentWormIndex);
   }
 

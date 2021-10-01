@@ -4,7 +4,7 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.util.stream.Stream;
 
-public abstract class AbstractMovable extends AbstractBoardElement {
+public abstract class AbstractMovable extends AbstractBoardElement implements IVisitable {
   // Speed is in pixel by clock iteration
   private double speed = 0.0;
   // In radian
@@ -37,12 +37,6 @@ public abstract class AbstractMovable extends AbstractBoardElement {
 
   public void setSpeedXY(double speedX, double speedY) {
     double newSpeed = Math.sqrt(Math.pow(speedX, 2) + Math.pow(speedY, 2));
-
-    if (newSpeed < 0.5) {
-      setSpeed(0);
-      return;
-    }
-
     setSpeed(newSpeed);
 
     if (speedY >= 0) {
@@ -108,13 +102,13 @@ public abstract class AbstractMovable extends AbstractBoardElement {
    * with a Shape. The Shape is a very generic java.awt
    * object, so any physical element is represented by a check
    */
-  public abstract boolean isColidingWith(Shape s);
+  public abstract boolean isCollidingWith(Shape s);
 
-  public abstract void colideWith(AbstractBoardElement movable, Point2D prevPosition);
+  public abstract void collideWith(AbstractBoardElement movable, Point2D prevPosition);
 
-  public boolean isColidingWith(AbstractBoardElement abe) {
+  public boolean isCollidingWith(AbstractBoardElement abe) {
     if (abe == this) return false;
-    return isColidingWith(abe.getShape());
+    return isCollidingWith(abe.getShape());
   }
 
   // By default do nothing,might be overloaded
