@@ -18,6 +18,7 @@ public class Worm extends ARBEWithGravity {
 
   private static Image wormLF = null;
   private static Image wormRF = null;
+  private int shownLife = 100;
   private int life = 100;
   private final String name;
   private final Player player;
@@ -68,9 +69,21 @@ public class Worm extends ARBEWithGravity {
 
     if (Helper.getTC().getWinner() != null) {
       g.drawString("Congratulations! You are the winner, " + Helper.getTC().getWinner(), 500,  60);
-/*      Font myFont = new Font("Verdana", Font.BOLD, 36);
-      g.setFont(myFont);*/
     }
+
+    g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
+  }
+
+  private int getShownLife() {
+
+    if (life < shownLife) {
+      shownLife--;
+    } else if (life > shownLife) {
+      shownLife++;
+    }
+
+    return this.shownLife;
+
   }
 
   private boolean isRightFacing() {
