@@ -67,7 +67,8 @@ public class Worm extends ARBEWithGravity {
  // Drawing the life
     g.drawString("" + life, (int) getX(), (int) getY() - 15);
 
-    if (Helper.getTC().getWinner() != null) {
+
+   if (Helper.getTC().getWinner() != null) {
       g.drawString("Congratulations! You are the winner, " + Helper.getTC().getWinner(), 500,  60);
     }
 
