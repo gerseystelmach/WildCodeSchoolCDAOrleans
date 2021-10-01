@@ -71,8 +71,10 @@ public class Player {
       currentWeapon = new Shotgun();
     } else if (currentWeapon instanceof Grenade) {
       currentWeapon = new Grenade();
+
     } else {
       currentWeapon = new Hadoken();
+
     }
   }
 

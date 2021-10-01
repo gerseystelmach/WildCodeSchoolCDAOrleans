@@ -27,30 +27,16 @@ public class Grenade extends AbstractWeapon {
         if (image == null) {
             initImages();
         }
-   /*     Ellipse2D circle =
-                new Ellipse2D.Double(
-                        Helper.getWormX() - grenadeRadius,
-                        Helper.getWormY() - grenadeRadius,
-                        2 * grenadeRadius,
-                        2 * grenadeRadius);
 
-*/
-        g.setColor(Color.ORANGE);
-        /* Size of aiming system */
         g.setStroke(new BasicStroke(10));
-
-    /*    g.draw(circle);*/
-        g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
 
        if (getAngle() > Math.PI / 2) {
             AffineTransform trans =
-                    AffineTransform.getTranslateInstance(Helper.getWormX() + 100, Helper.getWormY());
-            trans.scale(10, 10);
-
-            g.drawImage(image, trans, io);
-        } else {
-            g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
-        }
+                    AffineTransform.getTranslateInstance(Helper.getWormX(), Helper.getWormY());
+            trans.scale(100, 100);
+           /* To control what image we display when the worm is looking right/left */
+       }
+        g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
     }
 
 }
