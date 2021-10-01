@@ -53,6 +53,8 @@ public class Player {
   }
 
   public void setNextWorm() {
+    if (worms.isEmpty()) return;
+
     currentWormIndex += 1;
     currentWormIndex %= worms.size();
   }
@@ -83,6 +85,10 @@ public class Player {
 
   public void initWeapon() {
     currentWeapon = new Hadoken();
+  }
+
+  public boolean hasWorms() {
+    return !getWorms().isEmpty();
   }
 }
 

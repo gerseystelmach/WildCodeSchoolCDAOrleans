@@ -68,4 +68,5 @@ public abstract class AbstractDrawableElement implements Comparable<AbstractDraw
     }
     return id.compareTo(o.id);
   }
+
 }

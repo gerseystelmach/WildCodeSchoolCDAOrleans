@@ -24,6 +24,8 @@ public class TimeController implements ActionListener {
   private int playerQuantity = 0;
   private int wormQuantity = 0;
   private String playerWinner;
+  private boolean delayedSetNextWorm;
+
 
   public TimeController() {
 
@@ -93,11 +95,32 @@ public class TimeController implements ActionListener {
 
   public void setWormQuantity(int wormQuantity) {
     this.wormQuantity = wormQuantity;
+
   }
 
   public void setNextWorm() {
-    activePlayerIndex += 1;
-    activePlayerIndex %= players.size();
+    delayedSetNextWorm = true;
+  }
+
+  protected void delayedActions() {
+    if (delayedSetNextWorm) {
+      delayedSetNextWorm = false;
+      doSetNextWorm();
+    }
+  }
+
+  protected void doSetNextWorm() {
+    for (int i = 0; i < players.size(); ++i) {
+      activePlayerIndex += 1;
+      activePlayerIndex %= players.size();
+      if (getActivePlayer().hasWorms()) break;
+    }
+
+    // No player have any worm, it is sad ...
+    if (!getActivePlayer().hasWorms()) {
+      return;
+    }
+
     getActivePlayer().setNextWorm();
     getActivePlayer().initWeapon();
 
@@ -114,9 +137,6 @@ public class TimeController implements ActionListener {
 
   public void setPlayerQuantity(int playerQuantity) {
     this.playerQuantity = playerQuantity;
-
-    AbstractPhase phase = new WormMovingPhase();
-    this.setCurrentPhase(phase);
 
   }
 
