@@ -35,7 +35,6 @@ public class Grenade extends AbstractWeapon {
                         2 * grenadeRadius);
 
 */
-
         g.setColor(Color.ORANGE);
         /* Size of aiming system */
         g.setStroke(new BasicStroke(10));

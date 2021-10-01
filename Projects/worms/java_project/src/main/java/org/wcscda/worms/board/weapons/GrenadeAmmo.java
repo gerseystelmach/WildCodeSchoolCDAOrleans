@@ -37,10 +37,7 @@ public class GrenadeAmmo  extends AbstractAmmo  {
         if (image == null) {
             initImages();
         }
-
         // Show the grenade when we shoot
         g.drawImage(image, (int) initialX, (int) initialY, (int) getMovable().getCenterX(), (int) getMovable().getCenterY(), io);
-
-
     }
 }
