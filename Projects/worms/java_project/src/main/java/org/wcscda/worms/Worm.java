@@ -7,9 +7,11 @@ import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractBoardElement;
+import org.wcscda.worms.board.IMovableVisitor;
+import org.wcscda.worms.board.IVisitable;
 import org.wcscda.worms.gamemechanism.Board;
 
-public class Worm extends ARBEWithGravity {
+public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
 
@@ -117,5 +119,10 @@ public class Worm extends ARBEWithGravity {
   public void die() {
     player.getWorms().remove(this);
     removeSelf();
+  }
+
+  @Override
+  public void accept(Point2D prevPosition, IMovableVisitor visitor) {
+    visitor.visit(this, prevPosition);
   }
 }

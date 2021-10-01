@@ -11,6 +11,7 @@ public class HadokenAmmo extends AbstractAmmo {
   private static final int HADOKEN_RECT_SIZE = 10;
   private static final int EXPLOSION_RADIUS = 100;
   private static final int EXPLOSION_DAMAGE = 30;
+  private static final int INITIAL_SPEED = 3;
 
   private final double initialX;
   private final double initialY;
@@ -18,7 +19,7 @@ public class HadokenAmmo extends AbstractAmmo {
   public HadokenAmmo(Double angle) {
     super(HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE, EXPLOSION_RADIUS, EXPLOSION_DAMAGE);
     setDirection(angle);
-    setSpeed(3);
+    setSpeed(INITIAL_SPEED);
 
     initialX = Helper.getWormX();
     initialY = Helper.getWormY();
