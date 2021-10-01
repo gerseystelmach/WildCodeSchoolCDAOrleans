@@ -28,7 +28,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
   }
 
   public void wormInitialPlacement(Worm worm) {
-    while (worm.isColidingWith(getWormField().getFrontier())) {
+    while (worm.isCollidingWith(getWormField().getFrontier())) {
       worm.rawMove(0, -2);
     }
 
@@ -39,6 +39,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
 
   private void doGravity(ARBEWithGravity arbe) {
     if (!arbe.isStandingOn(getWormField().getFrontier())) {
+
       arbe.setSpeedY(arbe.getSpeedY() + GRAVITY_ACCELERATION);
     } else {
       // NRO 2021-10-01 : You might have to change that if you
@@ -52,7 +53,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
     // is IN the worm field, so he must be against a slope,
     // so we try to make him climb it
     for (int i = 0; i * SLOPE_STEP < MAX_PIXEL_DIFF_SLOPE; ++i) {
-      if (worm.isColidingWith(getWormField().getFrontier())) {
+      if (worm.isCollidingWith(getWormField().getFrontier())) {
         worm.rawMove(0, -SLOPE_STEP);
       } else {
         break;
@@ -61,7 +62,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
 
     // Worms is still coliding, he must be standing against a wall
     // just revert its position
-    if (worm.isColidingWith(getWormField().getFrontier())) {
+    if (worm.isCollidingWith(getWormField().getFrontier())) {
       return false;
     }
 
@@ -101,8 +102,8 @@ public class PhysicalController extends Board implements IMovableVisitor {
   }
 
   public void checkForCollision(AbstractMovable ab, Point2D prevPosition) {
-    if (ab.isColidingWith(getWormField())) {
-      ab.colideWith(getWormField(), prevPosition);
+    if (ab.isCollidingWith(getWormField())) {
+      ab.collideWith(getWormField(), prevPosition);
       return;
     }
 
@@ -111,10 +112,10 @@ public class PhysicalController extends Board implements IMovableVisitor {
     // You don't need to understand that for the moment.
     // I am looking for the first object that colide with ab
     Optional<AbstractMovable> oam =
-        AbstractMovable.getAllMovable().filter(movable -> ab.isColidingWith(movable)).findFirst();
+        AbstractMovable.getAllMovable().filter(movable -> ab.isCollidingWith(movable)).findFirst();
 
     if (oam.isPresent()) {
-      ab.colideWith(oam.get(), prevPosition);
+      ab.collideWith(oam.get(), prevPosition);
     }
   }
 
@@ -123,12 +124,8 @@ public class PhysicalController extends Board implements IMovableVisitor {
     AbstractMovable.getAllMovable()
         .forEach(
             movable -> {
-              if (movable.getSpeed() < 0.5) {
+              if (movable.getSpeed() < 0.05) {
                 movable.setSpeed(0.0);
-              }
-
-              if (!movable.isMoving() && !movable.isSubjectToGravity()) {
-                return;
               }
 
               movable.move(this);
@@ -143,7 +140,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
     AbstractMovable.getAllMovable()
         .forEach(
             movable -> {
-              if (movable.isColidingWith(circle)) {
+              if (movable.isCollidingWith(circle)) {
                 movable.takeDamage(explosionDamage);
               }
             });

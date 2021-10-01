@@ -95,7 +95,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   }
 
   @Override
-  public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
+  public void collideWith(AbstractBoardElement movable, Point2D prevPosition) {
     setPosition(prevPosition);
   }
 
