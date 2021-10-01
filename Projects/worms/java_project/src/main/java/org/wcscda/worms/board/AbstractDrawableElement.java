@@ -17,6 +17,7 @@ public abstract class AbstractDrawableElement implements Comparable<AbstractDraw
   }
 
   public static void processToBeRemovedAndAdded() {
+    toBeRemoved.forEach(AbstractDrawableElement::onRemoval);
     allDrawable.removeAll(toBeRemoved);
     allDrawable.addAll(toBeAdded);
     toBeRemoved.clear();
@@ -53,7 +54,7 @@ public abstract class AbstractDrawableElement implements Comparable<AbstractDraw
   public void removeSelf() {
     toBeRemoved.add(this);
   }
-
+  protected void onRemoval() {}
   protected Integer getDepth() {
     return 0;
   }
