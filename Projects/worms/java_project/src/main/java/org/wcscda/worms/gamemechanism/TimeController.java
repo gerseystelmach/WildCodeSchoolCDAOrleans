@@ -58,8 +58,17 @@ public class TimeController implements ActionListener {
   }
 
   protected void doSetNextWorm() {
-    activePlayerIndex += 1;
-    activePlayerIndex %= players.size();
+    for (int i = 0; i < players.size(); ++i) {
+      activePlayerIndex += 1;
+      activePlayerIndex %= players.size();
+      if (getActivePlayer().hasWorms()) break;
+    }
+
+    // No player have any worm, it is sad ...
+    if (!getActivePlayer().hasWorms()) {
+      return;
+    }
+
     getActivePlayer().setNextWorm();
     getActivePlayer().initWeapon();
 
