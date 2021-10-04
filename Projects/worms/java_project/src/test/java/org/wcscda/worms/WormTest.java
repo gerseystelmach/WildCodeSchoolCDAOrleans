@@ -3,6 +3,8 @@ package org.wcscda.worms;
 import junit.framework.TestCase;
 import org.wcscda.worms.board.AbstractDrawableElement;
 
+import java.awt.*;
+
 public class WormTest extends TestCase {
 
     public void testTakeDamage() {
@@ -13,6 +15,14 @@ public class WormTest extends TestCase {
     }
 
     public void testDie() {
+        Player player = new Player("Hector", Color.BLUE);
+        Worm worm = player.createWorm("Achille");
+
+        assertTrue(player.getWorms().contains(worm));
+        worm.die();
+        assertTrue(player.getWorms().contains(worm));
+        worm.onRemoval();
+        assertFalse(player.getWorms().contains(worm));
     }
 
     public void testOnRemoval() {
