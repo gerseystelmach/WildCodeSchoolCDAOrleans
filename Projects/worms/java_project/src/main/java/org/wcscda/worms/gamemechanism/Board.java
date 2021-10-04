@@ -58,10 +58,6 @@ public abstract class Board extends JPanel {
     }
     repaint();
 
-    if(Helper.getClock() % 40 == 0) {
-      makeScreenshot();
-    }
-
     doMoves();
 
     AbstractDrawableElement.processToBeRemovedAndAdded();
