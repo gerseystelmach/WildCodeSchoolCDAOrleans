@@ -54,6 +54,8 @@ public class Player {
   }
 
   public void setNextWorm() {
+    if (worms.isEmpty()) return;
+
     currentWormIndex += 1;
     currentWormIndex %= worms.size();
   }
@@ -62,6 +64,7 @@ public class Player {
    * this, this is just a temporary version :-)
    * This should call the inventory, and handle
    */
+
   public void changeWeapon() {
     if (currentWeapon.isChangingWeaponDisabled()) {
       return;
@@ -75,6 +78,8 @@ public class Player {
       currentWeapon = new Hadoken();
     }
   }
+
+
 
   public boolean isBeginnerLevel() {
     return beginnerLevel;

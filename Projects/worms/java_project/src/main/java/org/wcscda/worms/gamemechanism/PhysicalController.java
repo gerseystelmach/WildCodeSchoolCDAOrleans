@@ -37,6 +37,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
     }
   }
 
+  // est ce que ça tiens sur qql choses, (vers ou terrain), si
   private void doGravity(ARBEWithGravity arbe) {
     if (!arbe.isStandingOn(getWormField().getFrontier())) {
 

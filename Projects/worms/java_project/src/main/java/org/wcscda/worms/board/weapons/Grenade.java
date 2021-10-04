@@ -16,9 +16,8 @@ public class Grenade extends AbstractWeapon {
     private static Image image = null;
     private static final int grenadeRadius = 50;
 
-
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(30, 30, 0);
     }
 
 
@@ -27,27 +26,29 @@ public class Grenade extends AbstractWeapon {
         if (image == null) {
             initImages();
         }
-   /*     Ellipse2D circle =
+        // Draw the circle around the worms
+        Ellipse2D circle =
                 new Ellipse2D.Double(
                         Helper.getWormX() - grenadeRadius,
                         Helper.getWormY() - grenadeRadius,
                         2 * grenadeRadius,
                         2 * grenadeRadius);
 
-*/
-        g.setColor(Color.ORANGE);
+        // Color of the circle aorund the worm
+        g.setColor(Color.YELLOW);
         /* Size of aiming system */
         g.setStroke(new BasicStroke(10));
 
-    /*    g.draw(circle);*/
+        // Show the circle around the worms that is created by the Ellipse
+        g.draw(circle);
         g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
 
-       if (getAngle() > Math.PI / 2) {
+       if (getAngle() > Math.PI/2) {
             AffineTransform trans =
                     AffineTransform.getTranslateInstance(Helper.getWormX() + 100, Helper.getWormY());
             trans.scale(10, 10);
 
-            g.drawImage(image, trans, io);
+           g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
         } else {
             g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
         }

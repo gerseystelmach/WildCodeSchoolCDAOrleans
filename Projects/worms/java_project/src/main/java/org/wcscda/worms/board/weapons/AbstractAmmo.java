@@ -12,13 +12,14 @@ public abstract class AbstractAmmo implements IMovableHandler {
   private final int explosionRadius;
   private final int explosionDamage;
 
-  private AbstractRectangularBoardElement movable;
+  protected AbstractRectangularBoardElement movable;
 
   public AbstractAmmo(int explosionRadius, int explosionDamage) {
     firedPhase = Helper.getClock();
 
     this.explosionDamage = explosionDamage;
     this.explosionRadius = explosionRadius;
+
   }
 
   public AbstractRectangularBoardElement getMovable() {
@@ -27,6 +28,7 @@ public abstract class AbstractAmmo implements IMovableHandler {
 
   // Override this method if you want to have another movement
   // behaviour
+  // Draw the moving rectangle when shooting
   protected void createMovableRect(int rectWidth, int rectHeight) {
     this.movable =
         new ARBEWIthHandler(
@@ -39,6 +41,9 @@ public abstract class AbstractAmmo implements IMovableHandler {
 
   protected int getFiredPhase() {
     return firedPhase;
+  }
+  protected void setMovable(AbstractRectangularBoardElement movable) {
+    this.movable = movable;
   }
 
   @Override
@@ -53,7 +58,6 @@ public abstract class AbstractAmmo implements IMovableHandler {
   @Override
   public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
     explode();
-
     Helper.getCurrentWeapon().triggerAmmoExplosion();
   }
 
