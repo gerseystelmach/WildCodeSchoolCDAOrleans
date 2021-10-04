@@ -10,8 +10,13 @@ public class Config {
   private static final String CONFIG_FILENAME = "src/resources/app.config";
   private static Config config = null;
 
-  public static void loadConfig() throws IOException {
-    config = new Config();
+  public static void loadConfig() {
+    try {
+      config = new Config();
+    } catch (IOException e) {
+      System.err.println("Sorry, could not load config file, exiting ...");
+      System.exit(2);
+    }
   }
 
   public static boolean isDebug() {
@@ -24,6 +29,18 @@ public class Config {
 
   public static int getMaxWormTurnDuration() {
     return Integer.parseInt(config.prop.getProperty("app.worms.turn_delay"));
+  }
+
+  public static Integer getRandomSeed() {
+    if(config == null) loadConfig();
+    String randomSeedProperty = config.prop.getProperty("app.random_seed");
+    if (randomSeedProperty == null
+        || randomSeedProperty.equals("")
+        || randomSeedProperty.equals("null")) {
+      return null;
+    }
+
+    return Integer.parseInt(randomSeedProperty);
   }
 
   public Config() throws IOException {
