@@ -14,6 +14,7 @@ public abstract class AbstractAmmo implements IMovableHandler {
   private final int explosionDamage;
 
   private AbstractRectangularBoardElement movable;
+  private boolean initialPositionSet = false;
 
   public AbstractAmmo(int explosionRadius, int explosionDamage) {
     firedPhase = Helper.getClock();
@@ -23,6 +24,10 @@ public abstract class AbstractAmmo implements IMovableHandler {
   }
 
   public AbstractRectangularBoardElement getMovable() {
+    if (!initialPositionSet) {
+      setInitialPosition();
+    }
+
     return movable;
   }
 
@@ -51,6 +56,8 @@ public abstract class AbstractAmmo implements IMovableHandler {
             y
                 + distance * Math.sin(movable.getDirection())
                 - movable.getInnerRect().getHeight() / 2));
+
+    initialPositionSet = true;
   }
 
   protected int getFiredPhase() {
