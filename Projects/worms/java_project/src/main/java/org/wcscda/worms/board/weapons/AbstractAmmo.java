@@ -20,6 +20,7 @@ Eu nao poderia fazer isso se eu herdasse a classe. */
 
     this.explosionDamage = explosionDamage;
     this.explosionRadius = explosionRadius;
+
   }
 
   public AbstractRectangularBoardElement getMovable() {
@@ -28,6 +29,7 @@ Eu nao poderia fazer isso se eu herdasse a classe. */
 
   // Override this method if you want to have another movement
   // behaviour
+  // Draw the moving rectangle when shooting
   protected void createMovableRect(int rectWidth, int rectHeight) {
     this.movable =
         new ARBEWIthHandler(
@@ -43,6 +45,10 @@ Eu nao poderia fazer isso se eu herdasse a classe. */
     return firedPhase;
   }
 
+  protected void setMovable(AbstractRectangularBoardElement movable) {
+    this.movable = movable;
+  }
+
   @Override
   public Boolean isColidingWithAdditionnal(Shape s) {
     if ((s == Helper.getActiveWorm().getShape())
@@ -56,7 +62,6 @@ Eu nao poderia fazer isso se eu herdasse a classe. */
   public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
     System.out.println("I shooted");
     explode();
-
     Helper.getCurrentWeapon().triggerAmmoExplosion();
   }
 

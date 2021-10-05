@@ -42,6 +42,8 @@ public class WormMovingPhase extends AbstractPhase {
     if (key.equals("W")) {
       Helper.getActivePlayer().changeWeapon();
     }
+
+
   }
 
   private void moveWeapon(int direction) {

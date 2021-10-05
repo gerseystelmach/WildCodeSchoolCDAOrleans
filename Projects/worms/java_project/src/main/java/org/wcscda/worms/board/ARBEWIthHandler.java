@@ -31,4 +31,5 @@ public class ARBEWIthHandler extends AbstractRectangularBoardElement {
     }
     return super.isCollidingWith(s);
   }
+
 }

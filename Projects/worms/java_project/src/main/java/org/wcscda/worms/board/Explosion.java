@@ -5,7 +5,8 @@ import java.awt.image.ImageObserver;
 import org.wcscda.worms.DrawHelper;
 import org.wcscda.worms.Helper;
 
-public class Explosion extends AbstractDrawableElement {
+public class Explosion extends AbstractDrawableElement{
+  // Explosion speed (or duration of the explosion)
   private static final int LIFE_DURATION = 40;
   private final double centerX;
   private final double centerY;

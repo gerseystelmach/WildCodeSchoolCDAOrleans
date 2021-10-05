@@ -13,12 +13,11 @@ import java.awt.image.ImageObserver;
 public class Grenade extends AbstractWeapon {
 
     private static final String imagePath = "src/resources/weapons/grenade.png";
-     private static Image image = null;
+    private static Image image = null;
     private static final int grenadeRadius = 50;
 
-
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(30, 30, 0);
     }
 
     @Override
@@ -47,6 +46,7 @@ public class Grenade extends AbstractWeapon {
         }
 
         g.setStroke(new BasicStroke(10));
+
 
     }
 

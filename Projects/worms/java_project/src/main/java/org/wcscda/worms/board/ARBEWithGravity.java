@@ -36,6 +36,8 @@ public abstract class ARBEWithGravity extends AbstractRectangularBoardElement {
   // NRO 2021-09-25 :
   // Question subtile, à quoi sert cette fonction, qui est
   // exactement la même que le accept de AbstractMovable ??
+  // => allow to call the overload of accept with a ARBEWithGravity instead of use the call with AbstractMovable
+  //The visitor manage the gravity
   @Override
   public void accept(Point2D prevPosition, IMovableVisitor visitor) {
     visitor.visit(this, prevPosition);
