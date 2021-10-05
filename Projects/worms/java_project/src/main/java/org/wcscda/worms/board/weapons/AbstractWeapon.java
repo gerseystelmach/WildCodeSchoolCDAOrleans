@@ -51,6 +51,7 @@ public abstract class AbstractWeapon {
     try {
       ctor = ammoClass.getConstructor(Double.class);
       ctor.newInstance(new Object[] {angle});
+      System.out.println("Firing " + ammoClassName);
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

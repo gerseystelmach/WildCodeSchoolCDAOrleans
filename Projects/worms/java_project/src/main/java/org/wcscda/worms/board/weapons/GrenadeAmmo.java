@@ -21,10 +21,8 @@ public class GrenadeAmmo  extends AbstractAmmo {
     private static final int GRENADE_RECT_SIZE =30;
   //  private static final int GRENADE_AMMO_RADIUS = 150;
     private static final  String imagePath = "src/resources/weapons/grenade.png";
-    private static final int INITIAL_SPEED = 3;
+    private static final int INITIAL_SPEED = 5;
     private static Image image = null;
-    private AbstractRectangularBoardElement movable;
-
 
     private static void initImages() {
         image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
@@ -43,6 +41,18 @@ public class GrenadeAmmo  extends AbstractAmmo {
         super.explode();
       }
 
+
+    @Override
+    protected void createMovableRect(int rectWidth, int rectHeight) {
+        setMovable(new ARBEHandlerGravity(
+                Helper.getWormX() - rectWidth / 2,
+                Helper.getWormY() - rectHeight / 2,
+                10,
+                10,
+                this));
+
+    }
+
     @Override
     public void drawMain(Graphics2D g, ImageObserver io) {
 
@@ -58,16 +68,6 @@ public class GrenadeAmmo  extends AbstractAmmo {
 
     }
 
-    @Override
-    protected void createMovableRect(int rectWidth, int rectHeight) {
-        setMovable(new ARBEHandlerGravity(
-                Helper.getWormX() - rectWidth / 2,
-                Helper.getWormY() - rectHeight / 2,
-                10,
-                10,
-                this));
-
-    }
 
 }
 

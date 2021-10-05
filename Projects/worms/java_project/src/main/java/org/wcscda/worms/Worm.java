@@ -166,8 +166,4 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   public void accept(Point2D prevPosition, IMovableVisitor visitor) {
     visitor.visit(this, prevPosition);
   }
-
-  public int getLife() {
-    return life;
-  }
 }

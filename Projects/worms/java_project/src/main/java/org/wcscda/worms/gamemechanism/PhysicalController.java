@@ -41,7 +41,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
   private void doGravity(ARBEWithGravity arbe) {
     if (getFirstStandingOn(arbe).isEmpty()) {
       arbe.setSpeedY(arbe.getSpeedY() + GRAVITY_ACCELERATION);
-    } else {
+    } else if (arbe.getSpeedY() > 0){
       // NRO 2021-10-01 : You might have to change that if you
       // want some rebounce effect
       arbe.setSpeedY(0);
