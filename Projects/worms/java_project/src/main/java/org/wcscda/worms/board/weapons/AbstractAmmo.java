@@ -24,10 +24,6 @@ public abstract class AbstractAmmo implements IMovableHandler {
   }
 
   public AbstractRectangularBoardElement getMovable() {
-    if (!initialPositionSet) {
-      setInitialPosition();
-    }
-
     return movable;
   }
 

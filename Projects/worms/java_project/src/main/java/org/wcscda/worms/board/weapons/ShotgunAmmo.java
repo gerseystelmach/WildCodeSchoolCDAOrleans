@@ -13,6 +13,8 @@ public class ShotgunAmmo extends AbstractAmmo {
     createMovableRect(HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE);
     getMovable().setDirection(angle);
     getMovable().setSpeed(5);
+
+    setInitialPosition();
   }
 
   @Override
