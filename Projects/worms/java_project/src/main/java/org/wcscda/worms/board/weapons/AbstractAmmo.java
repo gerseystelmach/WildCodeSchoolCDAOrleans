@@ -42,6 +42,7 @@ public abstract class AbstractAmmo implements IMovableHandler {
   protected int getFiredPhase() {
     return firedPhase;
   }
+
   protected void setMovable(AbstractRectangularBoardElement movable) {
     this.movable = movable;
   }

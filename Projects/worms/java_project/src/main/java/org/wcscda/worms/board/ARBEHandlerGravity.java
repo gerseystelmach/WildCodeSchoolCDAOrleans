@@ -52,24 +52,6 @@ public class ARBEHandlerGravity extends ARBEWithGravity{
         return super.isCollidingWith(s);
     }
 
-    @Override
-    public void rawMove(double x, double y) {
-        super.rawMove(x, y);
-        GeomUtils.moveRect(supportRect, x, y);
-    }
-
-    @Override
-    public void accept(Point2D prevPosition, IMovableVisitor visitor) {
-        visitor.visit(this, prevPosition);
-    }
-
-    @Override
-    protected void drawDebug(Graphics2D g, ImageObserver io) {
-        super.drawDebug(g, io);
-        g.setColor(Color.ORANGE);
-        g.draw(getOuterRect());
-    }
-
     public boolean isSubjectToGravity() {
         return true;
     }

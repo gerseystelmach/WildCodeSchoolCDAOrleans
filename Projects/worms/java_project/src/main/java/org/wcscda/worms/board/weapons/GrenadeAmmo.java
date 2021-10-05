@@ -59,25 +59,6 @@ public class GrenadeAmmo  extends AbstractAmmo{
                10,
                 this));
     }
-
-    /*@Override
-        protected void createMovableRect(int rectWidth, int rectHeight) {
-            AbstractAmmo aa = this;
-            this.movable =
-                    new ARBEWithGravity(Helper.getWormX()+20,Helper.getWormY()-100,10,10) {
-                        @Override
-                        public void collideWith(AbstractBoardElement movable, Point2D prevPosition) {
-                            aa.colideWith(movable, prevPosition);
-                        }
-
-                        @Override
-                        protected void drawMain(Graphics2D g, ImageObserver io) {
-
-                        }
-                    };
-
-        }*/
-
 }
 
 
