@@ -45,6 +45,7 @@ public class Shotgun extends AbstractWeapon {
     return new MovingPhase();
   }
 
+
   public void triggerAmmoExplosion() {
     if (nbFiredShoots == 2) {
       super.triggerAmmoExplosion();

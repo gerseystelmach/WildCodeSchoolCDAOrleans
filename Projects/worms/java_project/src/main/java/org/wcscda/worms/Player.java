@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import org.wcscda.worms.board.weapons.*;
 
+
 public class Player {
+
   private final String name;
   private final Color color;
   private final ArrayList<Worm> worms = new ArrayList<Worm>();
@@ -18,7 +20,7 @@ public class Player {
   public Player(String name, Color color) {
     this.name = name;
     this.color = color;
-   this.beginnerLevel = false;
+    this.beginnerLevel = false;
   }
 
   public String getName() {
@@ -74,9 +76,9 @@ public class Player {
     } else if (currentWeapon instanceof SuperGrenade){
       currentWeapon = new Hadoken();
     } else if (currentWeapon instanceof Hadoken) {
-        currentWeapon = new GrenadeTimer();
+      currentWeapon = new GrenadeTimer();
     } else {
-        currentWeapon = new Shotgun();
+      currentWeapon = new Shotgun();
     }
 
   }
@@ -93,10 +95,8 @@ public class Player {
     currentWeapon = new Shotgun();
   }
 
+
   public boolean hasWorms() {
     return !getWorms().isEmpty();
   }
 }
-
-
-

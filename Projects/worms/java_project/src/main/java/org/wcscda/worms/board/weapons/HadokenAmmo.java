@@ -30,6 +30,7 @@ public class HadokenAmmo extends AbstractAmmo {
   public void drawMain(Graphics2D g, ImageObserver io) {
     g.setColor(Color.BLUE);
     g.setStroke(new BasicStroke(10));
+    // Draw the shooting line of the weapon
     g.drawLine(
         (int) initialX,
         (int) initialY,
