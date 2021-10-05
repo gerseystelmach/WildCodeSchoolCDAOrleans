@@ -7,8 +7,16 @@ public class RandomGenerator {
 
   public static Random getInstance() {
     if (instance == null) {
-      int seed = new Random().nextInt();
-      System.err.println("Using random seed " + seed);
+      int seed;
+
+      if (Config.getRandomSeed() == null) {
+        seed = new Random().nextInt();
+        System.err.println("Using random seed " + seed);
+      } else {
+        seed = Config.getRandomSeed();
+        System.err.println("Using provided random seed " + seed);
+      }
+
       instance = new Random(seed);
     }
 
