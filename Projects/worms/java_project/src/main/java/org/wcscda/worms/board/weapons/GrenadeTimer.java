@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
+// NRO 2021-10-05 NOT-NICE : You could avoid so much copy-paste by inheriting
+//  of Grenade and just overriding what you need to 
 public class GrenadeTimer extends AbstractWeapon {
 
     private static final String imagePath = "src/resources/weapons/grenadetimer.png";

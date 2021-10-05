@@ -27,12 +27,17 @@ public class Grenade extends AbstractWeapon {
         }
 
         if (getAngle() < Math.PI / 2) {
+            // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself) 
+            //  In that case you can easily put this code and the following one in 
+            //  the same method,just passing a value of -1 or 1 to set the scale 
+            //  and (-/+) 50
             AffineTransform trans =
                     AffineTransform.getTranslateInstance(Helper.getWormX() + 50, Helper.getWormY());
             trans.scale(-1, 1);
 
             g.drawImage(image, trans, io);
         } else {
+            // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself) 
             AffineTransform trans =
                     AffineTransform.getTranslateInstance(Helper.getWormX() - 50, Helper.getWormY());
             trans.scale(1, 1);

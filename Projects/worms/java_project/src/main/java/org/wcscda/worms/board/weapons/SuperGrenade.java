@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
+// NRO 2021-10-05 BAD : Nice ! 
 public class SuperGrenade extends Grenade {
 
     private static final int superGrenadeRadius = 80;
@@ -23,6 +24,9 @@ public class SuperGrenade extends Grenade {
             initImages();
         }
 
+        // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself) 
+        //  Also you have this code in several weapon, can you think of
+        //  a way to put it in common
         if (getAngle() < Math.PI / 2) {
             AffineTransform trans =
                     AffineTransform.getTranslateInstance(Helper.getWormX() + 50, Helper.getWormY());

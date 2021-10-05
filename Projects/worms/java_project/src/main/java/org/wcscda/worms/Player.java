@@ -69,6 +69,11 @@ public class Player {
       return;
     }
 
+    // NRO 2021-10-05 NOT-NICE : This is not very good, obviously
+    //  you would prefer to have a Weapon array, and manage
+    //  the next with an index. But well, in that case you would
+    //  need to have an array of class, which is possible, but leave
+    //  it out for now ...
     if (currentWeapon instanceof Shotgun) {
       currentWeapon = new Grenade();
     } else if (currentWeapon instanceof Grenade) {
