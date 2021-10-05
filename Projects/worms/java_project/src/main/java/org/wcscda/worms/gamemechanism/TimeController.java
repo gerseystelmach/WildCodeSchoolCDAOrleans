@@ -30,7 +30,7 @@ public class TimeController implements ActionListener {
   public TimeController() {
 
     instance = this;
-    initGame(2, 1);
+    initGame(4, 1);
 
     board.addKeyListener(new KeyboardController());
     timer = new Timer(Config.getClockDelay(), this);
@@ -48,13 +48,13 @@ public class TimeController implements ActionListener {
     setWormQuantity(wormQuantity);
 
     /* Array with colors for each player */
-    Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.GRAY, Color.WHITE, Color.PINK};
+    Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.GRAY, Color.ORANGE, Color.PINK};
     // Requirement 1: Create number of players
     for (int i = 0; i < playerQuantity; i++) {
-      String playerName = "Player" + i;
+      String playerName = "Player " + i;
       Player luckyLuke = createPlayer(playerName, colors[i]);
       for (int j = 0; j < wormQuantity; j++) {
-        String wormPlayer = "Worm" + i;
+        String wormPlayer = "Worm " + i;
         Worm worm = luckyLuke.createWorm(wormPlayer);
         board.wormInitialPlacement(worm);
       }

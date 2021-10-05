@@ -19,28 +19,28 @@ public abstract class AbstractMovable extends AbstractBoardElement implements IV
   public double getSpeed() {
     return speed;
   }
-
   public double getSpeedX() {
     return speed * Math.cos(direction);
   }
 
-  public double getSpeedY() {
-    return speed * Math.sin(direction);
+  public double getSpeedY() { return speed * Math.sin(direction);
   }
 
   public void addSpeedXY(double speedXdelta, double speedYdelta) {
     double newSpeedX = speedXdelta + getSpeedX();
     double newSpeedY = speedYdelta + getSpeedY();
-
     setSpeedXY(newSpeedX, newSpeedY);
   }
 
-  public void setSpeedXY(double speedX, double speedY) {
-    double newSpeed = Math.sqrt(Math.pow(speedX, 2) + Math.pow(speedY, 2));
 
+
+  public void setSpeedXY(double speedX, double speedY) {
+//    double newSpeed = Math.sqrt(Math.pow(speedX, 2) + Math.pow(speedY, 2));
+    double newSpeed = Math.sqrt(Math.pow(speedX, 2) + Math.pow(speedY, 2));
     if (newSpeed < 0.05) {
       setSpeed(0);
       return;
+
     }
 
     setSpeed(newSpeed);
@@ -74,11 +74,13 @@ public abstract class AbstractMovable extends AbstractBoardElement implements IV
     Point2D currentPosition = getPosition();
     rawMove(x, y);
     accept(currentPosition, visitor);
+
   }
 
   public void move(IMovableVisitor visitor) {
     singleMove(visitor, getSpeedX(), getSpeedY());
-  }
+
+      }
 
   public Point2D getPosition() {
     return new Point2D.Double(getX(), getY());
@@ -100,9 +102,7 @@ public abstract class AbstractMovable extends AbstractBoardElement implements IV
     this.speed = speed;
   }
 
-  public boolean isSubjectToGravity() {
-    return false;
-  }
+  public boolean isSubjectToGravity() { return false; }
 
   /* NRO 2021-09-30 : Check if the movable is in collision
    * with a Shape. The Shape is a very generic java.awt

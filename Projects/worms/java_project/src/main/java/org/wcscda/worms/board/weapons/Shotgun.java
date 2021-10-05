@@ -23,14 +23,19 @@ public class Shotgun extends AbstractWeapon {
       initImages();
     }
 
-    if (getAngle() > Math.PI / 2) {
+    /* Code to choose condition for each side. If > is right, otherwise is left. We can change the image in accordance to the side.  */
+    if (getAngle() < Math.PI / 2) {
       AffineTransform trans =
-          AffineTransform.getTranslateInstance(Helper.getWormX() + 100, Helper.getWormY());
+          AffineTransform.getTranslateInstance(Helper.getWormX() + 50, Helper.getWormY());
       trans.scale(-1, 1);
 
       g.drawImage(image, trans, io);
     } else {
-      g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
+      AffineTransform trans =
+              AffineTransform.getTranslateInstance(Helper.getWormX() - 50, Helper.getWormY());
+      trans.scale(1, 1);
+
+      g.drawImage(image, trans, io);
     }
   }
 

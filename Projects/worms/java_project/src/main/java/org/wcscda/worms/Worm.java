@@ -13,13 +13,15 @@ import org.wcscda.worms.gamemechanism.Board;
 public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
-
+  private static final String  trophy = "src/resources/weapons/trophy.png";
   private static final int imageHeight = 60;
   private static final int imageWidth = 54;
   private static final int rectPadding = 15;
 
   private static Image wormLF = null;
   private static Image wormRF = null;
+  private static Image trophyWinner = null;
+
   private int shownLife = 100;
   private int life = 100;
   private final String name;
@@ -27,10 +29,10 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   private boolean isUserMoving;
 
   private static void initImages() {
-    wormLF =
-        new ImageIcon(leftFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
-    wormRF =
-        new ImageIcon(rightFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
+    wormLF = new ImageIcon(leftFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
+    wormRF = new ImageIcon(rightFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
+    trophyWinner = new ImageIcon(trophy).getImage().getScaledInstance(imageWidth, imageHeight, 0);
+
   }
 
   // NRO 2021-09-28 : Player is the Worm factory
@@ -68,13 +70,26 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     g.drawString(getName(), (int) getX() - 10, (int) getY() - 35);
  // Drawing the life
     g.drawString("" + life, (int) getX(), (int) getY() - 15);
+    g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
 
+// Moved this code to EndOfGamePhase
+    if (Helper.getTC().getWinner() != null) {
+      g.drawImage(trophyWinner, getX() - 50, getY() - 40, io);
+      Font myFont = new Font("Serif", Font.BOLD, 40);
+      g.setFont(myFont);
+      g.setColor(player.getColor());
 
-   if (Helper.getTC().getWinner() != null) {
-      g.drawString("Congratulations! You are the winner, " + Helper.getTC().getWinner(), 500,  60);
+      g.drawString( Helper.getTC().getWinner(), 550, 60);
+      g.drawString("Congratulations! You are the winner!", 200, 120);
+
+    if (Helper.getClock() % 50 < 20) {
+      g.setColor(Color.WHITE);
+      g.drawString( Helper.getTC().getWinner(), 550, 60);
+      g.drawString("Congratulations! You are the winner!", 200, 120);
+
+      }
     }
 
-    g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
   }
 
   private int getShownLife() {
