@@ -1,7 +1,6 @@
 package org.wcscda.worms;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import java.awt.*;
 import junit.framework.TestCase;
 import org.wcscda.worms.board.AbstractDrawableElement;
@@ -26,14 +25,7 @@ public class WormTest extends TestCase {
     assertFalse(player.getWorms().contains(worm));
   }
 
-  public void testOnRemoval() throws JsonProcessingException {
-    Player player = new Player("Hector", Color.BLUE);
-    Worm worm = player.createWorm("Achille");
-
-    XmlMapper xmlMapper = new XmlMapper();
-    String xml = xmlMapper.writeValueAsString(worm);
-    System.out.println(xml);
-  }
+  public void testOnRemoval() throws JsonProcessingException {}
 
   @Override
   public void tearDown() throws Exception {

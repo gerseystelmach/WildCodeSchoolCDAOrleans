@@ -33,4 +33,8 @@ public class KeyboardControllerPlayer extends KeyboardController {
   @JsonProperty
   private final DefaultHashMap<Integer, Set<String>> records =
       new DefaultHashMap<>(() -> new HashSet<>());
+
+  @JsonProperty private int seed;
+
+  @JsonProperty private String recordDate;
 }
