@@ -1,24 +1,20 @@
 package org.wcscda.worms.board.weapons;
 
 import org.wcscda.worms.Helper;
-import org.wcscda.worms.gamemechanism.phases.WormMovingPhase;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
 import java.awt.image.ImageObserver;
 
+public class SuperGrenade extends AbstractWeapon {
 
-public class Grenade extends AbstractWeapon {
-
-    private static final String imagePath = "src/resources/weapons/grenade.png";
-     private static Image image = null;
-    private static final int grenadeRadius = 50;
-
+    private static final int superGrenadeRadius = 80;
+    private static final String imagePath = "src/resources/weapons/grenadefruit.png";
+    private static Image image = null;
 
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 50, 0);
     }
 
     @Override
@@ -43,6 +39,6 @@ public class Grenade extends AbstractWeapon {
 
         g.setStroke(new BasicStroke(10));
 
-    }
 
+    }
 }

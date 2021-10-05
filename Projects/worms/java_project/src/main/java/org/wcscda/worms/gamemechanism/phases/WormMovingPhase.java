@@ -10,7 +10,7 @@ import org.wcscda.worms.board.weapons.AbstractWeapon;
 public class WormMovingPhase extends AbstractPhase {
   private static final double WORM_STEP_SPEED = 3.0;
   private static final double WEAPON_LINE_LENGTH = 30.0;
-  private static final double WEAPON_ANGLE_INCR = Math.PI / 8;
+  private static final double WEAPON_ANGLE_INCR = Math.PI / 20;
 
   @Override
   protected int getMaxDurationSeconds() {

@@ -2,10 +2,8 @@ package org.wcscda.worms;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import org.wcscda.worms.board.weapons.AbstractWeapon;
-import org.wcscda.worms.board.weapons.Grenade;
-import org.wcscda.worms.board.weapons.Hadoken;
-import org.wcscda.worms.board.weapons.Shotgun;
+
+import org.wcscda.worms.board.weapons.*;
 
 public class Player {
   private final String name;
@@ -68,14 +66,17 @@ public class Player {
     }
 
     if (currentWeapon instanceof Shotgun) {
-      currentWeapon = new Shotgun();
-    } else if (currentWeapon instanceof Grenade) {
       currentWeapon = new Grenade();
-
-    } else {
+    } else if (currentWeapon instanceof Grenade) {
+      currentWeapon = new SuperGrenade();
+    } else if (currentWeapon instanceof SuperGrenade){
       currentWeapon = new Hadoken();
-
+    } else if (currentWeapon instanceof Hadoken) {
+        currentWeapon = new GrenadeTimer();
+    } else {
+        currentWeapon = new Shotgun();
     }
+
   }
 
   public boolean isBeginnerLevel() {
@@ -87,7 +88,7 @@ public class Player {
   }
 
   public void initWeapon() {
-    currentWeapon = new Grenade();
+    currentWeapon = new Shotgun();
   }
 }
 

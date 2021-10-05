@@ -1,7 +1,7 @@
 package org.wcscda.worms;
 
 import java.util.Random;
-
+/*This class is used to create the seeds, which is used to generate the asymmetric fields where the worms play */
 public class RandomGenerator {
   private static Random instance;
 
