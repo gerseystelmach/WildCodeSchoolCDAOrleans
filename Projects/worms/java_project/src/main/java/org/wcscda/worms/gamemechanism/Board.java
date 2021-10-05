@@ -56,8 +56,12 @@ public abstract class Board extends JPanel {
     if (isGameFinished()) {
       Helper.getTC().setCurrentPhase(new EndOfGamePhase());
     }
-    repaint();
 
+    AbstractDrawableElement.getAllDrawable().forEach(AbstractDrawableElement::onIterationBegin);
+
+    Helper.getTC().getKeyboardController().onIterationBegin();
+
+    repaint();
     doMoves();
 
     AbstractDrawableElement.processToBeRemovedAndAdded();
@@ -79,7 +83,8 @@ public abstract class Board extends JPanel {
 
   public void makeScreenshot(String filename) {
     Rectangle rec = getBounds();
-    BufferedImage bufferedImage = new BufferedImage(rec.width, rec.height, BufferedImage.TYPE_INT_ARGB);
+    BufferedImage bufferedImage =
+        new BufferedImage(rec.width, rec.height, BufferedImage.TYPE_INT_ARGB);
     paint(bufferedImage.getGraphics());
 
     try {
@@ -105,5 +110,9 @@ public abstract class Board extends JPanel {
 
   public WormField getWormField() {
     return wormField;
+  }
+
+  public void addWindowListener(WindowListener w) {
+    WormLauncher.getInstance().addWindowListener(w);
   }
 }

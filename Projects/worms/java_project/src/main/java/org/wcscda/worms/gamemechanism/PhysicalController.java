@@ -3,12 +3,9 @@ package org.wcscda.worms.gamemechanism;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.util.Optional;
-
-import org.wcscda.worms.DrawHelper;
 import org.wcscda.worms.Worm;
 import org.wcscda.worms.board.*;
-
-import javax.swing.text.html.Option;
+import org.wcscda.worms.utils.DrawHelper;
 
 /** @author nicolas */
 public class PhysicalController extends Board implements IMovableVisitor {
@@ -48,16 +45,16 @@ public class PhysicalController extends Board implements IMovableVisitor {
   }
 
   public Optional<AbstractBoardElement> getFirstStandingOn(ARBEWithGravity arbe) {
-    Optional<AbstractBoardElement> optAm = AbstractMovable
-            .getAllBoardElement()
+    Optional<AbstractBoardElement> optAm =
+        AbstractMovable.getAllBoardElement()
             .filter(am -> (am != arbe) && arbe.isStandingOn(am.getShape()))
             .findFirst();
     return optAm;
   }
 
   private Optional<AbstractBoardElement> getFirstCollidingWith(ARBEWithGravity arbe) {
-    Optional<AbstractBoardElement> optAm = AbstractBoardElement
-            .getAllBoardElement()
+    Optional<AbstractBoardElement> optAm =
+        AbstractBoardElement.getAllBoardElement()
             .filter(am -> (am != arbe) && arbe.isCollidingWith(am.getShape()))
             .findFirst();
     return optAm;
