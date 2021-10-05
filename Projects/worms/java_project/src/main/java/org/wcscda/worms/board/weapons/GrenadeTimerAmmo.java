@@ -2,20 +2,23 @@ package org.wcscda.worms.board.weapons;
 
 import org.wcscda.worms.Config;
 import org.wcscda.worms.Helper;
+import org.wcscda.worms.board.ARBEHandlerGravity;
 import org.wcscda.worms.board.AbstractBoardElement;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import java.util.TimerTask;
 import javax.swing.Timer;
 
 public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
+
     private static final int EXPLOSION_RADIUS = 150;
-    private static final int EXPLOSION_DAMAGE = 18;
+    private static final int EXPLOSION_DAMAGE = 20;
     /*It changes the size of the bullet */
     private static final int GRENADE_RECT_SIZE = 10;
     private static final int INITIAL_SPEED = 1;
@@ -36,36 +39,61 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
 
     }
 
+    // Set Timer wid the delay time
 
-      @Override
-        public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
+   /* @Override
+    public void collideWith(AbstractBoardElement movable, Point2D prevPosition) {
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        explode();
+                        Helper.getCurrentWeapon().triggerAmmoExplosion();
+                    }
+                },
+                1000
+        );
+    }*/
+    public void timerExplode() {
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        explode();
+                        Helper.getCurrentWeapon().triggerAmmoExplosion();
+                    }
+                },
+                1000
+        );
+    }
+    @Override
+    protected void createMovableRect(int rectWidth, int rectHeight) {
+        setMovable(new ARBEHandlerGravity(
+                Helper.getWormX() - rectWidth / 2,
+                Helper.getWormY() - rectHeight / 2,
+                10,
+                10,
+                this));
 
-          new java.util.Timer().schedule(
-                  new java.util.TimerTask() {
-                      @Override
-                      public void run() {
-                          explode();
-                          Helper.getCurrentWeapon().triggerAmmoExplosion();
-                      }
-                  },
-                  1000
-          );
-          System.out.println();
     }
 
     @Override
     public void drawMain(Graphics2D g, ImageObserver io) {
+
         if (image == null) {
             initImages();
         }
+
+        AffineTransform trans =
+                AffineTransform.getTranslateInstance(getMovable().getCenterX() + 35, getMovable().getCenterY() - 20);
+        trans.scale(-1, 1);
+
+        g.drawImage(image, trans, io);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
     }
-
-
-
-
 }

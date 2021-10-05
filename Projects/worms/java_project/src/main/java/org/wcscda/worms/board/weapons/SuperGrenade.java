@@ -8,7 +8,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
 // NRO 2021-10-05 BAD : Nice ! 
-public class SuperGrenade extends Grenade {
+public class SuperGrenade extends AbstractWeapon {
 
     private static final int superGrenadeRadius = 80;
     private static final String imagePath = "src/resources/weapons/grenadefruit.png";

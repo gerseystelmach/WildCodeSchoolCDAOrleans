@@ -60,9 +60,9 @@ Eu nao poderia fazer isso se eu herdasse a classe. */
 
   @Override
   public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
-    System.out.println("I shooted");
     explode();
     Helper.getCurrentWeapon().triggerAmmoExplosion();
+
   }
 
   protected void explode() {
