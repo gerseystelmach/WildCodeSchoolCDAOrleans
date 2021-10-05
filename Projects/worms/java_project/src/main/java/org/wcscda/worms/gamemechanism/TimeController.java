@@ -77,6 +77,8 @@ public class TimeController implements ActionListener {
 
   public String getWinner() {
     List<Player> losers = new ArrayList<>();
+    // NRO 2021-10-05 NOT-NICE : winner is confusing here,
+    //  stillPlaying would be more accurate (for example)
     List<Player> winner = new ArrayList<>();
 
     for(Player player: getPlayers()) {

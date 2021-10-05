@@ -38,6 +38,9 @@ public class PhysicalController extends Board implements IMovableVisitor {
   }
 
   // est ce que ça tiens sur qql choses, (vers ou terrain), si
+  // NRO 2021-10-05 : Not only, it is the getFirstStandingOn that is
+  //  doing that (Your code is a little bit outdeated), this one 
+  //  is also making the object accelerate if not standing on anything
   private void doGravity(ARBEWithGravity arbe) {
     if (!arbe.isStandingOn(getWormField().getFrontier())) {
 
