@@ -56,6 +56,8 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     return RandomGenerator.getInstance().nextInt(Board.getBHEIGHT() - imageHeight);
   }
 
+  // NRO 2021-10-05 BAD : This method is too long ! The fact that methods
+  //  must held in one screen (let say about 25 lines long) is a golden rule !
   @Override
   protected void drawMain(Graphics2D g, ImageObserver io) {
     if (wormLF == null) initImages();
@@ -68,10 +70,15 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     g.drawString(player.getName(), (int) getX() - 10, (int) getY() - 55);
  // Drawing the worm name
     g.drawString(getName(), (int) getX() - 10, (int) getY() - 35);
+    // NRO 2021-10-05 NOT-NICE : in that case, creating a method
+    //  drawLife would be better (nicer to read) than adding a comment 
  // Drawing the life
     g.drawString("" + life, (int) getX(), (int) getY() - 15);
     g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
 
+/* NRO 2021-10-05 BAD : This comment is pretty confusing 
+    Is it a TODO, or is it done ? Because the code is still there
+*/
 // Moved this code to EndOfGamePhase
     if (Helper.getTC().getWinner() != null) {
       g.drawImage(trophyWinner, getX() - 50, getY() - 40, io);
@@ -79,11 +86,13 @@ public class Worm extends ARBEWithGravity implements IVisitable {
       g.setFont(myFont);
       g.setColor(player.getColor());
 
+      // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself) 
       g.drawString( Helper.getTC().getWinner(), 550, 60);
       g.drawString("Congratulations! You are the winner!", 200, 120);
 
     if (Helper.getClock() % 50 < 20) {
       g.setColor(Color.WHITE);
+      // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself) 
       g.drawString( Helper.getTC().getWinner(), 550, 60);
       g.drawString("Congratulations! You are the winner!", 200, 120);
 
