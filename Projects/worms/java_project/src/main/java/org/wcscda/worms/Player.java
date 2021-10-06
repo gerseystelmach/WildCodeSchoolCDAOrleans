@@ -75,16 +75,16 @@ public class Player {
     weapons.add(new Grenade());
     weapons.add(new SuperGrenade());
     weapons.add(new GrenadeTimer());
-
+/* TODO - Fix changemaent d'arme */
     for (int i = 0; i < weapons.size(); i++) {
       System.out.println("Current weapon" + currentWeapon);
       System.out.println("Loop weapon" +  weapons.get(i));
       System.out.println("cest egale?" + currentWeapon.equals(weapons.get(i)));
 
-        if (currentWeapon instanceof weapons.get(i)) {
+        if (currentWeapon.getClass() == (weapons.get(i).getClass())) {
         System.out.println("je suis la");
         currentWeapon = weapons.get(i + 1);
-     } else if (currentWeapon.equals(weapons.get(weapons.size() - 1))) {
+     } else if (currentWeapon.getClass() == weapons.get(weapons.size() - 1).getClass()) {
       currentWeapon = weapons.get(0);
       }
     }
