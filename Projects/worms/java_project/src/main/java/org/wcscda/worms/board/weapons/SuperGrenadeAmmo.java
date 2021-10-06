@@ -5,6 +5,7 @@ import org.wcscda.worms.board.ARBEHandlerGravity;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
 public class SuperGrenadeAmmo extends AbstractAmmo {
@@ -26,6 +27,7 @@ public class SuperGrenadeAmmo extends AbstractAmmo {
         createMovableRect(GRENADE_RECT_SIZE, GRENADE_RECT_SIZE);
         getMovable().setDirection(angle);
         getMovable().setSpeed(INITIAL_SPEED);
+        setInitialPosition();
 
     }
 
@@ -34,8 +36,8 @@ public class SuperGrenadeAmmo extends AbstractAmmo {
         setMovable(new ARBEHandlerGravity(
                 Helper.getWormX() - rectWidth / 2,
                 Helper.getWormY() - rectHeight / 2,
-                10,
-                10,
+                rectWidth,
+                rectHeight,
                 this));
 
     }
@@ -45,5 +47,10 @@ public class SuperGrenadeAmmo extends AbstractAmmo {
         if (image == null) {
             initImages();
         }
+        AffineTransform trans =
+                AffineTransform.getTranslateInstance(getMovable().getCenterX() + 35, getMovable().getCenterY() - 20);
+        trans.scale(-1, 1);
+
+        g.drawImage(image, trans, io);
     }
 }

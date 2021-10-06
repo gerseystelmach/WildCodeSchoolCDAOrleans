@@ -23,13 +23,17 @@ public class ARBEWIthHandler extends AbstractRectangularBoardElement {
     movableHandler.colideWith(movable, prevPosition);
   }
 
- /* @Override
+/*
+
+  @Override
   public boolean isCollidingWith(Shape s) {
     Boolean fromAdditionnal = movableHandler.isColidingWithAdditionnal(s);
     if (fromAdditionnal != null) {
       return fromAdditionnal;
     }
     return super.isCollidingWith(s);
-  }*/
+  }
+*/
+
 
 }

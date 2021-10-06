@@ -43,6 +43,9 @@ public class WormMovingPhase extends AbstractPhase {
       Helper.getActivePlayer().changeWeapon();
     }
 
+    if (key.equals("I")) {
+      System.out.println("Inventory");
+    }
 
   }
 

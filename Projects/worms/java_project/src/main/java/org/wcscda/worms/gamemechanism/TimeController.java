@@ -49,6 +49,8 @@ public class TimeController implements ActionListener {
     timer = new Timer(Config.getClockDelay(), this);
     timer.start();
 
+
+
   }
 
   private KeyboardController createController() {
@@ -91,7 +93,7 @@ public class TimeController implements ActionListener {
     if (groupPlayers.size() > 0) {
       int playerIndex = randomGenerator.nextInt(groupPlayers.size());
       groupPlayers.get(playerIndex).setBeginnerLevel(true);
-      System.out.println(playerIndex);
+      System.out.println("begginer" + playerIndex);
     }
 }
 

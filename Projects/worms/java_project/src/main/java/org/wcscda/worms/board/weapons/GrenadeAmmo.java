@@ -33,21 +33,15 @@ public class GrenadeAmmo  extends AbstractAmmo {
         createMovableRect(GRENADE_RECT_SIZE, GRENADE_RECT_SIZE);
         getMovable().setDirection(angle);
         getMovable().setSpeed(INITIAL_SPEED);
-
+        setInitialPosition();
      }
 
-    @Override
-    protected void explode() {
-        super.explode();
-      }
-
-
-    @Override
+     @Override
     protected void createMovableRect(int rectWidth, int rectHeight) {
         setMovable(new ARBEHandlerGravity(
                 Helper.getWormX() - rectWidth / 2,
                 Helper.getWormY() - rectHeight / 2,
-                10,
+               10,
                 10,
                 this));
 
@@ -55,19 +49,11 @@ public class GrenadeAmmo  extends AbstractAmmo {
 
     @Override
     public void drawMain(Graphics2D g, ImageObserver io) {
-
         if (image == null) {
             initImages();
         }
-
-        AffineTransform trans =
-                AffineTransform.getTranslateInstance(getMovable().getCenterX() + 35, getMovable().getCenterY() - 20);
-        trans.scale(-1, 1);
-
-        g.drawImage(image, trans, io);
-
+        g.drawImage(image, (int) (getMovable().getCenterX() - 20), (int) (getMovable().getCenterY() -20), io);
     }
-
 
 }
 

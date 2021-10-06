@@ -70,29 +70,36 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     g.drawString(player.getName(), (int) getX() - 10, (int) getY() - 55);
  // Drawing the worm name
     g.drawString(getName(), (int) getX() - 10, (int) getY() - 35);
+
     // NRO 2021-10-05 NOT-NICE : in that case, creating a method
-    //  drawLife would be better (nicer to read) than adding a comment 
- // Drawing the life
+    //  drawLife would be better (nicer to read) than adding a comment
+    // Drawing the life
     g.drawString("" + life, (int) getX(), (int) getY() - 15);
     g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
 
-/* NRO 2021-10-05 BAD : This comment is pretty confusing 
-    Is it a TODO, or is it done ? Because the code is still there
-*/
-// Moved this code to EndOfGamePhase
+/*To show the dammage bonus for begginers */
+    for (Player player : Helper.getTC().getPlayers()) {
+      if (player.isBeginnerLevel()) {
+        g.setColor(Color.LIGHT_GRAY);
+        g.drawString("(+25% Damage)", (int) player.getActiveWorm().getCenterX() - 50, (int) player.getActiveWorm().getCenterY() - 90);
+      }
+    }
+
+
+/* To display message of the winner */
     if (Helper.getTC().getWinner() != null) {
       g.drawImage(trophyWinner, getX() - 50, getY() - 40, io);
       Font myFont = new Font("Serif", Font.BOLD, 40);
       g.setFont(myFont);
       g.setColor(player.getColor());
 
-      // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself) 
+      // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself)
       g.drawString( Helper.getTC().getWinner(), 550, 60);
       g.drawString("Congratulations! You are the winner!", 200, 120);
 
     if (Helper.getClock() % 50 < 20) {
       g.setColor(Color.WHITE);
-      // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself) 
+      // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself)
       g.drawString( Helper.getTC().getWinner(), 550, 60);
       g.drawString("Congratulations! You are the winner!", 200, 120);
 
@@ -149,13 +156,12 @@ public class Worm extends ARBEWithGravity implements IVisitable {
 
   @Override
   public void takeDamage(int damage) {
+/*for (Player players: Helper.getTC().getPlayers())*/
+if (Helper.getTC().getActivePlayer().isBeginnerLevel()) {
+     damage = (int) (damage * 1.25);
+  }
 
- if (player.isBeginnerLevel() && life > 0) {
-        life -= damage * 1.25;
-
-  } else {
    life -= damage;
- }
 
     if (life <= 0) {
         life = 0;

@@ -36,24 +36,25 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
         createMovableRect(GRENADE_RECT_SIZE, GRENADE_RECT_SIZE);
         getMovable().setDirection(angle);
         getMovable().setSpeed(INITIAL_SPEED);
-
+        setInitialPosition();
     }
 
     // Set Timer wid the delay time
 
-   /* @Override
-    public void collideWith(AbstractBoardElement movable, Point2D prevPosition) {
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        explode();
-                        Helper.getCurrentWeapon().triggerAmmoExplosion();
-                    }
-                },
-                1000
-        );
-    }*/
+    /* @Override
+     public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
+         new java.util.Timer().schedule(
+                 new java.util.TimerTask() {
+                     @Override
+                     public void run() {
+                         explode();
+                         Helper.getCurrentWeapon().triggerAmmoExplosion();
+                     }
+                 },
+                 1000
+         );
+     }*/
+
     public void timerExplode() {
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -66,6 +67,7 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
                 1000
         );
     }
+
     @Override
     protected void createMovableRect(int rectWidth, int rectHeight) {
         setMovable(new ARBEHandlerGravity(
@@ -74,7 +76,7 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
                 10,
                 10,
                 this));
-
+        timerExplode();
     }
 
     @Override
