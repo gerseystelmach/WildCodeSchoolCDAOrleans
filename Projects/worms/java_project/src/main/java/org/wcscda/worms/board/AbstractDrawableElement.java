@@ -54,7 +54,7 @@ public abstract class AbstractDrawableElement implements Comparable<AbstractDraw
   public void removeSelf() {
     toBeRemoved.add(this);
   }
-  protected void onRemoval() {}
+
   protected Integer getDepth() {
     return 0;
   }
@@ -68,5 +68,11 @@ public abstract class AbstractDrawableElement implements Comparable<AbstractDraw
     }
     return id.compareTo(o.id);
   }
+
+  protected void onRemoval() {}
+
+  // NRO 2021-10-05 : Override if you want something to be
+  //  checked on iteration start
+  public void onIterationBegin() {}
 
 }

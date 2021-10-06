@@ -1,6 +1,6 @@
 package org.wcscda.worms.board.weapons;
 
-import org.wcscda.worms.DrawHelper;
+
 import org.wcscda.worms.Helper;
 import org.wcscda.worms.board.AbstractRectangularBoardElement;
 import org.wcscda.worms.board.Explosion;

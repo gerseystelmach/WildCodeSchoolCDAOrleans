@@ -2,8 +2,8 @@ package org.wcscda.worms.board;
 
 import java.awt.*;
 import java.awt.image.ImageObserver;
-import org.wcscda.worms.DrawHelper;
 import org.wcscda.worms.Helper;
+import org.wcscda.worms.utils.DrawHelper;
 
 public class Explosion extends AbstractDrawableElement{
   // Explosion speed (or duration of the explosion)

@@ -12,9 +12,17 @@ import org.wcscda.worms.Player;
 import org.wcscda.worms.Worm;
 import org.wcscda.worms.gamemechanism.phases.AbstractPhase;
 import org.wcscda.worms.gamemechanism.phases.WormMovingPhase;
+import org.wcscda.worms.gamemechanism.playerrecorder.KeyboardControllerPlayer;
+import org.wcscda.worms.gamemechanism.playerrecorder.KeyboardControllerRecorder;
 
 public class TimeController implements ActionListener {
   private static TimeController instance;
+
+  public KeyboardController getKeyboardController() {
+    return keyboardController;
+  }
+
+  private final KeyboardController keyboardController;
   private PhysicalController board;
   private Timer timer;
   private ArrayList<Player> players = new ArrayList<Player>();
@@ -25,25 +33,37 @@ public class TimeController implements ActionListener {
   private int wormQuantity = 0;
   private String playerWinner;
   private boolean delayedSetNextWorm;
+  private ScriptPlayer scriptPlayer;
+
+  public ScriptPlayer getScriptPlayer() {
+    return scriptPlayer;
+  }
 
 
   public TimeController() {
 
     instance = this;
     initGame(4, 1);
-
-    board.addKeyListener(new KeyboardController());
+    keyboardController = createController();
+    board.addKeyListener(keyboardController);
     timer = new Timer(Config.getClockDelay(), this);
     timer.start();
 
   }
 
-  private void initGame(int playerQuantity, int wormQuantity) {
-    board = new PhysicalController();
-    if (playerQuantity > 8 || wormQuantity < 1) {
-      playerQuantity = 8;
-      wormQuantity = 1;
+  private KeyboardController createController() {
+    if (Config.getRecordGame()) {
+      return new KeyboardControllerRecorder(this.board);
+    } else if (Config.getPlayRecord()) {
+      return new KeyboardControllerPlayer();
+    } else {
+      return new KeyboardController();
     }
+  }
+
+  private void initGame(int playerQuantity, int wormQuantity) {
+
+    board = new PhysicalController();
     setPlayerQuantity(playerQuantity);
     setWormQuantity(wormQuantity);
 
@@ -59,7 +79,11 @@ public class TimeController implements ActionListener {
         board.wormInitialPlacement(worm);
       }
     }
-    setNextWorm();
+
+    /*if(Config.getScriptFilename() != null) {
+      scriptPlayer = new ScriptPlayer(Config.getScriptFilename());
+    }*/
+    doSetNextWorm();
 
    ArrayList<Player> groupPlayers = getPlayers();
     Random randomGenerator = new Random();
@@ -70,10 +94,6 @@ public class TimeController implements ActionListener {
       System.out.println(playerIndex);
     }
 }
-
-  public int getWormQuantity() {
-    return wormQuantity;
-  }
 
   public String getWinner() {
     List<Player> losers = new ArrayList<>();
@@ -97,7 +117,6 @@ public class TimeController implements ActionListener {
 
   public void setWormQuantity(int wormQuantity) {
     this.wormQuantity = wormQuantity;
-
   }
 
   public void setNextWorm() {
@@ -131,10 +150,6 @@ public class TimeController implements ActionListener {
 
     getWinner();
 
-  }
-
-  public int getPlayerQuantity() {
-    return playerQuantity;
   }
 
   public void setPlayerQuantity(int playerQuantity) {
