@@ -75,15 +75,11 @@ public class Player {
     weapons.add(new Grenade());
     weapons.add(new SuperGrenade());
     weapons.add(new GrenadeTimer());
-/* TODO - Fix changemaent d'arme */
-    for (int i = 0; i < weapons.size(); i++) {
-      System.out.println("Current weapon" + currentWeapon);
-      System.out.println("Loop weapon" +  weapons.get(i));
-      System.out.println("cest egale?" + currentWeapon.equals(weapons.get(i)));
 
+    for (int i = 0; i < weapons.size(); i++) {
         if (currentWeapon.getClass() == (weapons.get(i).getClass())) {
-        System.out.println("je suis la");
-        currentWeapon = weapons.get(i + 1);
+            currentWeapon = weapons.get(i + 1);
+             break;
      } else if (currentWeapon.getClass() == weapons.get(weapons.size() - 1).getClass()) {
       currentWeapon = weapons.get(0);
       }
@@ -95,18 +91,6 @@ public class Player {
     //  need to have an array of class, which is possible, but leave
     //  it out for now ...
 
-   /* if (currentWeapon instanceof Shotgun) {
-      currentWeapon = new Grenade();
-    } else if (currentWeapon instanceof Grenade) {
-      currentWeapon = new SuperGrenade();
-    } else if (currentWeapon instanceof SuperGrenade){
-      currentWeapon = new Hadoken();
-    } else if (currentWeapon instanceof Hadoken) {
-      currentWeapon = new GrenadeTimer();
-    } else {
-      currentWeapon = new Shotgun();
-    }
-*/
   }
 
   public boolean isBeginnerLevel() {
