@@ -16,7 +16,7 @@ public class GrenadeTimer extends AbstractWeapon {
     private static final int grenadeRadius = 50;
 
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(60, 30, 0);
     }
 
     @Override
