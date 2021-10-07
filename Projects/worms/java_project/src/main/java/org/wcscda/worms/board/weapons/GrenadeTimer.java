@@ -56,6 +56,6 @@ public class GrenadeTimer extends AbstractWeapon {
         }
 
         g.setStroke(new BasicStroke(10));
-
     }
 }
+

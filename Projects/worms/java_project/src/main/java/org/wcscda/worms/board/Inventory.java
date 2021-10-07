@@ -27,10 +27,6 @@ public class Inventory extends AbstractDrawableElement {
         return isInventoryOpen;
     }
 
-   /* public Map<Worm, ArrayList<AbstractWeapon>> getWormWeaponInventory() {
-        return wormWeaponInventory;
-    }
-*/
     public void setInventoryOpen(Boolean inventoryOpen) {
         isInventoryOpen = inventoryOpen;
     }

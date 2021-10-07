@@ -80,3 +80,4 @@ public abstract class AbstractWeapon {
     Helper.getTC().setNextWorm();
   }
 }
+

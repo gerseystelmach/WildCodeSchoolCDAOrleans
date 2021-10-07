@@ -24,7 +24,6 @@ public class Grenade extends AbstractWeapon {
         return image;
     }
 
-
     @Override
     public Image getImage2() {
         if (image == null) {
