@@ -15,11 +15,18 @@ public class SuperGrenade extends AbstractWeapon {
     private static Image image = null;
 
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 50, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 40, 0);
     }
 
       public static Image getImage() {
         return image;
+    }
+
+    @Override
+    public Image getImage2() {
+        if (image == null)
+        {initImages();}
+        return getImage();
     }
 
     @Override

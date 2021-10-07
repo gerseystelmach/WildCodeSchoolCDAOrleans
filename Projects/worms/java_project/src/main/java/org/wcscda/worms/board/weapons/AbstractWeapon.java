@@ -1,6 +1,6 @@
 package org.wcscda.worms.board.weapons;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.lang.reflect.Constructor;
 import org.wcscda.worms.Helper;
@@ -9,6 +9,8 @@ import org.wcscda.worms.gamemechanism.phases.MovingPhase;
 
 public abstract class AbstractWeapon {
   private double angle;
+
+  public abstract Image getImage2();
 
   public AbstractWeapon() {
     this.angle = Helper.getActiveWorm().getDirection();

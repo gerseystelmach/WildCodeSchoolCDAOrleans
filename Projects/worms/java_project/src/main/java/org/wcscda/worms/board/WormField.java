@@ -61,7 +61,7 @@ public class WormField extends AbstractBoardElement {
   }
 
   public Shape getShape() {
-    return frontier;
+      return frontier;
   }
 
   public void doExplosionOnField(Shape explosionShape) {

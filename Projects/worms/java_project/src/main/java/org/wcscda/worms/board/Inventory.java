@@ -38,17 +38,20 @@ public class Inventory extends AbstractDrawableElement {
     @Override
     protected void drawMain(Graphics2D g, ImageObserver io) {
         if (getInventoryOpen() && Helper.getActiveWorm() == worm) {
-            Rectangle2D.Double inventoryRect = new Rectangle2D.Double(Helper.getPC().getX() + 995, Helper.getPC().getY(), 200, 200);
+            Rectangle2D.Double inventoryRect = new Rectangle2D.Double(Helper.getPC().getX() + 995, Helper.getPC().getY(), 200, 250);
             g.setColor(Color.lightGray);
             g.draw(inventoryRect);
 
             g.drawString("Inventory of " + worm.getName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + 20);
-            int pos = 50;
+            int pos = 60;
+            int posImg = 40;
 
             ArrayList<AbstractWeapon> wormWeapons = Helper.getActiveWorm().getWeapons();
             for (AbstractWeapon wormWeapon : wormWeapons) {
+                g.drawImage(wormWeapon.getImage2(),(int)inventoryRect.getX() + 120, (int)inventoryRect.getY() + posImg, io);
                 g.drawString(wormWeapon.getClass().getSimpleName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + pos);
-               pos += 30;
+               pos += 40;
+               posImg += 40;
             }
 
 
