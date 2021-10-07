@@ -18,6 +18,14 @@ public class SuperGrenade extends AbstractWeapon {
         image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 50, 0);
     }
 
+    public String getWeaponName() {
+        return "Super Grenade";
+    }
+
+    public static Image getImage() {
+        return image;
+    }
+
     @Override
     public void draw(Graphics2D g, ImageObserver io) {
         if (image == null) {

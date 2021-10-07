@@ -20,6 +20,14 @@ public class Grenade extends AbstractWeapon {
         image = new ImageIcon(imagePath).getImage().getScaledInstance(30, 30, 0);
     }
 
+    public static Image getImage() {
+        return image;
+    }
+
+    public String getWeaponName() {
+        return "Grenade";
+    }
+
     @Override
     public void draw(Graphics2D g, ImageObserver io) {
         if (image == null) {

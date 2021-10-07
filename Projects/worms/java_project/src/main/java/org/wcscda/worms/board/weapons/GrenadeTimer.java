@@ -19,6 +19,10 @@ public class GrenadeTimer extends AbstractWeapon {
         image = new ImageIcon(imagePath).getImage().getScaledInstance(60, 30, 0);
     }
 
+    public String getWeaponName() {
+        return "Grenade with Timer";
+    }
+
     @Override
     public void draw(Graphics2D g, ImageObserver io) {
         if (image == null) {

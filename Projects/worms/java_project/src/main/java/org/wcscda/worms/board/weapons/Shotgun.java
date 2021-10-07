@@ -17,6 +17,18 @@ public class Shotgun extends AbstractWeapon {
     image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
   }
 
+  public String getWeaponName() {
+    return "Shotgun";
+  }
+
+  public static Image getImage() {
+    return image;
+  }
+
+  public int getNbFiredShoots() {
+    return nbFiredShoots;
+  }
+
   @Override
   public void draw(Graphics2D g, ImageObserver io) {
     if (image == null) {

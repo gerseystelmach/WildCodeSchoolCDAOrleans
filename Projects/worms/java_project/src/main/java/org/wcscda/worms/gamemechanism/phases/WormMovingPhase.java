@@ -6,6 +6,8 @@ import org.wcscda.worms.Config;
 import org.wcscda.worms.Helper;
 import org.wcscda.worms.Worm;
 import org.wcscda.worms.board.weapons.AbstractWeapon;
+import org.wcscda.worms.board.weapons.Inventory;
+import org.wcscda.worms.gamemechanism.TimeController;
 
 public class WormMovingPhase extends AbstractPhase {
   private static final double WORM_STEP_SPEED = 3.0;
@@ -43,9 +45,16 @@ public class WormMovingPhase extends AbstractPhase {
       Helper.getActivePlayer().changeWeapon();
     }
 
+    Inventory playersInventory = new Inventory();
     if (key.equals("I")) {
-      System.out.println("Inventory");
+       playersInventory.setInventoryOpen(true);
+
     }
+
+    if (key.equals("C") && playersInventory.getInventoryOpen()) {
+      playersInventory.setInventoryOpen(false);
+    }
+
 
   }
 

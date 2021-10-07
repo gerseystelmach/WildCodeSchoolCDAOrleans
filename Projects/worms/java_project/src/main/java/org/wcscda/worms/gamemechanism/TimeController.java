@@ -10,6 +10,7 @@ import javax.swing.Timer;
 import org.wcscda.worms.Config;
 import org.wcscda.worms.Player;
 import org.wcscda.worms.Worm;
+import org.wcscda.worms.board.weapons.Inventory;
 import org.wcscda.worms.gamemechanism.phases.AbstractPhase;
 import org.wcscda.worms.gamemechanism.phases.WormMovingPhase;
 import org.wcscda.worms.gamemechanism.playerrecorder.KeyboardControllerPlayer;
@@ -48,8 +49,6 @@ public class TimeController implements ActionListener {
     board.addKeyListener(keyboardController);
     timer = new Timer(Config.getClockDelay(), this);
     timer.start();
-
-
 
   }
 
