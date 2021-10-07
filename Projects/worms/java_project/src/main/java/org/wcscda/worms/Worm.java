@@ -3,9 +3,13 @@ package org.wcscda.worms;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 
 import org.wcscda.worms.board.*;
+import org.wcscda.worms.board.weapons.*;
 import org.wcscda.worms.gamemechanism.Board;
 
 public class Worm extends ARBEWithGravity implements IVisitable {
@@ -26,6 +30,8 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   private final Player player;
   private boolean isUserMoving;
   private Inventory inventory;
+  private final ArrayList<AbstractWeapon> weapons = new ArrayList<>();
+
 
   private static void initImages() {
     wormLF = new ImageIcon(leftFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
@@ -55,6 +61,20 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     this.player = player;
     this.name = name;
     this.inventory = new Inventory(this);
+    addWeapons();
+  }
+
+  public void addWeapons() {
+
+    weapons.add(new Shotgun());
+    weapons.add(new Hadoken());
+    weapons.add(new Grenade());
+    weapons.add(new SuperGrenade());
+    weapons.add(new GrenadeTimer());
+  }
+
+  public ArrayList<AbstractWeapon> getWeapons() {
+    return weapons;
   }
 
   private static int getRandomStartingX() {

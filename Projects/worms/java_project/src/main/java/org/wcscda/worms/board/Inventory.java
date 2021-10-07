@@ -16,34 +16,23 @@ import java.util.Map;
 public class Inventory extends AbstractDrawableElement {
 
 
-    private final ArrayList<AbstractWeapon> weapons = new ArrayList<>();
-    private final Map<Worm, ArrayList<AbstractWeapon>> wormWeaponInventory = new HashMap<>();
+
     private Boolean isInventoryOpen = false;
-    private Worm worm;
+    private final Worm worm;
 
     public Inventory(Worm worm) {
-this.worm =worm;
-        weapons.add(new Shotgun());
-        weapons.add(new Hadoken());
-        weapons.add(new Grenade());
-        weapons.add(new SuperGrenade());
-        weapons.add(new GrenadeTimer());
-
-        for (Player player : Helper.getTC().getPlayers()) {
-            for (Worm iWorm : player.getWorms()) {
-                wormWeaponInventory.put(iWorm, weapons);
-            }
-        }
+        this.worm = worm;
     }
+
 
     public Boolean getInventoryOpen() {
         return isInventoryOpen;
     }
 
-    public Map<Worm, ArrayList<AbstractWeapon>> getWormWeaponInventory() {
+   /* public Map<Worm, ArrayList<AbstractWeapon>> getWormWeaponInventory() {
         return wormWeaponInventory;
     }
-
+*/
     public void setInventoryOpen(Boolean inventoryOpen) {
         isInventoryOpen = inventoryOpen;
     }
@@ -55,7 +44,24 @@ this.worm =worm;
             g.setColor(Color.lightGray);
             g.draw(inventoryRect);
 
+            g.drawString("Inventory of " + worm.getName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + 20);
             int pos = 50;
+
+            ArrayList<AbstractWeapon> wormWeapons = Helper.getActiveWorm().getWeapons();
+            for (AbstractWeapon wormWeapon : wormWeapons) {
+                g.drawString(wormWeapon.getClass().getSimpleName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + pos);
+                System.out.println(wormWeapon.getClass().getSimpleName());
+                pos += 30;
+            }
+
+
+
+        }
+
+    }
+}
+
+     /*       int pos = 50;
             for (Map.Entry<Worm, ArrayList<AbstractWeapon>> entry : wormWeaponInventory.entrySet()) {
                 Worm worm = entry.getKey();
                 if (worm.getName().equals(Helper.getActiveWorm().getName())) {
@@ -67,10 +73,4 @@ this.worm =worm;
                     }
 
                 }
-            }
-
-        }
-
-    }
-}
-
+            }*/
