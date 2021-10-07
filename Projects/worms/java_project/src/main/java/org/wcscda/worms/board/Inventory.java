@@ -52,22 +52,7 @@ public class Inventory extends AbstractDrawableElement {
             }
 
 
-
         }
 
     }
 }
-
-     /*       int pos = 50;
-            for (Map.Entry<Worm, ArrayList<AbstractWeapon>> entry : wormWeaponInventory.entrySet()) {
-                Worm worm = entry.getKey();
-                if (worm.getName().equals(Helper.getActiveWorm().getName())) {
-                    ArrayList<AbstractWeapon> abstractWeapon = entry.getValue();
-                    g.drawString("Inventory of " + worm.getName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + 20);
-                    for (AbstractWeapon weapon : abstractWeapon) {
-                        g.drawString(weapon.getClass().getSimpleName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + pos);
-                        pos += 30;
-                    }
-
-                }
-            }*/

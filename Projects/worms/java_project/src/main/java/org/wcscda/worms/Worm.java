@@ -65,17 +65,11 @@ public class Worm extends ARBEWithGravity implements IVisitable {
 
   public void addWeapons() {
 
-    Shotgun shotgun = new Shotgun();
-    Hadoken hadoken = new Hadoken();
-    Grenade grenade = new Grenade();
-    SuperGrenade superGrenade = new SuperGrenade();
-    GrenadeTimer grenadeTimer = new GrenadeTimer();
     this.weapons.add(new Shotgun());
-    this.weapons.add(hadoken);
-    this.weapons.add(grenade);
-    this.weapons.add(superGrenade);
-    this.weapons.add(grenadeTimer);
-
+    this.weapons.add(new Hadoken());
+    this.weapons.add(new Grenade());
+    this.weapons.add(new SuperGrenade());
+    this.weapons.add(new GrenadeTimer());
 
   }
 
