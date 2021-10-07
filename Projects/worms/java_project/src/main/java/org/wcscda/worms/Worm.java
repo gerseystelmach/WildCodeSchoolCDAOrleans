@@ -54,7 +54,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
 
     this.player = player;
     this.name = name;
-    this.inventory = new Inventory();
+    this.inventory = new Inventory(this);
   }
 
   private static int getRandomStartingX() {

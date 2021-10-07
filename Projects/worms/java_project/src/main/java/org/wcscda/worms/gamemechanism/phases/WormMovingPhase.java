@@ -47,10 +47,10 @@ public class WormMovingPhase extends AbstractPhase {
 
     Inventory wormInventory = (Inventory) Helper.getActiveWorm().getInventory();
     if (key.equals("I")) {
-      wormInventory.createInventory();
+     /* wormInventory.createInventory();*/
       wormInventory.setInventoryOpen(!wormInventory.getInventoryOpen());
      if (!wormInventory.getInventoryOpen()) {
-        wormInventory.removeSelf();
+       /* wormInventory.removeSelf();*/
       }
     }
 
