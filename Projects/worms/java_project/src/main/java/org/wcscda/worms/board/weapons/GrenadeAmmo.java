@@ -16,7 +16,7 @@ public class GrenadeAmmo  extends AbstractAmmo {
 
     // Radius of the explosion which appears in a red big circle
     private static final int EXPLOSION_RADIUS = 50;
-    private static final int EXPLOSION_DAMAGE = 30;
+    private static final int EXPLOSION_DAMAGE = 20;
     /*It changes the size of the bullet: the one in form of rectangle   */
     private static final int GRENADE_RECT_SIZE =30;
   //  private static final int GRENADE_AMMO_RADIUS = 150;
@@ -52,7 +52,7 @@ public class GrenadeAmmo  extends AbstractAmmo {
         if (image == null) {
             initImages();
         }
-        g.drawImage(image, (int) (getMovable().getCenterX() - 20), (int) (getMovable().getCenterY() -20), io);
+        g.drawImage(image, (int) (getMovable().getCenterX() - 20), (int) (getMovable().getCenterY() - 20), io);
     }
 
 }

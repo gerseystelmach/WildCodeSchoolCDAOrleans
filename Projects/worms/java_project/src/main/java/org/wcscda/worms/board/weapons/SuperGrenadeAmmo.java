@@ -11,7 +11,7 @@ import java.awt.image.ImageObserver;
 public class SuperGrenadeAmmo extends AbstractAmmo {
 
     private static final int EXPLOSION_RADIUS = 150;
-    private static final int EXPLOSION_DAMAGE = 18;
+    private static final int EXPLOSION_DAMAGE = 30;
     /*It changes the size of the bullet */
     private static final int GRENADE_RECT_SIZE = 10;
     private static final int INITIAL_SPEED = 3;
