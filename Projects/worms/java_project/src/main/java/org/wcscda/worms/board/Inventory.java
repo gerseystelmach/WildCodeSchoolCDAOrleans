@@ -19,10 +19,10 @@ public class Inventory extends AbstractDrawableElement {
     private final ArrayList<AbstractWeapon> weapons = new ArrayList<>();
     private final Map<Worm, ArrayList<AbstractWeapon>> wormWeaponInventory = new HashMap<>();
     private Boolean isInventoryOpen = false;
+    private Worm worm;
 
-
-    public void createInventory() {
-
+    public Inventory(Worm worm) {
+        this.worm = worm;
         weapons.add(new Shotgun());
         weapons.add(new Hadoken());
         weapons.add(new Grenade());
@@ -30,8 +30,8 @@ public class Inventory extends AbstractDrawableElement {
         weapons.add(new GrenadeTimer());
 
         for (Player player : Helper.getTC().getPlayers()) {
-            for (Worm worm : player.getWorms()) {
-                wormWeaponInventory.put(worm, weapons);
+            for (Worm iWorm : player.getWorms()) {
+                wormWeaponInventory.put(iWorm, weapons);
             }
         }
     }
