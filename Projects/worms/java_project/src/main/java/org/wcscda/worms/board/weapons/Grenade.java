@@ -24,9 +24,6 @@ public class Grenade extends AbstractWeapon {
         return image;
     }
 
-    public String getWeaponName() {
-        return "Grenade";
-    }
 
     @Override
     public void draw(Graphics2D g, ImageObserver io) {

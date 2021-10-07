@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.wcscda.worms.board.Inventory;
 import org.wcscda.worms.board.weapons.*;
 
 
@@ -22,9 +23,11 @@ public class Player {
     this.name = name;
     this.color = color;
     this.beginnerLevel = false;
+
   }
 
-  public String getName() {
+
+    public String getName() {
     return name;
   }
 
@@ -104,7 +107,6 @@ public class Player {
   public void initWeapon() {
     currentWeapon = new Shotgun();
   }
-
 
   public boolean hasWorms() {
     return !getWorms().isEmpty();

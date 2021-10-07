@@ -25,7 +25,7 @@ public class GrenadeAmmo  extends AbstractAmmo {
     private static Image image = null;
 
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(30, 30, 0);
     }
 
     public GrenadeAmmo(Double angle) {

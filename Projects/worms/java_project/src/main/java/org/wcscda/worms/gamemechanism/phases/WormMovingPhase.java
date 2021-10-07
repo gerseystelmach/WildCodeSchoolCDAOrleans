@@ -6,8 +6,7 @@ import org.wcscda.worms.Config;
 import org.wcscda.worms.Helper;
 import org.wcscda.worms.Worm;
 import org.wcscda.worms.board.weapons.AbstractWeapon;
-import org.wcscda.worms.board.weapons.Inventory;
-import org.wcscda.worms.gamemechanism.TimeController;
+import org.wcscda.worms.board.Inventory;
 
 public class WormMovingPhase extends AbstractPhase {
   private static final double WORM_STEP_SPEED = 3.0;
@@ -45,16 +44,15 @@ public class WormMovingPhase extends AbstractPhase {
       Helper.getActivePlayer().changeWeapon();
     }
 
-    Inventory playersInventory = new Inventory();
+
+    Inventory wormInventory = (Inventory) Helper.getActiveWorm().getInventory();
     if (key.equals("I")) {
-       playersInventory.setInventoryOpen(true);
-
+      wormInventory.createInventory();
+      wormInventory.setInventoryOpen(!wormInventory.getInventoryOpen());
+     if (!wormInventory.getInventoryOpen()) {
+        wormInventory.removeSelf();
+      }
     }
-
-    if (key.equals("C") && playersInventory.getInventoryOpen()) {
-      playersInventory.setInventoryOpen(false);
-    }
-
 
   }
 
@@ -92,6 +90,7 @@ public class WormMovingPhase extends AbstractPhase {
     }
     activeWorm.setUserMoving(false);
   }
+
 
   private void drawWeaponDirectionLine(Graphics2D g, ImageObserver io) {
     double angle = Helper.getCurrentWeapon().getAngle();

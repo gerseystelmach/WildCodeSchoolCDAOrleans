@@ -4,10 +4,8 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
-import org.wcscda.worms.board.ARBEWithGravity;
-import org.wcscda.worms.board.AbstractBoardElement;
-import org.wcscda.worms.board.IMovableVisitor;
-import org.wcscda.worms.board.IVisitable;
+
+import org.wcscda.worms.board.*;
 import org.wcscda.worms.gamemechanism.Board;
 
 public class Worm extends ARBEWithGravity implements IVisitable {
@@ -27,6 +25,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   private final String name;
   private final Player player;
   private boolean isUserMoving;
+  private Inventory inventory;
 
   private static void initImages() {
     wormLF = new ImageIcon(leftFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
@@ -38,6 +37,15 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   // NRO 2021-09-28 : Player is the Worm factory
   protected Worm(Player player, String name) {
     this(player, name, getRandomStartingX(), getRandomStartingY());
+
+  }
+
+  public Inventory getInventory() {
+    return inventory;
+  }
+
+  public void setInventory(Inventory inventory) {
+    this.inventory = inventory;
   }
 
   // Idem
@@ -46,6 +54,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
 
     this.player = player;
     this.name = name;
+    this.inventory = new Inventory();
   }
 
   private static int getRandomStartingX() {
@@ -115,9 +124,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     } else if (life > shownLife) {
       shownLife++;
     }
-
     return this.shownLife;
-
   }
 
   private boolean isRightFacing() {

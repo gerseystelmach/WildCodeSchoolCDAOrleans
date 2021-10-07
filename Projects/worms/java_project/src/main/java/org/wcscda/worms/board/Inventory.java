@@ -1,9 +1,9 @@
-package org.wcscda.worms.board.weapons;
+package org.wcscda.worms.board;
 
 import org.wcscda.worms.Helper;
 import org.wcscda.worms.Player;
 import org.wcscda.worms.Worm;
-import org.wcscda.worms.board.AbstractDrawableElement;
+import org.wcscda.worms.board.weapons.*;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -29,23 +29,19 @@ public class Inventory extends AbstractDrawableElement {
         weapons.add(new SuperGrenade());
         weapons.add(new GrenadeTimer());
 
-
         for (Player player : Helper.getTC().getPlayers()) {
             for (Worm worm : player.getWorms()) {
                 wormWeaponInventory.put(worm, weapons);
             }
         }
-
-        for (Map.Entry<Worm, ArrayList<AbstractWeapon>> entry : wormWeaponInventory.entrySet()) {
-            Worm worm = entry.getKey();
-            ArrayList<AbstractWeapon> abstractWeapon = entry.getValue();
-            System.out.println(worm.getName() + ": Size: " + abstractWeapon.size() + " Type: " + entry.getValue());
-        }
-
     }
 
     public Boolean getInventoryOpen() {
         return isInventoryOpen;
+    }
+
+    public Map<Worm, ArrayList<AbstractWeapon>> getWormWeaponInventory() {
+        return wormWeaponInventory;
     }
 
     public void setInventoryOpen(Boolean inventoryOpen) {
@@ -54,13 +50,27 @@ public class Inventory extends AbstractDrawableElement {
 
     @Override
     protected void drawMain(Graphics2D g, ImageObserver io) {
-        if (isInventoryOpen) {
-            Rectangle2D.Double inventoryRect = new Rectangle2D.Double(Helper.getActivePlayer().getActiveWorm().getCenterX(), Helper.getActivePlayer().getActiveWorm().getCenterY(), 100, 100);
-        g.setColor(Color.lightGray);
-        g.draw(inventoryRect);
-    } else {
-            System.out.println("ola");
+        if (getInventoryOpen()) {
+            Rectangle2D.Double inventoryRect = new Rectangle2D.Double(Helper.getPC().getX() + 995, Helper.getPC().getY(), 200, 200);
+            g.setColor(Color.lightGray);
+            g.draw(inventoryRect);
+
+            int pos = 50;
+            for (Map.Entry<Worm, ArrayList<AbstractWeapon>> entry : wormWeaponInventory.entrySet()) {
+                Worm worm = entry.getKey();
+                if (worm.getName().equals(Helper.getActiveWorm().getName())) {
+                    ArrayList<AbstractWeapon> abstractWeapon = entry.getValue();
+                    g.drawString("Inventory of " + worm.getName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + 20);
+                    for (AbstractWeapon weapon : abstractWeapon) {
+                        g.drawString(weapon.getClass().getSimpleName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + pos);
+                        pos += 30;
+                    }
+
+                }
+            }
+
         }
 
     }
 }
+

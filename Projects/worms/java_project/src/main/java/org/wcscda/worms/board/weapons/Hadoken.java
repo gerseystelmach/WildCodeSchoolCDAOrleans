@@ -11,13 +11,7 @@ import org.wcscda.worms.Helper;
 public class Hadoken extends AbstractWeapon {
   private static final int hadokenRadius = 50;
 
-  public String getWeaponName() {
-    return "Hadoken";
-  }
-
-
-
-  @Override
+   @Override
   public void draw(Graphics2D g, ImageObserver io) {
     // Draw an ellipse
     Ellipse2D circle =
