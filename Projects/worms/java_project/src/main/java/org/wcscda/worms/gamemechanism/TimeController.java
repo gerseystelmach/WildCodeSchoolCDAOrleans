@@ -76,6 +76,7 @@ public class TimeController implements ActionListener {
       for (int j = 0; j < wormQuantity; j++) {
         String wormPlayer = "Worm " + i;
         Worm worm = luckyLuke.createWorm(wormPlayer);
+        worm.addWeapons();
         board.wormInitialPlacement(worm);
       }
     }
