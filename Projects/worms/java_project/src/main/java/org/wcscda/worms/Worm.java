@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 
 import org.wcscda.worms.board.*;
