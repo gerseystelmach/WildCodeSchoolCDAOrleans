@@ -15,8 +15,6 @@ import java.util.Map;
 
 public class Inventory extends AbstractDrawableElement {
 
-
-
     private Boolean isInventoryOpen = false;
     private final Worm worm;
 
