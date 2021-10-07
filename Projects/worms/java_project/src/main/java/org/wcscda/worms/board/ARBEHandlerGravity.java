@@ -16,8 +16,8 @@ public class ARBEHandlerGravity extends ARBEWithGravity {
         super(x, y, rectWidth, rectHeight);
         this.movableHandler = movableHandler;
         supportRect =
-                new Rectangle2D.Double(
-                        x, y + rectHeight + STANDING_RECTANGLE_HEIGHT, rectWidth, STANDING_RECTANGLE_HEIGHT);
+                new Rectangle2D.Double(0,0,0,0);
+                       //x, y + rectHeight + STANDING_RECTANGLE_HEIGHT, rectWidth, STANDING_RECTANGLE_HEIGHT);
     }
 
     public Rectangle2D getOuterRect() {
@@ -53,8 +53,8 @@ public class ARBEHandlerGravity extends ARBEWithGravity {
     @Override
     protected void drawDebug(Graphics2D g, ImageObserver io) {
         super.drawDebug(g, io);
-        g.setColor(Color.ORANGE);
-        g.draw(getOuterRect());
+        /*g.setColor(Color.GREEN);
+        g.draw(getOuterRect());*/
     }
 
     public boolean isSubjectToGravity() {

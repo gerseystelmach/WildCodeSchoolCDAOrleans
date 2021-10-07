@@ -17,13 +17,14 @@ import javax.swing.Timer;
 
 public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
 
-    private static final int EXPLOSION_RADIUS = 150;
+    private static final int EXPLOSION_RADIUS = 50;
     private static final int EXPLOSION_DAMAGE = 20;
     /*It changes the size of the bullet */
     private static final int GRENADE_RECT_SIZE = 10;
     private static final int INITIAL_SPEED = 1;
     private static final String imagePath = "src/resources/weapons/grenadetimer.png";
     private static Image image = null;
+    private int initTime = 0;
 
 
 
@@ -40,32 +41,18 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
     }
 
     // Set Timer wid the delay time
+    public void onIterationBegin() {
+        if (initTime + 140 < Helper.getClock()) {
+            explode();
+            Helper.getCurrentWeapon().triggerAmmoExplosion();
+        }
 
-    /* @Override
-     public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
-         new java.util.Timer().schedule(
-                 new java.util.TimerTask() {
-                     @Override
-                     public void run() {
-                         explode();
-                         Helper.getCurrentWeapon().triggerAmmoExplosion();
-                     }
-                 },
-                 1000
-         );
-     }*/
+    }
 
-    public void timerExplode() {
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        explode();
-                        Helper.getCurrentWeapon().triggerAmmoExplosion();
-                    }
-                },
-                1000
-        );
+    @Override
+    public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
+        getMovable().setPosition(prevPosition);
+        onIterationBegin();
     }
 
     @Override
@@ -73,12 +60,16 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
         setMovable(new ARBEHandlerGravity(
                 Helper.getWormX() - rectWidth / 2,
                 Helper.getWormY() - rectHeight / 2,
-                10,
-                10,
+                rectWidth,
+                rectHeight,
                 this));
-        timerExplode();
+        setInitTime(Helper.getClock());
+
     }
 
+    public void setInitTime(int initTime) {
+        this.initTime = initTime;
+    }
     @Override
     public void drawMain(Graphics2D g, ImageObserver io) {
 
@@ -87,7 +78,7 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
         }
 
         AffineTransform trans =
-                AffineTransform.getTranslateInstance(getMovable().getCenterX() + 35, getMovable().getCenterY() - 20);
+                AffineTransform.getTranslateInstance(getMovable().getCenterX() + 20, getMovable().getCenterY() - 20);
         trans.scale(-1, 1);
 
         g.drawImage(image, trans, io);
