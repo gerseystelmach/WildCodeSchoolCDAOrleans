@@ -48,8 +48,7 @@ public class Inventory extends AbstractDrawableElement {
             ArrayList<AbstractWeapon> wormWeapons = Helper.getActiveWorm().getWeapons();
             for (AbstractWeapon wormWeapon : wormWeapons) {
                 g.drawString(wormWeapon.getClass().getSimpleName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + pos);
-                System.out.println(wormWeapon.getClass().getSimpleName());
-                pos += 30;
+               pos += 30;
             }
 
 
