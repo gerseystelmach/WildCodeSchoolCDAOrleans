@@ -16,11 +16,23 @@ public class GrenadeTimer extends AbstractWeapon {
     private static final int grenadeRadius = 50;
 
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(60, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(60, 40, 0);
     }
 
     public String getWeaponName() {
         return "Grenade with Timer";
+    }
+
+    public static Image getImage() {
+        return image;
+    }
+
+    @Override
+    public Image getImage2() {
+        if (image == null) {
+            initImages();
+        }
+        return getImage();
     }
 
     @Override
@@ -44,6 +56,6 @@ public class GrenadeTimer extends AbstractWeapon {
         }
 
         g.setStroke(new BasicStroke(10));
-
     }
 }
+

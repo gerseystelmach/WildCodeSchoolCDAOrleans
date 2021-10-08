@@ -14,7 +14,7 @@ public class SuperGrenadeAmmo extends AbstractAmmo {
     private static final int EXPLOSION_DAMAGE = 30;
     /*It changes the size of the bullet */
     private static final int GRENADE_RECT_SIZE = 10;
-    private static final int INITIAL_SPEED = 3;
+    private static final int INITIAL_SPEED = 5;
     private static final String imagePath = "src/resources/weapons/grenadefruit.png";
     private static Image image = null;
 

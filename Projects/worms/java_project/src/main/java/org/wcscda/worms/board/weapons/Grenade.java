@@ -24,6 +24,13 @@ public class Grenade extends AbstractWeapon {
         return image;
     }
 
+    @Override
+    public Image getImage2() {
+        if (image == null) {
+            initImages();
+        }
+        return getImage();
+    }
 
     @Override
     public void draw(Graphics2D g, ImageObserver io) {
@@ -49,8 +56,8 @@ public class Grenade extends AbstractWeapon {
 
             g.drawImage(image, trans, io);
         }
-
-        g.setStroke(new BasicStroke(10));
+/*
+        g.setStroke(new BasicStroke(10));*/
 
 
     }

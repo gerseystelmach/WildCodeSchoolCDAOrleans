@@ -47,6 +47,7 @@ public abstract class Board extends JPanel {
   private void doDrawing(Graphics2D g) {
     for (AbstractDrawableElement drawable : AbstractDrawableElement.getAllDrawable()) {
       drawable.draw(g, this);
+
     }
 
     Toolkit.getDefaultToolkit().sync();

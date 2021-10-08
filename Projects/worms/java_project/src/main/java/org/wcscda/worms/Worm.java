@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 
 import org.wcscda.worms.board.*;
@@ -131,7 +133,6 @@ public class Worm extends ARBEWithGravity implements IVisitable {
       // NRO 2021-10-05 BAD : DRY ! (Don't Repeat Yourself)
       g.drawString( Helper.getTC().getWinner(), 550, 60);
       g.drawString("Congratulations! You are the winner!", 200, 120);
-
       }
     }
 
@@ -183,7 +184,6 @@ public class Worm extends ARBEWithGravity implements IVisitable {
 
   @Override
   public void takeDamage(int damage) {
-/*for (Player players: Helper.getTC().getPlayers())*/
 if (Helper.getTC().getActivePlayer().isBeginnerLevel()) {
      damage = (int) (damage * 1.25);
   }

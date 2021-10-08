@@ -18,7 +18,7 @@ public class ShotgunAmmo extends AbstractAmmo {
         super(EXPLOSION_RADIUS, EXPLOSION_DAMAGE);
         createMovableRect(HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE);
         getMovable().setDirection(angle);
-        getMovable().setSpeed(1);
+        getMovable().setSpeed(5);
         setInitialPosition();
     }
 
@@ -41,7 +41,7 @@ public class ShotgunAmmo extends AbstractAmmo {
             g.drawImage(image, trans, io);
         } else {
             AffineTransform trans =
-                    AffineTransform.getTranslateInstance(getMovable().getCenterX(), getMovable().getCenterY());
+                    AffineTransform.getTranslateInstance(getMovable().getCenterX(), getMovable().getCenterY() - 14);
             trans.scale(-1, 1);
 
             g.drawImage(image, trans, io);

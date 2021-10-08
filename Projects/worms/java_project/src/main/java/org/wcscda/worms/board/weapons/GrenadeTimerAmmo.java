@@ -21,7 +21,7 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
     private static final int EXPLOSION_DAMAGE = 20;
     /*It changes the size of the bullet */
     private static final int GRENADE_RECT_SIZE = 10;
-    private static final int INITIAL_SPEED = 1;
+    private static final int INITIAL_SPEED = 5;
     private static final String imagePath = "src/resources/weapons/grenadetimer.png";
     private static Image image = null;
     private int initTime = 0;
@@ -29,7 +29,7 @@ public class GrenadeTimerAmmo extends AbstractAmmo implements ActionListener {
 
 
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(60, 40, 0);
     }
 
     public GrenadeTimerAmmo(Double angle) {

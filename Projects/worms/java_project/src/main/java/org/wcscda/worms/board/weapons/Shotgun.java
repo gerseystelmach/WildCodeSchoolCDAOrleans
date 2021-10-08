@@ -26,6 +26,11 @@ public class Shotgun extends AbstractWeapon {
   }
 
   @Override
+  public Image getImage2() {
+    return getImage();
+  }
+
+  @Override
   public void draw(Graphics2D g, ImageObserver io) {
     if (image == null) {
       initImages();
@@ -49,7 +54,6 @@ public class Shotgun extends AbstractWeapon {
 
   public AbstractPhase getNextPhase() {
     nbFiredShoots++;
-
     return new MovingPhase();
   }
 
