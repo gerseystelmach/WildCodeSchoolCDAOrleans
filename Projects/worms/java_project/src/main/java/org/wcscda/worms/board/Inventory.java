@@ -35,7 +35,8 @@ public class Inventory extends AbstractDrawableElement {
     protected void drawMain(Graphics2D g, ImageObserver io) {
         if (getInventoryOpen() && Helper.getActiveWorm() == worm) {
             Rectangle2D.Double inventoryRect = new Rectangle2D.Double(Helper.getPC().getX() + 995, Helper.getPC().getY(), 200, 250);
-            g.setColor(Color.lightGray);
+            g.setColor(Color.black);
+            g.setStroke(new BasicStroke(5));
             g.draw(inventoryRect);
 
             g.drawString("Inventory of " + worm.getName(), (float) inventoryRect.getX() + 30, (float) inventoryRect.getY() + 20);

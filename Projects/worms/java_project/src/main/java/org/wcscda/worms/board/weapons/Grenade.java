@@ -56,8 +56,8 @@ public class Grenade extends AbstractWeapon {
 
             g.drawImage(image, trans, io);
         }
-/*
-        g.setStroke(new BasicStroke(10));*/
+
+        g.setStroke(new BasicStroke(10));
 
 
     }

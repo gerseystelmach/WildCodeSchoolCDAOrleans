@@ -1,7 +1,6 @@
 package org.wcscda.worms.board.weapons;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
@@ -35,7 +34,7 @@ public class Shotgun extends AbstractWeapon {
     if (image == null) {
       initImages();
     }
-
+    g.setStroke(new BasicStroke(10));
     /* Code to choose condition for each side. If > is right, otherwise is left. We can change the image in accordance to the side.  */
     if (getAngle() < Math.PI / 2) {
       AffineTransform trans =
