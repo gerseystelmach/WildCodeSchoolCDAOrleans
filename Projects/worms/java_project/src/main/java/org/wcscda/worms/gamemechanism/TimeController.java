@@ -43,7 +43,7 @@ public class TimeController implements ActionListener {
   public TimeController() {
 
     instance = this;
-    initGame(4, 1);
+    initGame(3, 1);
     keyboardController = createController();
     board.addKeyListener(keyboardController);
     timer = new Timer(Config.getClockDelay(), this);
