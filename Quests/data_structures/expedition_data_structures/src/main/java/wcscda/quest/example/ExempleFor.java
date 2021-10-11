@@ -1,5 +1,6 @@
 package wcscda.quest.example;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ExempleFor {
@@ -37,8 +38,11 @@ public class ExempleFor {
 
     public static void main(String[] args) {
         MyIterable iterable = new MyIterable(8);
-        for(String s: iterable) {
+        ArrayList<String> al = new ArrayList<>();
+
+        iterable.forEach(System.out::println);
+        /*for(String s: iterable) {
             System.out.println(s);
-        }
+        }*/
     }
 }
