@@ -19,6 +19,7 @@ public class Worm{
     public Worm(Player player, String name) {
         this.player = player;
         this.name = name;
+        this.noAccessAttribute = "You should not pass";
         player.setWorm(this);
     }
 }
