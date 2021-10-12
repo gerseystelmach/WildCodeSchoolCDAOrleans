@@ -24,7 +24,7 @@ public abstract class Vardump {
   }
 
   public static void dump(Object o, boolean includeFields, boolean includeProperty) {
-    Field[] fields = o.getClass().getFields() ;
+    /*Field[] fields = o.getClass().getFields() ;
 
 
 
@@ -50,6 +50,6 @@ public abstract class Vardump {
       }
     }
 
-    System.out.println(result);
+    System.out.println(result);*/
   }
 }

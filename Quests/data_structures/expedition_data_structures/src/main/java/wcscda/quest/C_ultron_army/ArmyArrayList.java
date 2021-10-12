@@ -30,6 +30,6 @@ public class ArmyArrayList implements UltronArmy {
 
     @Override
     public boolean contains(Sentinel sentinel) {
-        return false;
+        return sentinelArrayList.contains(sentinel);
     }
 }
