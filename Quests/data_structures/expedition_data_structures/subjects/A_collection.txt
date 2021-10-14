@@ -13,7 +13,7 @@ Pour se simplifier la vie nous ferons une collection de Integer
 https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html
 
 Dans le package A_collection, mettez à jour la classe FixedSizeCollection
-en la faisant implémenter l'interface collection<Integer>
+en la faisant implémenter l'interface collection<Integer> "OK"
 
 Votre objectif est d'implémenter les méthodes suivantes :
 
