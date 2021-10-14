@@ -64,6 +64,9 @@ public class WormField extends AbstractBoardElement {
     if (image == null) {
       initImages();
     }
+    // NRO 2021-10-14 : The PC is the whole screen, so
+    // 0, 0 would have been fine
+    // But well, great idea :-)
     g.drawImage(image, Helper.getPC().getX(), Helper.getPC().getY(), io);
 
     g.setColor(Color.darkGray);

@@ -79,6 +79,13 @@ public class Player {
     weapons.add(new SuperGrenade());
     weapons.add(new GrenadeTimer());
 
+    // NRO 2021-10-14 : In that case you can legitimately
+    // use weapons.indexOf(currentWeapon)
+    // It has the same flaw as remove / contains but
+    // the list is small and we need the ordering.
+    // Best option : consider storing the index of the
+    // weapon and replace currentWeapon by a
+    // getCurrentWeapon() { return weapons.get(currentWeaponIndex); }
     for (int i = 0; i < weapons.size(); i++) {
         if (currentWeapon.getClass() == (weapons.get(i).getClass())) {
             currentWeapon = weapons.get(i + 1);

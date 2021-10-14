@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
-// NRO 2021-10-05 BAD : Nice ! 
+// NRO 2021-10-05 : Should be extending Grenade
 public class SuperGrenade extends AbstractWeapon {
 
     private static final int superGrenadeRadius = 80;

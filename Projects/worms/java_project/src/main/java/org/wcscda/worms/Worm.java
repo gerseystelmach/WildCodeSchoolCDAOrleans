@@ -15,6 +15,8 @@ import org.wcscda.worms.gamemechanism.Board;
 public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
+  // NRO 2021-10-14 : Trophy should be managed in the
+  // EndOfGamePhase
   private static final String  trophy = "src/resources/weapons/trophy.png";
   private static final int imageHeight = 60;
   private static final int imageWidth = 54;
