@@ -39,6 +39,7 @@ vous contenter de lettres.
 == Morpion c'est simple, si vous cliquez sur une case vous placez dessus
 une croix ou un rond (en alternance).
 Faire en sorte que la croix ou le rond soit centré.
+
 == Pour les échecs, vous devez avoir deux clics pour déplacer une pièce
 (c'est plus compliqué) et il faut bien entendu respecter les règles
 de déplacement des pièces

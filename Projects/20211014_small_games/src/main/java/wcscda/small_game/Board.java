@@ -12,7 +12,10 @@ public class Board extends JPanel {
   private Drawable tempDrawable;
   private Set<Drawable> permanentDrawable = new HashSet<>();
 
+
   public Board(Drawable game) {
+
+
     permanentDrawable.add(game);
 
     addKeyListener(new KeyboardController(this));
@@ -20,6 +23,7 @@ public class Board extends JPanel {
     setBackground(Color.BLACK);
     setFocusable(true);
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
   }
 
   public void redraw(Drawable drawable) {
