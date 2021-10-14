@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.util.*;
 
-public class KataSquareSum {
+public class SquareSumsTreeExplore {
     private final Set<Integer> squareSet;
     private final int n;
     private Map<Integer, Set<Integer>> neighboursByElement;
@@ -12,15 +12,18 @@ public class KataSquareSum {
 
     // https://www.codewars.com/kata/5a667236145c462103000091/train/java
     public static void main(String[] args) {
-        varDump(buildUpTo(5));
-        varDump(buildUpTo(15));
+        for(int i = 1; i < 50; ++i){
+            System.out.println("Solving n = " + i);
+            varDump(buildUpTo(i));
+        }
     }
 
     public static List<Integer> buildUpTo(int n) {
-        return new KataSquareSum(n).buildUp();
+
+        return new SquareSumsTreeExplore(n).buildUp();
     }
 
-    public KataSquareSum(int n) {
+    public SquareSumsTreeExplore(int n) {
         this.n = n;
         this.squareSet = constructSquareSet(n);
     }
@@ -36,26 +39,58 @@ public class KataSquareSum {
             return null;
         }
 
-        int[] initialArray = getInitialArray();
+        List<Integer> initialList = getInitialArray();
 
-        return solve(initialArray);
+        try {
+            System.out.println(elementByNbNeighbours.get(2).size());
+        }
+        catch(Exception e) {
+            System.out.println("No 2 neighbours");
+        }
+        return solve(initialList);
     }
 
-    private List<Integer> solve(int[] initialArray) {
+    private List<Integer> solve(List<Integer> list) {
+        int firstEmpty = list.indexOf(0);
+        if(firstEmpty == -1) return list;
+
+        Set<Integer> presentElement = new TreeSet<>(list);
+
+        if(firstEmpty == 0) {
+            for(Map.Entry<Integer, ArrayList<Integer>> entry: elementByNbNeighbours.entrySet()) {
+                List<Integer> resList = findFirstSolvable(list, firstEmpty, entry.getValue());
+                if (resList != null) return resList;
+            }
+
+            return null;
+        }
+        else {
+            Integer lastElement = list.get(firstEmpty - 1);
+            Set<Integer> candidates = new TreeSet<>(neighboursByElement.get(lastElement));
+            candidates.removeAll(presentElement);
+
+            return findFirstSolvable(list, firstEmpty, candidates);
+        }
+    }
+
+    private List<Integer> findFirstSolvable(List<Integer> list, int firstEmpty, Collection<Integer> values) {
+        for(Integer i: values) {
+            List<Integer> resList = solve(list, firstEmpty, i);
+            if(resList != null) { return resList; }
+        }
         return null;
     }
 
-    private int[] getInitialArray() {
-        int[] result = new int[n];
-        List<Integer> lonelyInteger = elementByNbNeighbours.get(1);
+    private List<Integer> solve(List<Integer> list, int index, Integer value) {
+        List<Integer> nextList = new ArrayList<>(list);
+        nextList.set(index, value);
 
-        if(lonelyInteger.size() > 0) {
-            result[0] = lonelyInteger.get(0);
-            if(lonelyInteger.size() == 2) {
-                result[n-1] = lonelyInteger.get(1);
-            }
-        }
+        return solve(nextList);
+    }
 
+    private List<Integer> getInitialArray() {
+        List<Integer> result = new ArrayList<Integer>(n);
+        for(int i=0; i<n; ++i) result.add(0);
         return result;
     }
 
@@ -76,15 +111,15 @@ public class KataSquareSum {
     }
 
     private Map<Integer, Set<Integer>> getNeighboursMap() {
-        Map<Integer, Set<Integer>> nbNeighboursByElement = new TreeMap<>();
+        Map<Integer, Set<Integer>> neighboursMap = new TreeMap<>();
 
         for(int i = 1; i <= n; ++i) {
             Set<Integer> possibleNeighbours = getPotentialNeighbours(i);
             if(possibleNeighbours.isEmpty()) return null;
-            nbNeighboursByElement.put(i, possibleNeighbours);
+            neighboursMap.put(i, possibleNeighbours);
         }
 
-        return nbNeighboursByElement;
+        return neighboursMap;
     }
 
     public Set<Integer> getPotentialNeighbours(int i) {
