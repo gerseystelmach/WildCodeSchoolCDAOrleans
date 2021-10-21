@@ -17,7 +17,7 @@ public class BStream {
     // Exercice 1 : Using that syntax, write a method that receive
     // an array of int corresponding at the age and return the
     // the number of persons of 18 or above
-    public static int countLegalAge(int[] ages) {
+    public static int countLegalAge(Integer[] ages) {
         return 0;
     }
 

@@ -17,10 +17,10 @@ class BStreamTest {
 
     @Test
     void countLegalAge() {
-        assertEquals(0, BStream.countLegalAge(new int[] {15, 16}));
-        assertEquals(0, BStream.countLegalAge(new int[] {15, 16, 17}));
-        assertEquals(3, BStream.countLegalAge(new int[] {15, 16, 17, 18, 19, 20}));
-        assertEquals(2, BStream.countLegalAge(new int[] {18, 19}));
+        assertEquals(0, BStream.countLegalAge(new Integer[] {15, 16}));
+        assertEquals(0, BStream.countLegalAge(new Integer[] {15, 16, 17}));
+        assertEquals(3, BStream.countLegalAge(new Integer[] {15, 16, 17, 18, 19, 20}));
+        assertEquals(2, BStream.countLegalAge(new Integer[] {18, 19}));
     }
 
     @Test
