@@ -50,6 +50,11 @@ public class Morpion extends Drawable implements SmallGameInterface {
         drawGrid(g, io);
         g.drawString("Morpion", 150, 50);
 
+<<<<<<< HEAD
+=======
+        g.setFont(new Font("Roboto", Font.BOLD, 50));
+        g.drawString("TicTacToe", 50, 50);
+>>>>>>> 00bc508c52041d940e63bc4703a0c56884a2caa8
     }
 
     private void drawGrid(Graphics2D g, ImageObserver io) {
